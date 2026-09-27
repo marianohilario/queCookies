@@ -1,0 +1,82 @@
+import assert from "node:assert/strict";
+import { click, clickText, fill, noOverflow, viewport } from "./helpers.mjs";
+
+export async function checkOrder(browser) {
+  await viewport(browser, 390);
+  await browser.navigate("/cookies");
+  await click(browser, 'button[aria-label="Agregar Tradicional al carrito"]');
+  await browser.navigate("/carrito");
+  await browser.waitFor("document.body.innerText.includes('¡Sumá una más')");
+  assert.equal(await browser.evaluate("[...document.querySelectorAll('button')].find(el => el.textContent.includes('Continuar con mi pedido'))?.disabled"), true);
+  await browser.navigate("/cookies/mini-cookies");
+  await clickText(browser, "Agregar pack");
+  await browser.navigate("/carrito");
+  await browser.waitFor("document.body.innerText.includes('13.004')");
+  await noOverflow(browser, "carrito móvil");
+  await browser.screenshot("cart-390");
+  await browser.send("Page.reload");
+  await browser.waitFor("document.body.innerText.includes('13.004')");
+  console.log("OK mínimo, pack, total mixto y persistencia al recargar");
+
+  await clickText(browser, "Continuar con mi pedido");
+  await fill(browser, "#name", "Cliente de prueba");
+  await fill(browser, "#phone", "1112345678");
+  await click(browser, 'input[type="checkbox"]');
+  await clickText(browser, "Elegir entrega");
+  await browser.evaluate("[...document.querySelectorAll('label')].find(el => el.textContent.trim() === 'Envío').click()");
+  await fill(browser, "#zone", "Lomas de Zamora");
+  await fill(browser, "#locality", "Banfield");
+  await fill(browser, "#street", "Calle de prueba");
+  await fill(browser, "#number", "123");
+  await fill(browser, "#date", "2030-01-15");
+  await fill(browser, "#time", "15:00");
+  await fill(browser, "#notes", "PRUEBA — NO PREPARAR");
+  await clickText(browser, "Revisar pedido");
+  await browser.waitFor("document.body.innerText.includes('Pendiente de cotizar el envío')");
+  for (const width of [320, 375, 390, 768, 1440]) {
+    await viewport(browser, width);
+    await noOverflow(browser, `revisión ${width}`);
+  }
+  await viewport(browser, 390);
+  await browser.screenshot("checkout-390");
+  await browser.evaluate("window.open = (url) => { window.__orderUrl = url; return null; }");
+  await clickText(browser, "Continuar por WhatsApp");
+  const url = await browser.evaluate("window.__orderUrl");
+  const message = new URL(url).searchParams.get("text");
+  assert.match(message, /13\.004/);
+  assert.match(message, /Calle de prueba 123/);
+  assert.match(message, /Total final: pendiente/);
+  assert.match(message, /PRUEBA — NO PREPARAR/);
+  assert.equal(new URL(url).pathname, "/5491161919801");
+  console.log("OK checkout de envío y enlace final de WhatsApp (apertura interceptada, no se envían mensajes)");
+
+  await browser.waitFor("!!localStorage.getItem('quecookies:profile:v1')");
+  const profile = await browser.evaluate("JSON.parse(localStorage.getItem('quecookies:profile:v1')).profile");
+  assert.equal(profile.address.street, "Calle de prueba");
+  assert.ok(!JSON.stringify(profile).includes("PRUEBA"));
+  await browser.send("Page.reload");
+  await browser.waitFor("document.querySelector('#name')?.value === 'Cliente de prueba'");
+  await clickText(browser, "Elegir entrega");
+  assert.equal(await browser.evaluate("document.querySelector('#street').value"), "Calle de prueba");
+  assert.equal(await browser.evaluate("document.querySelector('#date').value"), "");
+  await browser.evaluate("[...document.querySelectorAll('label')].find(el => el.textContent.trim() === 'Retiro').click()");
+  await fill(browser, "#date", "2030-01-15");
+  await fill(browser, "#time", "15:00");
+  await clickText(browser, "Revisar pedido");
+  await browser.waitFor("document.body.innerText.includes('Peña 298')");
+  await browser.evaluate("window.open = (url) => { window.__orderUrl = url; return null; }");
+  await clickText(browser, "Continuar por WhatsApp");
+  const pickup = new URL(await browser.evaluate("window.__orderUrl")).searchParams.get("text");
+  assert.ok(!pickup.includes("Calle de prueba"));
+  assert.match(pickup, /Retiro en: Peña 298/);
+  await browser.evaluate("Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('Permiso denegado simulado'); } } })");
+  await clickText(browser, "Copiar pedido");
+  await browser.waitFor("!!document.querySelector('textarea[readonly]')");
+  const manual = await browser.evaluate("document.querySelector('textarea[readonly]').value");
+  assert.equal(manual, pickup);
+  await clickText(browser, "Editar datos");
+  await clickText(browser, "Borrar mis datos guardados");
+  assert.equal(await browser.evaluate("localStorage.getItem('quecookies:profile:v1')"), null);
+  assert.ok(await browser.evaluate("localStorage.getItem('quecookies:cart:v1')"));
+  console.log("OK precarga, retiro sin domicilio, copia manual ante permiso denegado y borrado independiente del perfil");
+}

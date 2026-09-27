@@ -59,7 +59,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 - [x] Definir estados vacío, mínimo incompleto, producto no disponible, error y resumen de envío pendiente.
 - [x] Proponer componentes reutilizables y tokens de diseño con adaptación a escritorio en diseno-ui-ux.md.
 - [x] Calcular contraste de los pares principales de la paleta propuesta.
-- [ ] Revisar composición visual en navegador y confirmar tipografías/tokens con el logo actualizado.
+- [x] Revisar composición visual y tipografías en capturas Chrome mobile/desktop; logo definitivo y tokens oficiales pendientes en QC-008.
 - [ ] Verificar navegación, foco, controles táctiles y contraste de todos los estados en la interfaz implementada.
 - Dependencias: spec; puede empezar mientras se completa contenido, con pendientes visibles.
 - Entregable: [diseño del flujo y componentes](./diseno-ui-ux.md) documentado; revisión visual de implementación pendiente.
@@ -115,10 +115,10 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 ### T-09 — Persistir y restaurar carrito
 
 - [x] Adaptador de almacenamiento con esquema versionado y pruebas de codificación/restauración.
-- [ ] Verificar en navegador la hidratación implementada sin sobrescribir el carrito anterior.
+- [x] Verificar en Chrome que recargar restaura carrito y no lo sobrescribe al hidratar.
 - [x] Detección y pruebas de cambios de precio y productos faltantes/no disponibles.
 - [x] Detectar datos inválidos mediante pruebas; manejo en memoria ante fallos implementado.
-- [ ] Verificar cuota/bloqueo de almacenamiento y reconciliación entre pestañas en navegador.
+- [x] Verificar bloqueo simulado de almacenamiento y reconciliación real entre pestañas en Chrome; cuota específica/Safari pendientes.
 - Dependencias: T-08.
 - Entregable: carrito recuperable y funcional en memoria si falla persistencia.
 - Verificación: CA-07, CA-08 y CA-24.
@@ -139,7 +139,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 - [x] Implementar opción explícita para guardar datos en el dispositivo.
 - [x] Implementar precarga/edición y probar selección del último domicilio válido.
-- [ ] Verificar interactivamente eliminación del perfil y separación respecto del carrito.
+- [x] Verificar en Chrome eliminación del perfil, precarga de domicilio y separación respecto del carrito.
 - [x] Probar exclusión de fecha/hora y comentarios en el perfil guardado.
 - Dependencias: T-09/T-10.
 - Entregable: recompra con datos precargados y editables.
@@ -169,7 +169,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-14 — Alternativas y retorno
 
-- [ ] Verificar portapapeles y alternativa manual implementados en navegador.
+- [x] Verificar alternativa manual en Chrome ante permiso de portapapeles denegado simulado; permiso real/Safari pendientes.
 - [x] Implementar contacto visible y enlace alternativo al chat.
 - [x] Probar integridad del mensaje largo; implementar copia manual para enlaces extensos.
 - [ ] Verificar retorno real desde WhatsApp, edición y vaciado manual implementados.

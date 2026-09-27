@@ -26,6 +26,17 @@ Para ejecutar la compilación de producción: `npm start`.
 
 `npm run check` ejecuta todas las verificaciones anteriores. Las pruebas usan `node:test` y `node:assert`, sin paquetes extra. El smoke inicia un servidor efímero en el puerto 43127 (configurable con `SMOKE_PORT`), comprueba HTTP y lo detiene; no automatiza un navegador.
 
+### Verificación de navegador sin dependencias adicionales
+
+```sh
+npm run build
+npm run test:browser
+```
+
+Usa Chrome instalado a través de su protocolo DevTools y WebSocket nativo de Node. En macOS busca `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`; en otro entorno indicar `CHROME_PATH`. Inicia producción en el puerto 43128 (`BROWSER_TEST_PORT`), crea un perfil aislado y lo elimina al terminar. No utiliza la sesión personal del navegador.
+
+Verifica responsive, compra, datos recordados y fallos de almacenamiento/portapapeles. La apertura de WhatsApp se intercepta: inspecciona el enlace sin enviar mensajes al negocio. Capturas en `.artifacts/browser/` (fuera de Git).
+
 ## Documentación
 
 - [Reglas del proyecto](./AGENTS.md).
@@ -52,4 +63,4 @@ La marca tipográfica y las fotos son provisionales. Las fichas de ingredientes/
 - El carrito se recuerda automáticamente; contacto y domicilio solo si el cliente elige recordarlos. No se recuerdan día/hora ni comentarios particulares.
 - Envíos con costo a confirmar; horarios en zona de Buenos Aires. No hay credenciales ni integración de pagos.
 
-La primera implementación está disponible para revisión local. Falta validar la interacción completa en dispositivos reales, además de completar el contenido editorial y definir dominio/hosting; no se realizó un despliegue.
+La primera implementación está disponible para revisión local y tiene verificación interactiva en Chrome headless. Falta verificar Safari y dispositivos físicos, completar el contenido editorial y definir dominio/hosting; no se realizó un despliegue.

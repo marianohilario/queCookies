@@ -21,7 +21,7 @@ Estado: arquitectura para [la especificación R1](./spec.md). Base inicializada 
 | WhatsApp | Enlace wa.me y texto codificado; sin SDK ni API de mensajería |
 | Backend / base de datos / pagos | Fuera del release |
 | Hosting | Pendiente, según modalidad de despliegue y dominio |
-| Pruebas y lint | TypeScript y build; pruebas de dominio con node:test y node:assert nativos. Sin paquetes adicionales de lint/testing; automatización de navegador por acordar |
+| Pruebas y lint | TypeScript/build, node:test/node:assert y Chrome instalado mediante DevTools/WebSocket nativo de Node. Sin paquetes adicionales de lint/testing; Safari y dispositivos físicos pendientes |
 
 Cualquier dependencia adicional, incluso de desarrollo o componentes UI, se conversa antes de instalar. No ejecutar un scaffolding que incorpore silenciosamente paquetes opcionales. Las dependencias técnicas necesarias de Next.js, React, Tailwind y TypeScript se documentarán al preparar el entorno.
 

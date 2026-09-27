@@ -4,10 +4,10 @@
 
 - Documentación inicial creada el 2026-09-26.
 - Especificación actualizada con nombre Que Cookies, cuatro packs de mini cookies y atención diaria de 09:00 a 19:00.
-- Diseño mobile first documentado en [diseno-ui-ux.md](./diseno-ui-ux.md); revisión visual en navegador pendiente.
+- Diseño mobile first documentado en [diseno-ui-ux.md](./diseno-ui-ux.md), implementado y revisado mediante capturas de Chrome.
 - Reglas de modularidad y DRY registradas en [AGENTS.md](../../../AGENTS.md), RNF-08 y CA-27.
 - Aplicación: primera implementación local de vidriera y compra construida en QC-004 a QC-006.
-- Pruebas de producto: dominio automatizado y smoke HTTP ejecutados; interacción de navegador pendiente.
+- Pruebas de producto: 22 pruebas de dominio, smoke HTTP y recorrido interactivo en Chrome ejecutados.
 - Dependencias del stack instaladas. Verificación con TypeScript/build y pruebas nativas de Node; sin herramientas externas de navegador/lint instaladas.
 - Despliegue: pendiente.
 
@@ -169,13 +169,13 @@ Cobertura: CA-26.
 | Suite | Estado | Entorno / fecha | Evidencia | Incidencias |
 | --- | --- | --- | --- | --- |
 | V-01 | Parcial | Node / QC-005–006 | Catálogo contrastado en tests y rutas HTTP | Contenido editorial/alimentario pendiente |
-| V-02 | Parcial | Node / QC-006 | tests/cart.test.ts | Controles UI por verificar en navegador |
-| V-03 | Parcial | Node / QC-006 | tests/storage.test.ts | Hidratación, cuota y sincronización reales pendientes |
-| V-04 | Parcial | Node / QC-006 | tests/checkout.test.ts | Foco, teclado y recorrido interactivo pendientes |
-| V-05 | Parcial | Node / QC-006 | tests/whatsapp.test.ts | Comparación visual UI/mensaje pendiente |
-| V-06 | No ejecutada | — | Implementación disponible | Apertura de chat/portapapeles reales pendientes |
-| V-07 | No ejecutada | — | Diseño implementado; contraste base documentado | Revisión visual y dispositivos pendientes |
-| V-08 | Parcial | macOS / QC-004–006 | typecheck, tests, build, smoke HTTP y revisión modular | Auditoría de rendimiento/navegador pendiente |
+| V-02 | Parcial | Node y Chrome / QC-006–007 | Pruebas de dominio; agregar individual/pack, mínimo y total mixto en UI | Casuística completa de controles y otros navegadores pendiente |
+| V-03 | Parcial | Node y Chrome / QC-006–007 | Recarga, perfil, datos corruptos, bloqueo simulado y sincronización entre pestañas | Cuota específica/Safari pendientes |
+| V-04 | Parcial | Node y Chrome / QC-006–007 | Checkout retiro/envío, datos y preferencias | Revisión completa de foco/teclado/lector de pantalla pendiente |
+| V-05 | Parcial | Node y Chrome / QC-006–007 | Enlace capturado desde CTA; coincide con selección/dirección/total pendiente | Recepción real por el negocio pendiente |
+| V-06 | Parcial | Chrome / QC-007 | Apertura interceptada, copia manual ante rechazo simulado | WhatsApp real y permisos reales del portapapeles pendientes |
+| V-07 | Parcial | Chrome 153 / QC-007 | 320/375/390/768/1440 px sin overflow en inicio, carta y revisión; capturas revisadas | Safari, dispositivos físicos y auditoría completa de accesibilidad pendientes |
+| V-08 | Parcial | macOS / QC-004–007 | typecheck, tests, build, HTTP, Chrome y revisión modular | Métricas de rendimiento completas pendientes |
 | V-09 | No ejecutada | — | — | Sin despliegue |
 
 Cada ejecución registrará: fecha, versión, entorno, pasos/casos, esperado, observado, evidencia y pendientes. Marcar como bloqueada o parcial cuando no pueda verificarse todo; no aprobar por inferencia.
@@ -257,3 +257,21 @@ Resultado: propuesta de diseño y reglas documentadas, con verificación aritmé
 - `npm run check`: correcto; TypeScript, 22 pruebas nativas aprobadas, build de 18 páginas y smoke HTTP de nueve rutas más 404.
 - `git diff --check`: correcto.
 - Pruebas interactivas de navegador pendientes en QC-007. Estas verificaciones no acreditan aún la apertura de WhatsApp ni el uso en celulares físicos.
+
+### QC-007 — Chrome y revisión responsive
+
+- Entorno: Google Chrome 153.0.8010.53 instalado en macOS, headless, perfil temporal aislado; sin dependencias de navegador adicionales.
+- Herramienta: scripts/browser-check.mjs con módulos de conexión CDP, entorno, helpers y escenarios. Node WebSocket nativo; servidor de producción efímero. Capturas ignoradas por Git en `.artifacts/browser/`.
+- Inicio y carta: 320, 375, 390, 768 y 1440 px, sin desbordamiento horizontal. Capturas home-390.png y home-1440.png revisadas visualmente.
+- Compra: una tradicional bloquea el mínimo; agregar un pack de 12 habilita y produce $13.004. Carrito persiste al recargar; cart-390.png revisada.
+- Checkout de envío: nombre/teléfono, domicilio, fecha/hora y notas; resumen con envío pendiente. Revisión sin overflow en los cinco anchos; checkout-390.png revisada.
+- Click real del CTA mediante DOM: window.open interceptado para inspeccionar destino `5491161919801` y texto íntegro, sin contactar al negocio. Verificados subtotal, dirección, notas y envío pendiente.
+- Perfil: precarga después de recargar, domicilio conservado, fecha/notas no recordadas; cambiar a retiro excluye domicilio personal del mensaje. Borrar perfil conserva carrito.
+- Portapapeles denegado simulado: texto manual coincide exactamente con el mensaje del pedido vigente.
+- Dos pestañas del mismo perfil: cambio de carrito en una se refleja en la otra.
+- Almacenamiento corrupto: se detectó que el carrito vacío ocultaba el aviso; corregido en QC-006 y comprobado por el escenario de regresión.
+- Almacenamiento denegado simulado: se pueden agregar dos cookies y llegar al checkout usando estado en memoria, con aviso visible.
+- Hallazgo visual: etiqueta «Imagen ilustrativa» recortada por borde del hero; centrada y revisada en la nueva captura, corregido en QC-005.
+- `npm run build` y `npm run test:browser`: correctos después de corregir hallazgos. Sin excepciones JS ni errores de consola capturados en el recorrido.
+
+Alcance de evidencia: pruebas reales en Chrome con viewport emulado; no equivalen a Safari/iOS, teclado virtual físico, recepción de WhatsApp o auditoría completa WCAG. Esas verificaciones y contenidos finales permanecen explícitos en QC-008/QC-009. No se ejecutó un despliegue.
