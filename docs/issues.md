@@ -16,7 +16,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-010 | Especificar rediseño y organizar referencias | docs/specs/001 | Documentado |
 | QC-011 | Editar solo la letra del logo | RV-01 / CV-01 | Pendiente de archivo original |
 | QC-012 | Paleta exacta y motivos de marca | RV-02 / CV-02 | Pendiente de recursos |
-| QC-013 | Navegación móvil inferior de cuatro accesos | RV-03 / CV-03 a CV-05 | En desarrollo |
+| QC-013 | Navegación móvil inferior de cuatro accesos | RV-03 / CV-03 a CV-05 | Implementado y verificado en Chrome; capturas revisadas |
 | QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Pendiente de recurso fotográfico |
 | QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Pendiente |
 | QC-016 | Regresión y comparación visual del rediseño | CV-08 | Pendiente |

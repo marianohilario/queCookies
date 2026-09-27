@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Brand } from "./brand";
-import { MobileNav } from "./mobile-nav";
 import { CartIndicator } from "@/features/cart/cart-indicator";
 
 const links = [
@@ -11,14 +10,13 @@ const links = [
 export function Header() {
   return (
     <header className="relative z-20 border-b border-brand/10 bg-cream">
-      <div className="page-container flex h-22 items-center justify-between gap-4">
+      <div className="page-container flex h-20 items-center justify-center gap-4 md:h-22 md:justify-between">
         <Brand />
         <nav aria-label="Navegación principal" className="hidden items-center gap-8 text-sm font-medium md:flex">
           {links.map(([href, label]) => <Link key={href} href={href} className="nav-link">{label}</Link>)}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="hidden items-center gap-2 md:flex">
           <CartIndicator />
-          <MobileNav links={links} />
         </div>
       </div>
     </header>

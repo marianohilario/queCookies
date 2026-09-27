@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { click, clickText, fill, noOverflow, viewport } from "./helpers.mjs";
+import { checkNavigationWithCart } from "./navigation-scenario.mjs";
 
 export async function checkOrder(browser) {
   await viewport(browser, 390);
@@ -39,6 +40,7 @@ export async function checkOrder(browser) {
   }
   await viewport(browser, 390);
   await browser.screenshot("checkout-390");
+  await checkNavigationWithCart(browser);
   await browser.evaluate("window.open = (url) => { window.__orderUrl = url; return null; }");
   await clickText(browser, "Continuar por WhatsApp");
   const url = await browser.evaluate("window.__orderUrl");

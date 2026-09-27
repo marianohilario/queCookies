@@ -27,7 +27,7 @@ export async function checkStorage(browser) {
     await browser.navigate("/cookies");
     await click(browser, 'button[aria-label="Agregar Tradicional al carrito"]');
     await click(browser, 'button[aria-label="Agregar Tradicional al carrito"]');
-    await click(browser, 'header a[href="/carrito"]');
+    await click(browser, 'nav[aria-label="Navegación móvil"] a[href="/carrito"]');
     await browser.waitFor("location.pathname === '/carrito' && document.body.innerText.includes('No podemos guardar')");
     assert.ok(await browser.evaluate("document.body.innerText.includes('7.000')"));
     await clickText(browser, "Continuar con mi pedido");

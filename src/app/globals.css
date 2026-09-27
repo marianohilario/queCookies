@@ -11,6 +11,7 @@
 }
 
 @layer base {
+  :root { --mobile-nav-content-height: 4.5rem; --mobile-nav-height: calc(var(--mobile-nav-content-height) + env(safe-area-inset-bottom, 0px) + 1px); }
   html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
   body { margin: 0; background: var(--color-cream); color: var(--color-ink); font-family: var(--font-sans); }
   button, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
@@ -33,6 +34,16 @@
   .footer-link { @apply block text-sm leading-6 text-cream/90 underline-offset-4 hover:underline; }
   .product-grid { @apply grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4; }
   .field { @apply min-h-12 w-full rounded-xl border border-muted/60 bg-white px-4 py-3 text-base text-ink; }
+  .mobile-bottom-nav {
+    @apply fixed inset-x-0 bottom-0 z-40 border-t border-yellow/20 shadow-[0_-4px_20px_#36191b12];
+    min-height: var(--mobile-nav-height);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+@media (width < 48rem) {
+  body { padding-bottom: var(--mobile-nav-height); }
+  html { scroll-padding-bottom: calc(var(--mobile-nav-height) + 1rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {

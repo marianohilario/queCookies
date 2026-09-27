@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Fraunces } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { business } from "@/config/business";
 import { Providers } from "./providers";
-import { CartBar } from "@/features/cart/cart-indicator";
+import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
 import "./globals.css";
 
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   title: { default: `${business.name} | Tu próximo antojo en Banfield`, template: `%s | ${business.name}` },
   description: "Cookies estilo New York y mini cookies. Retiro en Banfield y envíos a coordinar por WhatsApp.",
 };
+
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -26,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Header />
           <main id="contenido">{children}</main>
           <Footer />
-          <CartBar />
+          <MobileBottomNav />
         </Providers>
       </body>
     </html>

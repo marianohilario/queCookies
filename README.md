@@ -43,6 +43,7 @@ Verifica responsive, compra, datos recordados y fallos de almacenamiento/portapa
 - [Issues y commits](./docs/issues.md).
 - [Especificación R1](./docs/specs/000/spec.md).
 - [Diseño mobile first](./docs/specs/000/diseno-ui-ux.md).
+- [Rediseño e identidad de marca](./docs/specs/001/spec.md): navegación inferior móvil y tareas de logo/hero.
 
 Las dependencias adicionales deben conversarse antes de instalarlas. No se configuró un proveedor de hosting ni un backend.
 

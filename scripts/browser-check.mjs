@@ -3,6 +3,7 @@ import { startBrowserCheck } from "./browser/environment.mjs";
 import { viewport, noOverflow } from "./browser/helpers.mjs";
 import { checkOrder } from "./browser/order-scenario.mjs";
 import { checkStorage } from "./browser/storage-scenario.mjs";
+import { checkNavigation } from "./browser/navigation-scenario.mjs";
 
 const browser = await startBrowserCheck();
 try {
@@ -20,6 +21,7 @@ try {
     await noOverflow(browser, `catálogo ${width}`);
     console.log(`OK responsive sin desbordamiento horizontal a ${width}px`);
   }
+  await checkNavigation(browser);
   await checkOrder(browser);
   await checkStorage(browser);
   assert.equal(browser.errors.length, 0, JSON.stringify(browser.errors));
