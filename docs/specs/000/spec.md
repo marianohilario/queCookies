@@ -5,7 +5,7 @@
 - Fecha: 2026-09-26.
 - Release: R1, frontend sin conexión al SaaS ni cobro online.
 - Estado: especificación actualizada con nombre Que Cookies, packs de mini cookies y horarios confirmados; contenidos pendientes identificados abajo.
-- Implementación: no iniciada.
+- Implementación: iniciada; base Next.js/TypeScript/Tailwind verificada en QC-004. Funcionalidades de compra en desarrollo.
 - Metodología: SDD (desarrollo guiado por especificaciones).
 
 Documentos asociados:

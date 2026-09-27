@@ -67,11 +67,11 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-05 — Inicializar proyecto y herramientas
 
-- [ ] Seleccionar versiones compatibles de Next.js, React, TypeScript y Tailwind.
-- [ ] Confirmar herramientas de lint/pruebas antes de instalar dependencias extra.
-- [ ] Configurar estructura, estilos base, rutas y tipografía, con separación de UI, dominio, estado y adaptadores según RNF-08.
-- [ ] Definir scripts reales de desarrollo, build y verificaciones disponibles.
-- [ ] Registrar versiones, gestor de paquetes y decisiones de despliegue cuando existan.
+- [x] Seleccionar versiones compatibles de Next.js, React, TypeScript y Tailwind.
+- [x] Definir TypeScript/build y pruebas nativas de Node sin dependencias adicionales; lint/browser pendientes de conversación.
+- [x] Configurar estructura base, App Router y Tailwind; componentes visuales y tipografía definitiva se completan en T-07.
+- [x] Definir scripts reales de desarrollo, build y typecheck.
+- [x] Registrar versiones y gestor de paquetes; hosting sigue pendiente en T-16.
 - Dependencias: revisión de arquitectura y herramientas.
 - Entregable: base ejecutable, sin integración con backend ni pagos.
 - Verificación: V-08 y CA-27, al existir aplicación.

@@ -6,9 +6,9 @@
 - Especificación actualizada con nombre Que Cookies, cuatro packs de mini cookies y atención diaria de 09:00 a 19:00.
 - Diseño mobile first documentado en [diseno-ui-ux.md](./diseno-ui-ux.md); revisión visual en navegador pendiente.
 - Reglas de modularidad y DRY registradas en [AGENTS.md](../../../AGENTS.md), RNF-08 y CA-27.
-- Aplicación: no implementada.
+- Aplicación: base inicializada y compilada en QC-004; funcionalidades de R1 en desarrollo.
 - Pruebas de producto: no ejecutadas.
-- Dependencias y herramientas de pruebas: no instaladas ni seleccionadas definitivamente.
+- Dependencias del stack instaladas. Verificación con TypeScript/build y pruebas nativas de Node; sin herramientas externas de navegador/lint instaladas.
 - Despliegue: pendiente.
 
 Este documento describe qué se verificará y dónde registrar la evidencia. Una definición de prueba no implica que la prueba haya pasado.
@@ -228,3 +228,12 @@ Resultado: revisión documental y aritmética completada. Las suites V-01 a V-09
 - Actualizada la dependencia de T-07 para que use el diseño documentado de T-04 y permita completar su revisión visual después de implementar, sin dependencia circular.
 
 Resultado: propuesta de diseño y reglas documentadas, con verificación aritmética de contrastes base. T-04 permanece parcial hasta revisar la interfaz real. CA-27 y las suites de producto requieren implementación y no se dan por aprobados con esta revisión documental.
+
+### QC-004 — Inicialización
+
+- Entorno: Node.js 24.20.0, npm 11.19.0, macOS.
+- `npm install`: 47 paquetes del stack y sus dependencias transitivas; auditoría inicial sin vulnerabilidades reportadas.
+- `npm run typecheck`: correcto.
+- `npm run build`: correcto; Next.js 16.3.6 genera `/` y la página de ruta inexistente.
+- No se instalaron bibliotecas adicionales de UI, estado, formularios o pruebas.
+- Evidencia limitada a la base del proyecto; no acredita recorridos de compra ni pruebas visuales.

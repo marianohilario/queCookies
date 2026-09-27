@@ -1,6 +1,6 @@
 # 000 — Diseño de arquitectura y stack
 
-Estado: propuesta técnica para [la especificación R1](./spec.md). No se inicializó la aplicación ni se instalaron dependencias.
+Estado: arquitectura para [la especificación R1](./spec.md). Base inicializada en QC-004 y verificada con TypeScript y compilación de producción.
 
 ## 1. Decisiones de stack
 
@@ -10,8 +10,8 @@ Estado: propuesta técnica para [la especificación R1](./spec.md). No se inicia
 | Estilos | Tailwind CSS, acordado |
 | UI base | React y React DOM, dependencias propias de Next.js |
 | Lenguaje | TypeScript, propuesto y aceptado en la dirección técnica conversada |
-| Versiones | Seleccionar versiones estables compatibles al inicializar; documentar y fijar con lockfile |
-| Gestor de paquetes | npm propuesto; confirmar al inicializar si existe una preferencia del proyecto |
+| Versiones | Next.js 16.3.6, React 19.3.0, Tailwind 4.3.3, TypeScript 5.9.3; package-lock.json versionado |
+| Gestor de paquetes | npm; desarrollo con Node.js 24.20.0 / npm 11.19.0 |
 | Estado interactivo | Hooks y Context de React, sin store externo inicialmente |
 | Formularios | Controles nativos y validaciones propias pequeñas, sin librería adicional inicialmente |
 | Persistencia | localStorage a través de un adaptador defensivo |
@@ -21,7 +21,7 @@ Estado: propuesta técnica para [la especificación R1](./spec.md). No se inicia
 | WhatsApp | Enlace wa.me y texto codificado; sin SDK ni API de mensajería |
 | Backend / base de datos / pagos | Fuera del release |
 | Hosting | Pendiente, según modalidad de despliegue y dominio |
-| Pruebas y lint | Elegir herramientas antes de instalar; Playwright/Vitest/ESLint son candidatos, no decisiones aprobadas |
+| Pruebas y lint | TypeScript y build; pruebas de dominio con node:test y node:assert nativos. Sin paquetes adicionales de lint/testing; automatización de navegador por acordar |
 
 Cualquier dependencia adicional, incluso de desarrollo o componentes UI, se conversa antes de instalar. No ejecutar un scaffolding que incorpore silenciosamente paquetes opcionales. Las dependencias técnicas necesarias de Next.js, React, Tailwind y TypeScript se documentarán al preparar el entorno.
 
