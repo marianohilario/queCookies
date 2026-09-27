@@ -13,7 +13,16 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-007 | Automatización Chrome y revisión responsive | T-04, T-15 | Completado para Chrome headless; verificaciones y capturas registradas |
 | QC-008 | Contenido definitivo: logo, fotos, ingredientes, alérgenos e historia | P-03 a P-05, P-09 | Pendiente de información del negocio |
 | QC-009 | Verificación Safari/dispositivos físicos y preparación de publicación | T-15, T-16 | Pendiente; definir dominio y hosting |
+| QC-010 | Especificar rediseño y organizar referencias | docs/specs/001 | Documentado |
+| QC-011 | Editar solo la letra del logo | RV-01 / CV-01 | Pendiente de archivo original |
+| QC-012 | Paleta exacta y motivos de marca | RV-02 / CV-02 | Pendiente de recursos |
+| QC-013 | Navegación móvil inferior de cuatro accesos | RV-03 / CV-03 a CV-05 | En desarrollo |
+| QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Pendiente de recurso fotográfico |
+| QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Pendiente |
+| QC-016 | Regresión y comparación visual del rediseño | CV-08 | Pendiente |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.
+
+El usuario solicitó realizar el rediseño en unidades pequeñas. QC-010 a QC-016 separan planificación, recursos, navegación, hero y revisión. QC-011 asume la edición del logo antes agrupada dentro de QC-008.

@@ -6,6 +6,7 @@ Estas reglas se aplican a todo el proyecto y a cada cambio futuro.
 
 - Trabajar con SDD. Consultar la especificación activa en `docs/specs/` antes de diseñar o implementar.
 - R1 se documenta en `docs/specs/000/spec.md`; arquitectura, diseño, tareas, aceptación y validación la complementan.
+- El rediseño visual activo se documenta en `docs/specs/001/`. Sus decisiones sustituyen las de presentación/navegación incompatibles de 000; las reglas de compra de 000 siguen vigentes.
 - Actualizar requisitos y criterios cuando cambie el comportamiento esperado. Mantener trazabilidad entre requisitos, tareas y evidencia.
 - Marcar una tarea completa solo después de realizar y verificar su entregable. Distinguir diseño documentado de interfaz implementada y validada.
 
