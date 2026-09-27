@@ -17,6 +17,7 @@
   button { cursor: pointer; }
   button:disabled { cursor: not-allowed; }
   :focus-visible { outline: 3px solid #1e5670; outline-offset: 4px; }
+  .bg-brand :focus-visible { outline-color: var(--color-yellow); }
   ::selection { background: #ffca5c; color: #36191b; }
   summary::-webkit-details-marker { display: none; }
 }

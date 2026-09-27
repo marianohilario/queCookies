@@ -2,6 +2,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { ProductImage } from "@/features/catalog/product-image";
 import { stockPhotos } from "@/data/catalog";
+import { business } from "@/config/business";
 
 export function Hero() {
   return (
@@ -40,7 +41,7 @@ export function Hero() {
       <div className="border-y border-brand/10 bg-yellow/35 py-4">
         <div className="page-container flex flex-wrap justify-center gap-x-8 gap-y-2 text-xs font-semibold tracking-wide text-brand">
           <span>✦ COOKIES ESTILO NEW YORK</span><span>✦ MINIS PARA COMPARTIR</span>
-          <span>✦ TODOS LOS DÍAS, DE 9 A 19 H</span>
+          <span>✦ {business.hoursLabel.toUpperCase()}</span>
         </div>
       </div>
     </section>
