@@ -5,13 +5,21 @@ import { CartAlerts } from "./cart-alerts";
 import { ProductImage } from "@/features/catalog/product-image";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { QuantitySelector } from "@/components/ui/quantity-selector";
+import { Notice } from "@/components/ui/notice";
 import { OrderTotals } from "@/features/checkout/order-totals";
 import { formatMoney } from "@/lib/money";
 
 export function CartView() {
-  const { summary, ready, setQuantity, remove, clear } = useCart();
+  const { summary, ready, storageNotice, setQuantity, remove, clear } = useCart();
   if (!ready) return <p role="status" className="py-12">Recuperando tu carrito…</p>;
-  if (!summary.lines.length) return <div className="py-12"><h2 className="section-title">Tu próximo antojo empieza acá.</h2><p className="mt-5 text-muted">Elegí tus favoritas y volvé para armar tu pedido.</p><ButtonLink className="mt-7" href="/cookies">Ver cookies</ButtonLink></div>;
+  if (!summary.lines.length) return (
+    <div className="space-y-6 py-12">
+      {storageNotice && <Notice>{storageNotice}</Notice>}
+      <h2 className="section-title">Tu próximo antojo empieza acá.</h2>
+      <p className="text-muted">Elegí tus favoritas y volvé para armar tu pedido.</p>
+      <ButtonLink href="/cookies">Ver cookies</ButtonLink>
+    </div>
+  );
 
   return (
     <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_340px]">
