@@ -237,6 +237,7 @@ Resultado: propuesta de diseño y reglas documentadas, con verificación aritmé
 - `npm run build`: correcto; Next.js 16.3.6 genera `/` y la página de ruta inexistente.
 - No se instalaron bibliotecas adicionales de UI, estado, formularios o pruebas.
 - Evidencia limitada a la base del proyecto; no acredita recorridos de compra ni pruebas visuales.
+- Ajuste posterior de herramientas: next-env.d.ts se excluye de Git porque Next alterna rutas de tipos entre desarrollo/producción; `typecheck` ejecuta `next typegen` antes de TypeScript. El archivo local se conserva y se regenera automáticamente.
 
 ### QC-005 — Vidriera y catálogo
 
