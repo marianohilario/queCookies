@@ -17,6 +17,8 @@ const pages = [
   ["/nosotros", "Banfield"],
   ["/preguntas-frecuentes", "pedido mínimo"],
   ["/privacidad", "Tus datos"],
+  ["/carrito", "Tu carrito"],
+  ["/checkout", "Armemos tu pedido"],
 ];
 
 try {

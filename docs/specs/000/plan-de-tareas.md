@@ -1,6 +1,6 @@
 # 000 — Plan de tareas
 
-Estado: planificación de R1, con diseño mobile first documentado. Las tareas de implementación siguen pendientes. Las casillas completas identifican decisiones resueltas o entregables documentales realizados; no acreditan una interfaz ejecutable.
+Estado: primera implementación local de R1 construida en QC-004 a QC-006. Las casillas distinguen código/pruebas realizados de revisiones visuales, operativas y de publicación aún pendientes. El release no se declara cerrado.
 
 Referencias: [spec](./spec.md), [arquitectura](./arquitectura-y-stack.md), [diseño UI/UX](./diseno-ui-ux.md), [aceptación](./criterios-de-aceptacion.md), [validación](./validacion.md).
 
@@ -21,7 +21,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 - [ ] Confirmar las ocho cookies individuales y sus nombres públicos.
 - [x] Registrar exclusión de bollos y venta de mini cookies exclusivamente en packs de 12, 24, 48 y 96 a $792 por mini cookie.
-- [ ] Preparar las cuatro presentaciones con su precio total, ID, contenido y unidad de venta; implementar mínimo por cookies físicas.
+- [x] Preparar las cuatro presentaciones con su precio total, ID, contenido y unidad de venta; implementar mínimo por cookies físicas.
 - [ ] Completar descripciones e información verificada de ingredientes/alérgenos.
 - [ ] Validar precio, moneda y disponibilidad editorial de cada producto.
 - Dependencias: ninguna; P-01 y P-03.
@@ -103,22 +103,22 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-08 — Implementar carrito y cálculo
 
-- [ ] Agregar, editar y eliminar cantidades de cookies individuales o packs completos.
-- [ ] Calcular mínimo por contenido físico y subtotales por unidad de venta, sin multiplicar dos veces por el tamaño del pack.
-- [ ] Distinguir presentaciones al agrupar líneas: dos packs de 12 no se convierten en uno de 24.
-- [ ] Carrito vacío y mensajes de mínimo.
-- [ ] Revalidar cuando cambia el catálogo o hay líneas no comprables.
+- [x] Implementar alta, edición y eliminación de individuales o packs completos.
+- [x] Calcular y probar mínimo por contenido físico y subtotales por unidad de venta.
+- [x] Probar presentaciones independientes: dos packs de 12 no se convierten en uno de 24.
+- [x] Implementar carrito vacío y mensajes de mínimo.
+- [x] Revalidar y probar cambios de precio/catálogo y líneas no comprables.
 - Dependencias: T-06/T-07.
 - Entregable: selección coherente y mínimo de dos cookies aplicado en todos los accesos.
 - Verificación: CA-03 a CA-06.
 
 ### T-09 — Persistir y restaurar carrito
 
-- [ ] Adaptador de almacenamiento con esquema versionado.
-- [ ] Hidratación sin sobrescribir el carrito anterior.
-- [ ] Detección de cambios de precio y productos faltantes/no disponibles.
-- [ ] Recuperación frente a datos inválidos o almacenamiento denegado.
-- [ ] Reconciliación entre pestañas o al recuperar foco.
+- [x] Adaptador de almacenamiento con esquema versionado y pruebas de codificación/restauración.
+- [ ] Verificar en navegador la hidratación implementada sin sobrescribir el carrito anterior.
+- [x] Detección y pruebas de cambios de precio y productos faltantes/no disponibles.
+- [x] Detectar datos inválidos mediante pruebas; manejo en memoria ante fallos implementado.
+- [ ] Verificar cuota/bloqueo de almacenamiento y reconciliación entre pestañas en navegador.
 - Dependencias: T-08.
 - Entregable: carrito recuperable y funcional en memoria si falla persistencia.
 - Verificación: CA-07, CA-08 y CA-24.
@@ -127,30 +127,30 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-10 — Datos, entrega y preferencias
 
-- [ ] Formulario de contacto y comentarios.
-- [ ] Retiro/envío, dirección y cobertura declarada.
-- [ ] Fecha y horario solicitados de lunes a domingo de 09:00 a 19:00 para ambas modalidades, con reglas de Buenos Aires.
-- [ ] Validación contextual, errores accesibles y conservación del borrador al retroceder.
+- [x] Implementar formulario de contacto y comentarios.
+- [x] Implementar retiro/envío, dirección y validación de cobertura declarada.
+- [x] Implementar y probar días/horarios 09:00–19:00 en Buenos Aires, incluido cierre y cambio de fecha.
+- [ ] Verificar en navegador errores accesibles, foco y conservación del borrador implementada al retroceder.
 - Dependencias: T-02, T-08 y T-09.
 - Entregable: borrador válido sin cuenta ni promesas de disponibilidad.
 - Verificación: CA-09, CA-12 a CA-16, CA-23.
 
 ### T-11 — Perfil recordado
 
-- [ ] Opción explícita para guardar datos en el dispositivo.
-- [ ] Precarga y edición del último domicilio.
-- [ ] Eliminación del perfil persistido y separación respecto del carrito.
-- [ ] No recordar fecha/hora ni comentarios.
+- [x] Implementar opción explícita para guardar datos en el dispositivo.
+- [x] Implementar precarga/edición y probar selección del último domicilio válido.
+- [ ] Verificar interactivamente eliminación del perfil y separación respecto del carrito.
+- [x] Probar exclusión de fecha/hora y comentarios en el perfil guardado.
 - Dependencias: T-09/T-10.
 - Entregable: recompra con datos precargados y editables.
 - Verificación: CA-10, CA-11 y CA-24.
 
 ### T-12 — Resumen revisable
 
-- [ ] Líneas con precio por unidad de venta, cantidad e importe; packs con tamaño y cantidad de packs explícitos.
-- [ ] Retiro con costo cero y envío con total final pendiente.
-- [ ] Datos de contacto, entrega y preferencias editables.
-- [ ] Revalidación del resumen tras cualquier modificación.
+- [x] Implementar líneas con unidad de venta, cantidad, importe y tamaño de packs explícito.
+- [x] Implementar retiro sin cargo y envío con total final pendiente desde el mismo modelo.
+- [x] Implementar acceso a edición de contacto, entrega y preferencias.
+- [x] Revalidar y probar el resumen antes de preparar la solicitud final.
 - Dependencias: T-08/T-10/T-11.
 - Entregable: una fuente consistente para la revisión y el mensaje.
 - Verificación: CA-03, CA-13, CA-17 y CA-18.
@@ -159,20 +159,20 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-13 — Generar mensaje y abrir chat
 
-- [ ] Formateador de texto desde el resumen validado, con marca Que Cookies y presentación de mini cookies inequívoca.
-- [ ] Enlace al número confirmado y codificación correcta.
-- [ ] Mensajes distintos para retiro y envío.
-- [ ] Apertura por acción directa sin vaciar carrito ni afirmar envío confirmado.
+- [x] Implementar y probar formateador desde resumen validado, con marca y packs inequívocos.
+- [x] Probar destino y codificación del enlace, incluidos caracteres especiales.
+- [x] Probar mensajes de retiro/envío y exclusión del domicilio del cliente para retiro.
+- [ ] Verificar apertura real desde móvil/escritorio; implementada por acción directa sin vaciar carrito ni afirmar confirmación.
 - Dependencias: T-12.
 - Entregable: solicitud completa lista para enviar manualmente.
 - Verificación: CA-18 a CA-21.
 
 ### T-14 — Alternativas y retorno
 
-- [ ] Copiar pedido y alternativa de selección manual.
-- [ ] Contacto visible cuando no se logra abrir WhatsApp.
-- [ ] Mensaje largo sin pérdida silenciosa de contenido.
-- [ ] Volver desde WhatsApp, editar y vaciar carrito manualmente.
+- [ ] Verificar portapapeles y alternativa manual implementados en navegador.
+- [x] Implementar contacto visible y enlace alternativo al chat.
+- [x] Probar integridad del mensaje largo; implementar copia manual para enlaces extensos.
+- [ ] Verificar retorno real desde WhatsApp, edición y vaciado manual implementados.
 - Dependencias: T-13.
 - Entregable: cierre robusto en móvil y escritorio.
 - Verificación: CA-20 a CA-22.

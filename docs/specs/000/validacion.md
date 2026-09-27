@@ -6,8 +6,8 @@
 - Especificación actualizada con nombre Que Cookies, cuatro packs de mini cookies y atención diaria de 09:00 a 19:00.
 - Diseño mobile first documentado en [diseno-ui-ux.md](./diseno-ui-ux.md); revisión visual en navegador pendiente.
 - Reglas de modularidad y DRY registradas en [AGENTS.md](../../../AGENTS.md), RNF-08 y CA-27.
-- Aplicación: base inicializada y compilada en QC-004; funcionalidades de R1 en desarrollo.
-- Pruebas de producto: no ejecutadas.
+- Aplicación: primera implementación local de vidriera y compra construida en QC-004 a QC-006.
+- Pruebas de producto: dominio automatizado y smoke HTTP ejecutados; interacción de navegador pendiente.
 - Dependencias del stack instaladas. Verificación con TypeScript/build y pruebas nativas de Node; sin herramientas externas de navegador/lint instaladas.
 - Despliegue: pendiente.
 
@@ -168,14 +168,14 @@ Cobertura: CA-26.
 
 | Suite | Estado | Entorno / fecha | Evidencia | Incidencias |
 | --- | --- | --- | --- | --- |
-| V-01 | No ejecutada | — | — | Contenido operativo pendiente |
-| V-02 | No ejecutada | — | — | Aplicación no implementada |
-| V-03 | No ejecutada | — | — | Aplicación no implementada |
-| V-04 | No ejecutada | — | — | Aplicación no implementada; horario ya definido |
-| V-05 | No ejecutada | — | — | Aplicación no implementada |
-| V-06 | No ejecutada | — | — | Aplicación no implementada |
-| V-07 | No ejecutada | — | — | Diseño documentado; interfaz y revisión en navegador pendientes |
-| V-08 | No ejecutada | — | — | Herramientas por acordar |
+| V-01 | Parcial | Node / QC-005–006 | Catálogo contrastado en tests y rutas HTTP | Contenido editorial/alimentario pendiente |
+| V-02 | Parcial | Node / QC-006 | tests/cart.test.ts | Controles UI por verificar en navegador |
+| V-03 | Parcial | Node / QC-006 | tests/storage.test.ts | Hidratación, cuota y sincronización reales pendientes |
+| V-04 | Parcial | Node / QC-006 | tests/checkout.test.ts | Foco, teclado y recorrido interactivo pendientes |
+| V-05 | Parcial | Node / QC-006 | tests/whatsapp.test.ts | Comparación visual UI/mensaje pendiente |
+| V-06 | No ejecutada | — | Implementación disponible | Apertura de chat/portapapeles reales pendientes |
+| V-07 | No ejecutada | — | Diseño implementado; contraste base documentado | Revisión visual y dispositivos pendientes |
+| V-08 | Parcial | macOS / QC-004–006 | typecheck, tests, build, smoke HTTP y revisión modular | Auditoría de rendimiento/navegador pendiente |
 | V-09 | No ejecutada | — | — | Sin despliegue |
 
 Cada ejecución registrará: fecha, versión, entorno, pasos/casos, esperado, observado, evidencia y pendientes. Marcar como bloqueada o parcial cuando no pueda verificarse todo; no aprobar por inferencia.
@@ -246,3 +246,13 @@ Resultado: propuesta de diseño y reglas documentadas, con verificación aritmé
 - `npm run smoke`: siete rutas públicas devuelven 200 con contenido esperado e idioma es-AR; ruta desconocida devuelve 404. Usa Node nativo y servidor de producción efímero.
 - Recursos externos: dos fotografías responden HTTP 200. Procedencia y limitaciones registradas en docs/assets.md.
 - No se verificó aún layout en navegador real, métricas de campo ni interacción de compra. Ingredientes/alérgenos, logo definitivo e historia permanecen pendientes de contenido.
+
+### QC-006 — Compra y persistencia
+
+- Implementados selección de presentación, cantidades, carrito, estado compartido, almacenamiento versionado y reconciliación con catálogo. Checkout dividido en contacto, entrega y revisión; perfil recordado separado del borrador.
+- La lógica comercial vive en cart.ts, validation.ts y order-message.ts; no importa React ni almacenamiento. Persistencia y proveedores cliente separados. Revisión de CA-27: componentes por responsabilidad, precios y contacto centralizados, mismos modelos para totales y WhatsApp.
+- Pruebas nativas de Node: carrito/precios/mínimo/packs; validación de contacto/cobertura/fechas/horarios; codecs de almacenamiento y exclusión de datos transaccionales; mensajes de retiro/envío, destino/codificación y revalidación final.
+- La alternativa de copia manual deriva del mensaje vigente para no conservar un resumen anterior tras modificar el pedido.
+- `npm run check`: correcto; TypeScript, 22 pruebas nativas aprobadas, build de 18 páginas y smoke HTTP de nueve rutas más 404.
+- `git diff --check`: correcto.
+- Pruebas interactivas de navegador pendientes en QC-007. Estas verificaciones no acreditan aún la apertura de WhatsApp ni el uso en celulares físicos.
