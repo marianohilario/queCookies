@@ -78,9 +78,9 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-06 — Implementar configuración y catálogo local
 
-- [ ] Centralizar marca, contactos, dirección, horario y cobertura.
-- [ ] Modelar ocho individuales y cuatro packs con IDs estables, contenido, unidad de venta y precios enteros en centavos; derivar packs desde $792 por mini cookie.
-- [ ] Separar datos de presentación y acceso al catálogo.
+- [x] Centralizar marca, contactos, dirección, horario y cobertura.
+- [x] Modelar ocho individuales y cuatro packs con IDs estables, contenido, unidad de venta y precios enteros en centavos; derivar packs desde $792 por mini cookie.
+- [x] Separar datos de presentación y acceso al catálogo.
 - [ ] Preparar imágenes optimizadas y metadatos de recursos.
 - Dependencias: T-01, T-02, T-03 y T-05; se permiten fixtures identificados durante desarrollo.
 - Entregable: fuente local que la UI consume sin duplicar reglas ni contactos.
@@ -90,10 +90,10 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 ### T-07 — Implementar páginas públicas
 
-- [ ] Encabezado, menú móvil, carrito visible y pie de página.
-- [ ] Inicio, carta y detalle.
-- [ ] Historia/contacto, preguntas frecuentes y privacidad acorde a R1.
-- [ ] CTA y enlaces a Instagram/WhatsApp.
+- [x] Encabezado, menú móvil y pie de página; indicador interactivo de carrito se conecta en QC-006.
+- [x] Inicio, carta y detalle con datos locales y fotografías ilustrativas.
+- [x] Contacto, preguntas frecuentes y privacidad; historia final pendiente del negocio.
+- [x] CTA y enlaces a Instagram/WhatsApp.
 - [ ] Metadatos y estados de producto no disponible.
 - Dependencias: diseño documentado de T-04, T-05 y T-06. La implementación habilita completar la revisión visual restante de T-04.
 - Entregable: vidriera responsive completa.

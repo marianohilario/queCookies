@@ -18,6 +18,7 @@ Abrir http://localhost:3000.
 ```sh
 npm run typecheck
 npm run build
+npm run smoke
 ```
 
 Para ejecutar la compilación de producción: `npm start`.
@@ -30,3 +31,12 @@ Para ejecutar la compilación de producción: `npm start`.
 - [Diseño mobile first](./docs/specs/000/diseno-ui-ux.md).
 
 Las dependencias adicionales deben conversarse antes de instalarlas. No se configuró un proveedor de hosting ni un backend.
+
+## Contenido y recursos
+
+- Negocio y horarios: `src/config/business.ts`.
+- Catálogo y precios (centavos): `src/data/catalog.ts`.
+- Preguntas frecuentes: `src/data/faqs.ts`.
+- [Fotos y marca provisional](./docs/assets.md).
+
+La marca tipográfica y las fotos son provisionales. Las fichas de ingredientes/alérgenos y los textos definitivos requieren confirmación del negocio antes de publicar.

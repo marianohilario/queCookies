@@ -1,0 +1,33 @@
+import Link from "next/link";
+import { business, contactUrl, mapsUrl } from "@/config/business";
+import { Brand } from "./brand";
+
+export function Footer() {
+  return (
+    <footer className="bg-brand text-cream">
+      <div className="page-container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <Brand light />
+          <p className="mt-5 max-w-55 text-sm leading-6 text-cream/80">Un antojo grande merece una cookie así.</p>
+        </div>
+        <div>
+          <h2 className="mb-4 font-semibold">Nos encontrás en</h2>
+          <a href={mapsUrl} target="_blank" rel="noreferrer" className="footer-link">{business.address}</a>
+          <p className="mt-3 text-sm text-cream/80">{business.hoursLabel}</p>
+        </div>
+        <div>
+          <h2 className="mb-4 font-semibold">Hablemos</h2>
+          <a className="footer-link" href={contactUrl} target="_blank" rel="noreferrer">WhatsApp · {business.phoneLabel}</a>
+          <a className="footer-link mt-3" href={business.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
+        </div>
+        <div>
+          <h2 className="mb-4 font-semibold">Antes de pedir</h2>
+          <Link className="footer-link" href="/preguntas-frecuentes">Preguntas frecuentes</Link>
+          <Link className="footer-link mt-3" href="/privacidad">Tus datos y privacidad</Link>
+          <p className="mt-3 text-sm text-cream/80">Envíos a Lomas de Zamora, Lanús y Adrogué. Costo a confirmar.</p>
+        </div>
+      </div>
+      <div className="page-container border-t border-cream/20 py-5 text-xs text-cream/75">© {new Date().getFullYear()} {business.name} · Banfield, Buenos Aires · Hecha para tus antojos.</div>
+    </footer>
+  );
+}

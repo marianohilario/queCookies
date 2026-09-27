@@ -237,3 +237,12 @@ Resultado: propuesta de diseño y reglas documentadas, con verificación aritmé
 - `npm run build`: correcto; Next.js 16.3.6 genera `/` y la página de ruta inexistente.
 - No se instalaron bibliotecas adicionales de UI, estado, formularios o pruebas.
 - Evidencia limitada a la base del proyecto; no acredita recorridos de compra ni pruebas visuales.
+
+### QC-005 — Vidriera y catálogo
+
+- Implementados inicio por secciones, carta, nueve fichas (ocho sabores y mini cookies con cuatro presentaciones), contacto, FAQ, privacidad y 404.
+- Componentes separados de datos y configuración; precios en centavos, packs derivados de su base, tipografías con next/font y fotos mediante next/image.
+- `npm run typecheck`, `npm run build`: correctos. Build genera 16 páginas, incluidas rutas internas de Next.
+- `npm run smoke`: siete rutas públicas devuelven 200 con contenido esperado e idioma es-AR; ruta desconocida devuelve 404. Usa Node nativo y servidor de producción efímero.
+- Recursos externos: dos fotografías responden HTTP 200. Procedencia y limitaciones registradas en docs/assets.md.
+- No se verificó aún layout en navegador real, métricas de campo ni interacción de compra. Ingredientes/alérgenos, logo definitivo e historia permanecen pendientes de contenido.

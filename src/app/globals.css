@@ -1,8 +1,40 @@
 @import "tailwindcss";
 
-body {
-  margin: 0;
-  background: #fff8ec;
-  color: #36191b;
-  font-family: Arial, sans-serif;
+@theme inline {
+  --color-cream: #fff8ec;
+  --color-brand: #8f1d22;
+  --color-yellow: #ffca5c;
+  --color-ink: #36191b;
+  --color-muted: #705b56;
+  --font-sans: var(--font-dm-sans), Arial, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+  body { margin: 0; background: var(--color-cream); color: var(--color-ink); font-family: var(--font-sans); }
+  button, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :focus-visible { outline: 3px solid #1e5670; outline-offset: 4px; }
+  ::selection { background: #ffca5c; color: #36191b; }
+  summary::-webkit-details-marker { display: none; }
+}
+
+@layer components {
+  .page-container { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12; }
+  .section-space { @apply py-14 md:py-20; }
+  .section-title { @apply font-display text-3xl leading-[1.1] font-semibold tracking-[-.035em] text-brand sm:text-4xl lg:text-5xl; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[.17em] text-brand; }
+  .button { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-6 py-3 text-sm font-semibold transition-colors disabled:opacity-45; }
+  .icon-button { @apply inline-flex size-11 shrink-0 items-center justify-center rounded-full transition-colors; }
+  .nav-link { @apply py-3 text-muted transition-colors hover:text-brand; }
+  .footer-link { @apply block text-sm leading-6 text-cream/90 underline-offset-4 hover:underline; }
+  .product-grid { @apply grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4; }
+  .field { @apply min-h-12 w-full rounded-xl border border-muted/60 bg-white px-4 py-3 text-base text-ink; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
