@@ -10,7 +10,7 @@ export async function checkNavigation(browser) {
     await browser.waitFor(`!!document.querySelector(${JSON.stringify(`${nav} a[aria-current]`)})`);
     const links = await browser.evaluate(`Array.from(document.querySelectorAll(${JSON.stringify(`${nav} a`)}), el => ({
       label: el.textContent.trim(), width: el.getBoundingClientRect().width,
-      height: el.getBoundingClientRect().height, icon: !!el.querySelector('svg')
+      height: el.getBoundingClientRect().height, icon: !!el.querySelector('svg,.brand-motif')
     }))`);
     assert.deepEqual(links.map((link) => link.label), ["Inicio", "Cookies", "Carrito", "Contacto"]);
     assert.ok(links.every((link) => link.width >= 44 && link.height >= 44 && link.icon));

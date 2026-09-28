@@ -43,3 +43,11 @@ CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area físi
 - Revisado el logo completo y el detalle ampliado; corregidos un fragmento de k que entraba en el recorte y residuos de antialias de la s anterior antes de darlo por terminado.
 - Brand usa ahora el logo raster real en lugar de la marca tipográfica provisional.
 - CV-01 comprobado mediante comparación visual y de píxeles; adaptación responsive se vuelve a revisar con el conjunto del rediseño en QC-016.
+
+### QC-012 — Paleta y motivos
+
+- Decodificados originales en sRGB con CoreGraphics: colores dominantes del logo #92191E (517.732 píxeles) y #FCC256 (129.473); panel amarillo del patrón #FED36D (566.275).
+- Extracción de las formas originales a PNG transparente por separación del trazo amarillo y fondo rojo. Revisadas máscaras de mano/cookie/corazón; se ajustó el recorte del corazón para excluir un fragmento de la mano inferior.
+- Contrastes rojo/amarillo 5,46:1, rojo/amarillo complementario 6,20:1 y rojo/crema 8,36:1; adecuados para los pares de texto normal planteados. Motivos atenuados se usan solo como decoración.
+- Tokens globales actualizados; motivos reutilizados desde componentes pequeños en pie y navegación.
+- La verificación conjunta en navegador de recursos y disposición sigue en QC-016.

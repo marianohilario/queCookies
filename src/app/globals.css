@@ -2,8 +2,10 @@
 
 @theme inline {
   --color-cream: #fff8ec;
-  --color-brand: #8f1d22;
-  --color-yellow: #ffca5c;
+  --color-brand: #92191e;
+  --color-yellow: #fcc256;
+  --color-yellow-soft: #fed36d;
+  --color-vanilla: #fff0cd;
   --color-ink: #36191b;
   --color-muted: #705b56;
   --font-sans: var(--font-dm-sans), Arial, sans-serif;
@@ -19,7 +21,7 @@
   button:disabled { cursor: not-allowed; }
   :focus-visible { outline: 3px solid #1e5670; outline-offset: 4px; }
   .bg-brand :focus-visible { outline-color: var(--color-yellow); }
-  ::selection { background: #ffca5c; color: #36191b; }
+  ::selection { background: var(--color-yellow); color: var(--color-ink); }
   summary::-webkit-details-marker { display: none; }
 }
 
@@ -38,6 +40,21 @@
     @apply fixed inset-x-0 bottom-0 z-40 border-t border-yellow/20 shadow-[0_-4px_20px_#36191b12];
     min-height: var(--mobile-nav-height);
     padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .brand-motif {
+    display: inline-block;
+    flex-shrink: 0;
+    background-color: currentColor;
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+  }
+  .brand-pattern {
+    background-color: currentColor;
+    mask-image: url('/brand/motifs/pattern.png');
+    mask-size: 360px 112px;
+    mask-position: center;
+    mask-repeat: repeat-x;
   }
 }
 

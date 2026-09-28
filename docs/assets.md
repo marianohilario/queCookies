@@ -15,7 +15,7 @@ Ambos endpoints respondieron HTTP 200, tipo image/jpeg, durante la selección. R
 
 - Logo original recibido en `public/brand/references/logo-original.png`. Versión corregida en `public/brand/que-cookies-logo.png`, integrada en encabezado y pie mediante next/image.
 - Fraunces y DM Sans mediante next/font/google, servidas localmente por Next.js luego del build.
-- Paleta basada en la referencia visual; los tokens exactos siguen sujetos al archivo definitivo de marca.
+- Paleta sRGB medida en los originales: rojo `#92191E` y amarillo `#FCC256` del logo; amarillo complementario `#FED36D` de la pieza de marca. Crema y vainilla son superficies auxiliares de la interfaz.
 
 ## QC-011 — Edición del logo
 
@@ -27,8 +27,20 @@ Ambos endpoints respondieron HTTP 200, tipo image/jpeg, durante la selección. R
 - Proceso reproducible con Swift/CoreGraphics/ImageIO nativos de macOS; no se instalaron bibliotecas.
 
 ```sh
-swiftc scripts/brand/Raster.swift scripts/brand/EditLogo.swift scripts/brand/main.swift -o .artifacts/brand-tools
+swiftc scripts/brand/*.swift -o .artifacts/brand-tools
 .artifacts/brand-tools logo public/brand/references/logo-original.png public/brand/que-cookies-logo.png .artifacts
 ```
 
 El comando de edición exige la resolución original y no sobrescribe la fuente.
+
+## QC-012 — Motivos y paleta originales
+
+- Fuente: `public/brand/references/patron-marca.jpg`, 1080 × 1350, facilitada por el negocio.
+- Mano, corazón, cookie y franja extraídos a `public/brand/motifs/`. Son máscaras raster transparentes del trazo original, no iconos redibujados ni vectores inventados.
+- Renderizado: `BrandMotif` y `BrandPattern` aplican currentColor mediante máscara CSS. Se conserva la forma y se usan los colores oficiales según fondo/estado.
+- La franja se incorpora al pie; la cookie original identifica la carta en la navegación móvil. Resto de motivos disponibles para hero y secciones.
+- Contrastes calculados sRGB: rojo/amarillo 5,46:1; rojo/amarillo complementario 6,20:1; rojo/crema 8,36:1; texto oscuro/amarillo 9,90:1.
+
+```sh
+.artifacts/brand-tools motifs public/brand/references/patron-marca.jpg public/brand/motifs
+```

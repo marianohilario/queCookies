@@ -6,6 +6,7 @@ import { mobileDestinations, isDestinationActive } from "@/config/navigation";
 import { useCart } from "@/features/cart/cart-provider";
 import { CartCount } from "@/features/cart/cart-count";
 import { Icon } from "../ui/icon";
+import { BrandMotif } from "../brand/brand-motif";
 
 export function MobileBottomNav() {
   const pathname = usePathname();
@@ -26,7 +27,9 @@ export function MobileBottomNav() {
               className={`flex min-h-[var(--mobile-nav-content-height)] min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[11px] transition-colors ${active ? "font-semibold text-yellow" : "text-cream/90 hover:text-yellow"}`}
             >
               <span className={`relative flex h-8 w-13 items-center justify-center rounded-full ${active ? "bg-yellow/15 ring-1 ring-inset ring-yellow/40" : ""}`}>
-                <Icon name={destination.icon} className="size-[22px]" />
+                {destination.icon === "cookie"
+                  ? <BrandMotif name="cookie" className="size-[22px]" />
+                  : <Icon name={destination.icon} className="size-[22px]" />}
                 {destination.href === "/carrito" && <CartCount count={count} tone="brand" />}
               </span>
               <span>{destination.label}</span>

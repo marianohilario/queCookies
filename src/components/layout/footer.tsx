@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { business, contactUrl, mapsUrl } from "@/config/business";
 import { Brand } from "./brand";
+import { BrandPattern } from "@/components/brand/brand-motif";
 
 export function Footer() {
   return (
     <footer className="bg-brand text-cream">
+      <BrandPattern className="h-14 border-b border-yellow/20 text-yellow/35" />
       <div className="page-container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Brand light />

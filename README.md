@@ -54,7 +54,7 @@ Las dependencias adicionales deben conversarse antes de instalarlas. No se confi
 - Preguntas frecuentes: `src/data/faqs.ts`.
 - [Fotos y marca provisional](./docs/assets.md).
 
-La marca tipográfica y las fotos son provisionales. Las fichas de ingredientes/alérgenos y los textos definitivos requieren confirmación del negocio antes de publicar.
+El logo y los motivos proceden de los archivos del negocio; la letra del logo fue corregida conservando el diseño. Las fotografías son ilustrativas. Las fichas de ingredientes/alérgenos y los textos definitivos requieren confirmación del negocio antes de publicar.
 
 ## Compra y almacenamiento
 
