@@ -8,7 +8,7 @@ const steps = [
 
 export function HowToOrder() {
   return (
-    <section id="como-pedir" className="border-t border-brand/10 bg-[#f4eddc]">
+    <section id="como-pedir" className="border-t border-brand/10 bg-vanilla/60">
       <div className="page-container section-space">
         <SectionHeading eyebrow="Del antojo a tu mesa" title="Pedir es así de fácil." />
         <div className="grid gap-8 md:grid-cols-3">

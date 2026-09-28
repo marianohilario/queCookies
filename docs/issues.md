@@ -18,7 +18,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-012 | Paleta exacta y motivos de marca | RV-02 / CV-02 | Paleta medida y motivos originales extraídos e integrados |
 | QC-013 | Navegación móvil inferior de cuatro accesos | RV-03 / CV-03 a CV-05 | Implementado y verificado en Chrome; capturas revisadas |
 | QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Implementado con imagen suministrada; capturas mobile/desktop y regresión Chrome correctas |
-| QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Pendiente |
+| QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Implementado y revisado: tarjetas, cookies aisladas, franja roja y minis con patrón |
 | QC-016 | Regresión y comparación visual del rediseño | CV-08 | Pendiente |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.

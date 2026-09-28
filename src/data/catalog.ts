@@ -16,14 +16,22 @@ const flavors = [
   ["cacao-chocolate-blanco", "Cacao y chocolate blanco", 4000, "Dos protagonistas para una misma pausa."],
 ] as const;
 
+const cardIllustrations: Record<string, string> = {
+  tradicional: "traditional", cacao: "chocolate", "red-velvet": "red-velvet",
+  "bon-o-bon": "chocolate", nutella: "chocolate", "red-velvet-rellena": "red-velvet",
+  pistacho: "pistachio", "cacao-chocolate-blanco": "chocolate",
+};
+
 export const individualCookies: Product[] = flavors.map(([slug, name, pesos, description], index) => ({
   id: `cookie-${slug}`, slug, name, description, price: pesos * 100,
   cookiesPerItem: 1, kind: "individual", available: true,
   image: index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
+  cardImage: `/images/cookies/${cardIllustrations[slug]}.png`,
 }));
 
 export const miniBasePrice = 79200;
 export const packSizes = [12, 24, 48, 96] as const;
+export const packSizesLabel = new Intl.ListFormat("es-AR", { type: "disjunction" }).format(packSizes.map(String));
 export const miniPacks: Product[] = packSizes.map((size) => ({
   id: `mini-cookies-${size}`, slug: "mini-cookies", name: `Mini cookies × ${size}`,
   description: "Pequeñas para compartir. Elegí la presentación que mejor va con tu plan.",
@@ -34,3 +42,6 @@ export const miniPacks: Product[] = packSizes.map((size) => ({
 export const products: Product[] = [...individualCookies, ...miniPacks];
 export const findProduct = (id: string) => products.find((product) => product.id === id);
 export const findBySlug = (slug: string) => products.find((product) => product.slug === slug);
+
+const featuredIds = ["cookie-tradicional", "cookie-pistacho", "cookie-red-velvet", "cookie-nutella", "cookie-cacao"];
+export const featuredCookies = featuredIds.map((id) => individualCookies.find((product) => product.id === id)!);

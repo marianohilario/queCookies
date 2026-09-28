@@ -9,7 +9,7 @@ Cada fila es una unidad de trabajo y commit(s) propios. No se da por terminada u
 | QC-012 | Extraer paleta y preparar motivos | Tokens y máscaras originales de cookie/mano/corazón, contraste medido | Archivo de marca/patrón | Extraído e integrado |
 | QC-013 | Navegación inferior mobile | Cuatro accesos, activo, contador y espacio reservado; eliminar hamburguesa/barra duplicada | RV-03 | Implementado y verificado |
 | QC-014 | Reconstruir hero | Layout y escena próxima a la referencia, ondas y sello | Recurso fotográfico y QC-012 | Implementado y revisado en capturas |
-| QC-015 | Ajustar carta y franjas | Tarjetas y módulos con identidad consistente, sin cambiar oferta | QC-012/QC-014 | Pendiente |
+| QC-015 | Ajustar carta y franjas | Tarjetas y módulos con identidad consistente, sin cambiar oferta | QC-012/QC-014 | Implementado y revisado |
 | QC-016 | Regresión del rediseño | Capturas comparables, compra preservada y revisión responsive | Tareas visuales terminadas | Pendiente |
 
 ## Primer incremento ejecutable — QC-013

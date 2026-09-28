@@ -8,4 +8,5 @@ export type Product = {
   kind: "individual" | "pack";
   available: boolean;
   image: string;
+  cardImage?: string;
 };

@@ -60,3 +60,12 @@ CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area físi
 - `npm run build` y `npm run test:browser`: correctos. Se conserva compra, mínimo, packs, persistencia, datos recordados y navegación inferior.
 - El smoke HTTP se actualizó al nuevo título, «No son solo cookies»; se ejecutará junto con la verificación completa final.
 - CV-06 revisado visualmente con la referencia. La carta conserva de momento su estilo previo hasta QC-015.
+
+### QC-015 — Carta y franjas
+
+- Cinco destacados en desktop y grilla legible en mobile, título centrado con corazones originales, tarjetas crema con borde amarillo e ilustraciones aisladas.
+- Recortes del mockup suministrado separados de los datos comerciales; se conserva etiqueta ilustrativa. Verificados nombres, precios y presentaciones mediante las pruebas de dominio existentes.
+- Corregido el tamaño de los retratos: se define la caja visual explícita para evitar que la densidad de srcset reduzca ilustraciones pequeñas a aproximadamente 65–85 px.
+- Franja roja con cookie/mano/corazón e información operativa real. Bloque amarillo de minis usa patrón original y precio base del catálogo; no incorpora servicios ficticios del mockup.
+- Revisadas home-1440.png, home-catalog-390.png y brand-minis-390.png.
+- `npm run check` y `npm run test:browser`: correctos, incluidos 22 casos de dominio y regresión del checkout. La evidencia del escenario nuevo de assets/visual se registra en QC-016.

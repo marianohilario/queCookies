@@ -6,8 +6,8 @@ URLs centralizadas en `src/data/catalog.ts`. Servidas por next/image con tamaño
 
 | Recurso | Fuente | Uso |
 | --- | --- | --- |
-| Cookies | https://images.unsplash.com/photo-1499636136210-6f4ee915583e | Tarjetas provisionales |
-| Surtido | https://images.unsplash.com/photo-1558961363-fa8fdf82db35 | Minis y tarjetas |
+| Cookies | https://images.unsplash.com/photo-1499636136210-6f4ee915583e | Fotografías provisionales en fichas y carrito |
+| Surtido | https://images.unsplash.com/photo-1558961363-fa8fdf82db35 | Minis y fotografías provisionales de fichas |
 
 Ambos endpoints respondieron HTTP 200, tipo image/jpeg, durante la selección. Referencia de licencia general: https://unsplash.com/license (la consulta automatizada recibió 401). Revisar atribución/procedencia final de las fotos con el negocio antes de publicar o sustituir por fotos propias. No se descargaron imágenes de Instagram ni del logo adjunto.
 
@@ -57,3 +57,12 @@ sips -s format jpeg -s formatOptions 90 public/brand/references/hero-original.pn
 ```
 
 La recompilación de las herramientas Swift depende de la instalación/licencia de Xcode del equipo. La conversión del hero se realizó con sips; no requiere recompilar esas herramientas.
+
+## QC-015 — Ilustraciones de las tarjetas
+
+- Fuente: mockup suministrado `referencia-web.jpeg`. Cuatro recortes de cookies sin texto/precio/cursor se generan como PNG transparente en `public/images/cookies/`.
+- El recorte de la tradicional proviene de la secuencia inferior para evitar el cursor superpuesto de la tarjeta original. Pistacho, red velvet y chocolate proceden de las ilustraciones de la carta.
+- El fondo claro conectado al exterior se separa por inundación; no se vacían los chips claros internos de la cookie. Las imágenes son ilustrativas y pueden compartirse entre sabores afines hasta disponer de fotografías reales.
+- Resoluciones pequeñas (120×111 y 156×137): se usan solo en tarjetas compactas. No sustituyen la fotografía amplia de las fichas.
+- Script reproducible: `node scripts/brand/extract-products.mjs`. Utiliza sharp ya instalado por Next.js como motor de imágenes; no se instaló ni agregó otra dependencia.
+- Los precios y nombres se toman del catálogo del negocio, nunca de textos del mockup.

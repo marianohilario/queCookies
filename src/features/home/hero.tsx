@@ -9,9 +9,9 @@ export function Hero() {
   return (
     <section className={`relative isolate overflow-hidden ${styles.surface}`}>
       <WaveDivider edge="top" />
-      <div className="page-container relative z-10 pt-10 pb-4 md:py-17 lg:py-20">
+      <div className="page-container relative z-10 pt-10 pb-4 md:py-12 lg:py-14">
         <div className="mx-auto text-center md:mx-0 md:w-[46%] md:text-left">
-          <h1 className="font-display text-[clamp(2rem,3.4vw,3rem)] leading-[1.08] tracking-[-.035em] text-brand">
+          <h1 className="font-display text-[clamp(2rem,3.4vw,2.75rem)] leading-[1.08] tracking-[-.035em] text-brand">
             <span className="block font-semibold">No son solo cookies,</span>
             <span className="block italic">son momentos</span>
             <span className="block italic">que importan.</span>
