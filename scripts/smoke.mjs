@@ -10,7 +10,7 @@ server.stdout.on("data", (data) => { output += data; });
 server.stderr.on("data", (data) => { output += data; });
 
 const pages = [
-  ["/", "Es tu momento"],
+  ["/", "No son solo cookies"],
   ["/cookies", "Seguí tu antojo"],
   ["/cookies/tradicional", "Tradicional"],
   ["/cookies/mini-cookies", "Mini cookies"],

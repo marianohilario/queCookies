@@ -17,7 +17,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-011 | Editar solo la letra del logo | RV-01 / CV-01 | Editado, comparado e integrado; 0 píxeles alterados fuera de la región de la letra |
 | QC-012 | Paleta exacta y motivos de marca | RV-02 / CV-02 | Paleta medida y motivos originales extraídos e integrados |
 | QC-013 | Navegación móvil inferior de cuatro accesos | RV-03 / CV-03 a CV-05 | Implementado y verificado en Chrome; capturas revisadas |
-| QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Fotografía del plato recibida; pendiente de composición |
+| QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Implementado con imagen suministrada; capturas mobile/desktop y regresión Chrome correctas |
 | QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Pendiente |
 | QC-016 | Regresión y comparación visual del rediseño | CV-08 | Pendiente |
 

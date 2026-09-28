@@ -51,3 +51,12 @@ CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area físi
 - Contrastes rojo/amarillo 5,46:1, rojo/amarillo complementario 6,20:1 y rojo/crema 8,36:1; adecuados para los pares de texto normal planteados. Motivos atenuados se usan solo como decoración.
 - Tokens globales actualizados; motivos reutilizados desde componentes pequeños en pie y navegación.
 - La verificación conjunta en navegador de recursos y disposición sigue en QC-016.
+
+### QC-014 — Hero reconstruido con el recurso suministrado
+
+- HeroPhoto, Hero y WaveDivider separan fotografía, contenido y geometría; CSS del fondo/máscara acotado a hero.module.css.
+- Imagen original preservada y derivado JPEG preparado con sips; texto/CTA son HTML, no una captura con texto incrustado.
+- Revisadas home-390.png y home-1440.png: logo original corregido visible, escena del plato integrada, ondas y sello con mano extraída. Variante mobile más compacta con acciones antes del plato.
+- `npm run build` y `npm run test:browser`: correctos. Se conserva compra, mínimo, packs, persistencia, datos recordados y navegación inferior.
+- El smoke HTTP se actualizó al nuevo título, «No son solo cookies»; se ejecutará junto con la verificación completa final.
+- CV-06 revisado visualmente con la referencia. La carta conserva de momento su estilo previo hasta QC-015.

@@ -1,0 +1,13 @@
+.surface {
+  background: linear-gradient(115deg, var(--color-vanilla), #fff6e4 62%, #f8edd8);
+}
+
+.photo {
+  mask-image: linear-gradient(to bottom, transparent, black 12%);
+}
+
+@media (width >= 48rem) {
+  .photo {
+    mask-image: linear-gradient(to right, transparent, black 21%);
+  }
+}

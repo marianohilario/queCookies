@@ -6,7 +6,7 @@ URLs centralizadas en `src/data/catalog.ts`. Servidas por next/image con tamaño
 
 | Recurso | Fuente | Uso |
 | --- | --- | --- |
-| Cookies | https://images.unsplash.com/photo-1499636136210-6f4ee915583e | Hero y tarjetas |
+| Cookies | https://images.unsplash.com/photo-1499636136210-6f4ee915583e | Tarjetas provisionales |
 | Surtido | https://images.unsplash.com/photo-1558961363-fa8fdf82db35 | Minis y tarjetas |
 
 Ambos endpoints respondieron HTTP 200, tipo image/jpeg, durante la selección. Referencia de licencia general: https://unsplash.com/license (la consulta automatizada recibió 401). Revisar atribución/procedencia final de las fotos con el negocio antes de publicar o sustituir por fotos propias. No se descargaron imágenes de Instagram ni del logo adjunto.
@@ -44,3 +44,16 @@ El comando de edición exige la resolución original y no sobrescribe la fuente.
 ```sh
 .artifacts/brand-tools motifs public/brand/references/patron-marca.jpg public/brand/motifs
 ```
+
+## QC-014 — Hero del negocio
+
+- Fuente suministrada: `public/brand/references/hero-original.png`, 1264 × 843. El mockup se preserva como `referencia-web.jpeg`.
+- Derivado web: `public/images/hero-cookies.jpg`, misma resolución, JPEG a calidad 90 mediante sips nativo; next/image genera variantes responsive. No se redibujó la fotografía ni se modificó el archivo fuente.
+- Composición: escena a la derecha y texto HTML a la izquierda en desktop; texto/acciones y plato debajo en móvil. Ondas SVG, fondo auxiliar vainilla, sello con la mano original y etiqueta ilustrativa.
+- Se conservó la imagen suministrada como ilustrativa: no se presenta como fotografía verificada de los productos reales.
+
+```sh
+sips -s format jpeg -s formatOptions 90 public/brand/references/hero-original.png --out public/images/hero-cookies.jpg
+```
+
+La recompilación de las herramientas Swift depende de la instalación/licencia de Xcode del equipo. La conversión del hero se realizó con sips; no requiere recompilar esas herramientas.
