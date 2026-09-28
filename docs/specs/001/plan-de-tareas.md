@@ -5,10 +5,10 @@ Cada fila es una unidad de trabajo y commit(s) propios. No se da por terminada u
 | Issue | Tarea | Entregable y comprobación | Dependencia | Estado |
 | --- | --- | --- | --- | --- |
 | QC-010 | Especificar rediseño y organizar recursos | Documentos 001, referencias y criterios | Ninguna | Documentado |
-| QC-011 | Cambiar una sola letra del logo | Fuente preservada, logo «que cookies», comparación antes/después | Archivo original del logo | Pendiente de recurso |
+| QC-011 | Cambiar una sola letra del logo | Fuente preservada, logo «que cookies», comparación antes/después | Archivo original del logo | Editado y comparado |
 | QC-012 | Extraer paleta y preparar motivos | Tokens y SVG de cookie/mano/corazón, revisión de contraste | Archivo de marca/patrón | Pendiente |
 | QC-013 | Navegación inferior mobile | Cuatro accesos, activo, contador y espacio reservado; eliminar hamburguesa/barra duplicada | RV-03 | Implementado y verificado |
-| QC-014 | Reconstruir hero | Layout y escena próxima a la referencia, ondas y sello | Recurso fotográfico y QC-012 | Pendiente de recurso |
+| QC-014 | Reconstruir hero | Layout y escena próxima a la referencia, ondas y sello | Recurso fotográfico y QC-012 | Recurso recibido; pendiente de composición |
 | QC-015 | Ajustar carta y franjas | Tarjetas y módulos con identidad consistente, sin cambiar oferta | QC-012/QC-014 | Pendiente |
 | QC-016 | Regresión del rediseño | Capturas comparables, compra preservada y revisión responsive | Tareas visuales terminadas | Pendiente |
 
@@ -24,10 +24,11 @@ Cada fila es una unidad de trabajo y commit(s) propios. No se da por terminada u
 
 La comprobación física de safe area y teclado iOS sigue en QC-009. El incremento verificado se guarda en su commit semántico antes de continuar con otro issue.
 
-## Recursos a recibir
+## Recursos recibidos
 
-1. Logo original PNG o, preferentemente, SVG/PDF vectorial.
-2. Pieza de marca/patrón en archivo, idealmente con iconos vectoriales.
-3. Referencia del hero a máxima resolución y, si existe, fotografía del plato separada del mockup.
+1. `logo-original.png`: 1080 × 1080, con transparencia.
+2. `patron-marca.jpg`: pieza de marca con iconos.
+3. `referencia-web.jpeg`: mockup de composición.
+4. `hero-original.png`: fotografía separada del plato, 1264 × 843.
 
-Usar `public/brand/references/` con nombres descriptivos. La ausencia de estos archivos no bloquea QC-013.
+Ubicación: `public/brand/references/`. Los derivados se generan en rutas separadas para conservar intactas las fuentes.

@@ -2,8 +2,8 @@
 
 ## Estado inicial
 
-- Referencias visuales recibidas en conversación; archivos originales aún no disponibles en el proyecto.
-- Logo, motivos y reconstrucción fotográfica no realizados.
+- Referencias originales recibidas en public/brand/references/.
+- Logo editado en QC-011; motivos y composición fotográfica son los siguientes incrementos.
 - Navegación inferior: implementada y verificada en QC-013. Recursos gráficos del resto del rediseño pendientes.
 
 ## Plan
@@ -35,3 +35,11 @@ La planificación documental no cuenta como validación de una interfaz ni como 
 - Capturas revisadas: `.artifacts/browser/home-390.png` y `.artifacts/browser/checkout-bottom-nav-390.png`.
 
 CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area física, teclado virtual y Safari se mantienen pendientes en QC-009. CV-01/CV-02/CV-06/CV-07 no se dan por realizados: requieren los recursos y siguientes issues.
+
+### QC-011 — Logo original corregido
+
+- Editada la primera s de «cookiss» con la e extraída de «que»; fuente PNG preservada y salida 1080 × 1080 con transparencia.
+- Herramienta nativa reproducible en scripts/brand/. Comparación de la salida PNG decodificada contra el original: 17.580 píxeles modificados dentro de x748/y530/126×164, cero fuera de esa región.
+- Revisado el logo completo y el detalle ampliado; corregidos un fragmento de k que entraba en el recorte y residuos de antialias de la s anterior antes de darlo por terminado.
+- Brand usa ahora el logo raster real en lugar de la marca tipográfica provisional.
+- CV-01 comprobado mediante comparación visual y de píxeles; adaptación responsive se vuelve a revisar con el conjunto del rediseño en QC-016.

@@ -14,7 +14,7 @@ Documentos: [arquitectura y stack](./arquitectura-y-stack.md), [plan](./plan-de-
 2. Pieza de marca con patrón de cookies, manos y corazones; fondo rojo y panel amarillo.
 3. Mockup de tienda: hero horizontal con plato de cookies, fondo suave, texto editorial, bordes ondulados, carta compacta y franja inferior de beneficios.
 
-Las imágenes son visibles en la conversación, pero sus archivos originales no están en el proyecto. No se afirmará haber extraído colores exactos o editado el logo hasta disponer de esos archivos. Carpeta preparada: `public/brand/references/`.
+Archivos recibidos en `public/brand/references/`: logo-original.png, patron-marca.jpg, referencia-web.jpeg y hero-original.png. La edición y extracción parten de esos archivos, preservando sus originales.
 
 ## Requisitos
 
@@ -70,6 +70,6 @@ Cuatro opciones permanentes con icono y texto:
 
 ## Dependencias y orden
 
-Logo, extracción de paleta y escena fotográfica requieren archivos originales. La navegación inferior puede implementarse y verificarse de forma independiente mientras llegan esos archivos.
+Los archivos originales de logo, patrón y escena fotográfica ya están disponibles. La navegación inferior se implementó y verificó de forma independiente en QC-013.
 
 Cada unidad se trabaja como un issue pequeño, con criterios, evidencia y commit semántico. El rediseño de 001 reemplaza las decisiones de navegación/estética incompatibles de 000; conserva sus reglas comerciales y su historial.
