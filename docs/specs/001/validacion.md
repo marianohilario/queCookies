@@ -1,10 +1,10 @@
 # 001 — Validación del rediseño
 
-## Estado inicial
+## Estado actual
 
 - Referencias originales recibidas en public/brand/references/.
-- Logo editado en QC-011; motivos y composición fotográfica son los siguientes incrementos.
-- Navegación inferior: implementada y verificada en QC-013. Recursos gráficos del resto del rediseño pendientes.
+- Logo editado en QC-011, motivos/paleta extraídos en QC-012, hero y tarjetas implementados en QC-014/QC-015.
+- Navegación inferior implementada en QC-013; conjunto revisado con recursos originales y regresión Chrome en QC-016.
 
 ## Plan
 
@@ -69,3 +69,15 @@ CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area físi
 - Franja roja con cookie/mano/corazón e información operativa real. Bloque amarillo de minis usa patrón original y precio base del catálogo; no incorpora servicios ficticios del mockup.
 - Revisadas home-1440.png, home-catalog-390.png y brand-minis-390.png.
 - `npm run check` y `npm run test:browser`: correctos, incluidos 22 casos de dominio y regresión del checkout. La evidencia del escenario nuevo de assets/visual se registra en QC-016.
+
+### QC-016 — Verificación final del incremento visual
+
+- `npm run check`: correcto. TypeScript, 22 pruebas de dominio, build de producción de 18 páginas y smoke HTTP de nueve rutas más 404.
+- `npm run test:browser`: correcto. Sin desbordamiento horizontal en 320/375/390/768/1440 px; navegación inferior, contador, espacio al pie y CTA del checkout accesibles.
+- Escenario nuevo `redesign-scenario.mjs`: logo corregido servido en encabezado, rojo calculado en navegador `rgb(146,25,30)`, hero local y diez recursos gráficos con HTTP 200 y tipo imagen.
+- Ilustraciones de tarjetas cargadas y con tamaño visible ≥100 px en la revisión mobile, evitando regresión del escalado automático de srcset.
+- Revisadas capturas home-390.png, home-1440.png, home-catalog-390.png, brand-minis-390.png y checkout-bottom-nav-390.png en `.artifacts/browser/`.
+- Conservado el recorrido: mínimo, packs, total mixto $13.004, precarga de datos, retiro sin domicilio personal, envío con costo pendiente, enlace correcto a WhatsApp, copia manual, almacenamiento corrupto/denegado y sincronización entre pestañas.
+- No se instalaron dependencias; herramientas de imagen nativas y motor sharp ya incluido por Next. Las pruebas interceptan WhatsApp y no envían mensajes al negocio.
+
+Resultado: CV-01 a CV-08 revisados dentro del alcance de archivos y Chrome emulado. No se declara publicación, aprobación editorial definitiva ni pruebas físicas de Safari/iOS; permanecen en QC-008/QC-009. Las imágenes de tarjetas son ilustrativas y su procedencia está en docs/assets.md.

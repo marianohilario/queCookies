@@ -252,7 +252,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 | P-02 | Resuelto: días y horarios | Retiro y envío de lunes a domingo, de 09:00 a 19:00 |
 | P-03 | Descripciones, ingredientes y alérgenos por producto | Redactar propuestas; información alimentaria debe verificarse antes de publicar la ficha final |
 | P-04 | Fotos de stock y permiso/licencia de uso | Seleccionar recursos permitidos, registrar origen y señalar que son ilustrativos |
-| P-05 | Archivo del logo con nombre Que Cookies y valores exactos de color | Mantener identidad visual; obtener/adaptar el recurso con el nuevo nombre y confirmar tokens |
+| P-05 | Resuelto en 001: logo y paleta originales | Logo corregido en QC-011, colores medidos y motivos extraídos en QC-012; fuentes preservadas |
 | P-06 | Ratificar cobertura limitada a Adrogué dentro de Almirante Brown | Usar interpretación acotada; no ampliar a todo el partido |
 | P-07 | Cantidades que requieren coordinación especial y anticipación | No imponer 48 h como regla general; todas las solicitudes sujetas a confirmación |
 | P-08 | Nombre resuelto; dominio y alojamiento pendientes | Nombre confirmado Que Cookies; centralizar identidad y resolver despliegue antes de publicar |

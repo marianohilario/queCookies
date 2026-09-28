@@ -11,7 +11,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-005 | Base visual, inicio, catálogo y páginas informativas | T-06, T-07 | Implementado y verificado en Chrome; contenido definitivo en QC-008 |
 | QC-006 | Carrito, persistencia, checkout y solicitud por WhatsApp | T-08 a T-14 | Implementado; pruebas de dominio y recorrido interactivo Chrome correctos |
 | QC-007 | Automatización Chrome y revisión responsive | T-04, T-15 | Completado para Chrome headless; verificaciones y capturas registradas |
-| QC-008 | Contenido definitivo: logo, fotos, ingredientes, alérgenos e historia | P-03 a P-05, P-09 | Pendiente de información del negocio |
+| QC-008 | Contenido definitivo: fotografías de productos, ingredientes, alérgenos e historia | P-03/P-04, P-09 | Logo y paleta resueltos en QC-011/QC-012; contenido restante pendiente |
 | QC-009 | Verificación Safari/dispositivos físicos y preparación de publicación | T-15, T-16 | Pendiente; definir dominio y hosting |
 | QC-010 | Especificar rediseño y organizar referencias | docs/specs/001 | Documentado |
 | QC-011 | Editar solo la letra del logo | RV-01 / CV-01 | Editado, comparado e integrado; 0 píxeles alterados fuera de la región de la letra |
@@ -19,7 +19,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-013 | Navegación móvil inferior de cuatro accesos | RV-03 / CV-03 a CV-05 | Implementado y verificado en Chrome; capturas revisadas |
 | QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Implementado con imagen suministrada; capturas mobile/desktop y regresión Chrome correctas |
 | QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Implementado y revisado: tarjetas, cookies aisladas, franja roja y minis con patrón |
-| QC-016 | Regresión y comparación visual del rediseño | CV-08 | Pendiente |
+| QC-016 | Regresión y comparación visual del rediseño | CV-08 | Verificado en Chrome con capturas; 22 pruebas de dominio, build y HTTP correctos |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 

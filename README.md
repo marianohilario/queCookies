@@ -56,6 +56,8 @@ Las dependencias adicionales deben conversarse antes de instalarlas. No se confi
 
 El logo y los motivos proceden de los archivos del negocio; la letra del logo fue corregida conservando el diseño. Las fotografías son ilustrativas. Las fichas de ingredientes/alérgenos y los textos definitivos requieren confirmación del negocio antes de publicar.
 
+El rediseño 001 incorpora el hero del plato suministrado, colores medidos, motivos originales, tarjetas con ilustraciones aisladas y navegación mobile inferior. Logo final: `public/brand/que-cookies-logo.png`. Las fuentes permanecen en `public/brand/references/` y los procesos/evidencias están documentados en `docs/assets.md` y `docs/specs/001/validacion.md`.
+
 ## Compra y almacenamiento
 
 - Carrito: `src/features/cart/`; reglas puras en `cart.ts` y persistencia versionada en `src/lib/storage/`.
