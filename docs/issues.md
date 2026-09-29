@@ -30,6 +30,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-024 | Ajustar indicador visual del carrito y formato del proveedor | RV-03 / RF-03 | Cambios pendientes revisados; 22 pruebas y regresión Chrome correctos |
 | QC-025 | Versionar la skill frontend-design del proyecto | Herramientas de diseño | Skill, licencia Apache 2.0 y lockfile revisados |
 
+| QC-026 | Normalizar escala y orientación de motoDelivery | RV-05 / docs/specs/001/icono-delivery.md | Implementado; typecheck correcto y transformación cotejada con SVG original |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.
