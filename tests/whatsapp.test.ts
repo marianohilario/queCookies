@@ -25,7 +25,8 @@ test("destino y codificación conservan tildes, símbolos, emojis y saltos", () 
   assert.equal(result.ok, true);
   if (!result.ok) return;
   const url = new URL(result.url);
-  assert.equal(url.origin + url.pathname, "https://wa.me/5491161919801");
+  assert.equal(url.origin + url.pathname, "https://api.whatsapp.com/send/");
+  assert.equal(url.searchParams.get("phone"), "5491161919801");
   assert.equal(url.searchParams.get("text"), result.text);
   assert.ok(result.text.includes(draft.name));
 });

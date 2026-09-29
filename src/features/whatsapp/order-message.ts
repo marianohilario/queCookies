@@ -1,4 +1,4 @@
-import { business, contactUrl } from "../../config/business.ts";
+import { business } from "../../config/business.ts";
 import { formatMoney } from "../../lib/money.ts";
 import { summarizeCart } from "../cart/cart.ts";
 import type { CartItem } from "../cart/cart.ts";
@@ -37,5 +37,7 @@ export function prepareOrder(items: CartItem[], draft: CheckoutDraft, now = new 
     ...(draft.notes.trim() ? ["", "📝 *Comentarios*", draft.notes.trim()] : []), "",
     "¿Me confirman disponibilidad, entrega, importe final si corresponde y cómo realizar el pago?",
   ].join("\n");
-  return { ok: true as const, summary, errors, text, url: `${contactUrl}?text=${encodeURIComponent(text)}` };
+  // wa.me corrompe los emojis en su redirección; abrir el destino directamente.
+  const url = `https://api.whatsapp.com/send/?phone=${business.whatsapp}&text=${encodeURIComponent(text)}`;
+  return { ok: true as const, summary, errors, text, url };
 }

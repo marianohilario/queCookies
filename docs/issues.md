@@ -34,6 +34,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-027 | Presentar secciones del mensaje con emojis y verificar codificación | RF-10 / docs/specs/000/mensaje-whatsapp.md | Formato implementado; 23 pruebas y typecheck correctos; desaparición en cliente WhatsApp pendiente de reproducir |
 
+| QC-028 | Evitar pérdida de emojis en redirección de WhatsApp | RF-10 / docs/specs/000/mensaje-whatsapp.md | Corregido; causa reproducida por HTTP, destino directo conserva emoji; 23 pruebas y typecheck correctos |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.
