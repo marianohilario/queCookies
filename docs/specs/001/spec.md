@@ -79,6 +79,13 @@ Cuatro opciones permanentes con icono y texto:
 - Usar el logo corregido existente como favicon y como icono de acceso en dispositivos Apple.
 - Aceptación: sin desbordamiento a 320, 390, 768, 1440 y 1920 px; contenedor de 1536 px en 1920; hero de al menos 560 px en escritorio; icono de marca servido correctamente; conservar interacción del carrito y foco visible.
 
+### RV-07 — Mapa de retiro y favicon contrastado (QC-019)
+
+- La sección compartida de contacto incorpora Google Maps con la dirección derivada de `business.address`, junto al texto en escritorio y debajo en móvil. Mantiene el enlace «Cómo llegar», carga diferida y título accesible.
+- Composición `[contacto | mapa]` con panel cartográfico de al menos 320 px de alto, esquinas redondeadas y borde discreto de marca. Paleta y tipografías de RV-06; sin motivos adicionales encima del mapa.
+- Favicon derivado del logo corregido con contorno circular amarillo #fcc256, transparente fuera del círculo. Generar tamaños 32/192 px y Apple 180 px sin modificar el logo de la web.
+- Aceptación: mapa con dirección correcta en inicio y contacto, sin overflow móvil; iconos servidos con tamaños declarados y contorno visible al revisar la imagen.
+
 ## Dependencias y orden
 
 Los archivos originales de logo, patrón y escena fotográfica ya están disponibles. La navegación inferior se implementó y verificó de forma independiente en QC-013.

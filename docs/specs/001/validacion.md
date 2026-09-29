@@ -1,5 +1,13 @@
 # 001 — Validación del rediseño
 
+### QC-019 — Mapa de ubicación y favicon contrastado
+
+- BusinessContact compartido por inicio y `/nosotros`: iframe Google Maps derivado de la dirección configurada, carga diferida, título accesible y enlace externo conservado. Dos columnas desde 1024 px; mapa inferior en móvil.
+- Generados PNG transparentes de 32/180/192 px mediante `scripts/brand/generate-favicon.mjs`, con disco amarillo #fcc256 y logo original superpuesto. Contorno equivalente a 2 px en el favicon de 32 px. Metadata actualizada con tamaños explícitos.
+- `npm run check` y `npm run test:browser`: correctos; 22 pruebas, build, smoke HTTP y regresión de compra/responsive entre 320 y 1920 px.
+- Revisión adicional en Chrome de `/nosotros` a 390/1440 px: sin overflow, mapa de 320/420 px de alto, dirección Peña 298 mostrada por Google y marcador visible. Capturas revisadas: `.artifacts/browser/contact-map-390.png` y `contact-map-1440.png`.
+- Los tres iconos cargan y decodifican en navegador con sus dimensiones correspondientes. Revisado visualmente `public/brand/favicon-192.png` para comprobar contorno y conservación de letras/mordida.
+
 ### QC-018 — Amplitud y refinamiento visual
 
 - Contenedor compartido de 1536 px, hero de escritorio de 560–680 px mínimos según viewport, tipografía fluida y fotografía ampliada. Refinadas jerarquía, espaciado, tarjetas y banner de minis conservando los colores de marca.

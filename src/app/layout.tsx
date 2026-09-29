@@ -14,8 +14,11 @@ export const metadata: Metadata = {
   title: { default: `${business.name} | Tu próximo antojo en Banfield`, template: `%s | ${business.name}` },
   description: "Cookies estilo New York y mini cookies. Retiro en Banfield y envíos a coordinar por WhatsApp.",
   icons: {
-    icon: { url: "/brand/que-cookies-logo.png", type: "image/png" },
-    apple: { url: "/brand/que-cookies-logo.png", type: "image/png" },
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: { url: "/brand/favicon-180.png", sizes: "180x180", type: "image/png" },
   },
 };
 

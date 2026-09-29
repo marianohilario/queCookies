@@ -16,3 +16,4 @@ export const business = {
 
 export const contactUrl = `https://wa.me/${business.whatsapp}`;
 export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`;
+export const mapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(business.address)}&z=16&output=embed`;

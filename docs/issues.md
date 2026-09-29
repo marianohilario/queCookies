@@ -22,6 +22,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-016 | Regresión y comparación visual del rediseño | CV-08 | Verificado en Chrome con capturas; 22 pruebas de dominio, build y HTTP correctos |
 | QC-017 | Corregir altas y eliminación desde el selector de las tarjetas | RF-03 / RV-05 / CV-09 | Implementado y verificado en Chrome; typecheck, 22 pruebas, build y smoke HTTP correctos |
 | QC-018 | Ampliar hero y contenedores, refinar estilos e incorporar favicon | RV-06 | Implementado; check y regresión Chrome correctos de 320 a 1920 px; capturas revisadas |
+| QC-019 | Mapa de ubicación y favicon con contorno amarillo | RV-07 | Implementado; check, regresión Chrome y revisión visual de mapa/icono correctos |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
