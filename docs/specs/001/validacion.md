@@ -1,5 +1,9 @@
 # 001 — Validación del rediseño
 
+### QC-025 — Skill de diseño local
+
+- Revisados `.agents/skills/frontend-design/SKILL.md`, licencia Apache 2.0 y `skills-lock.json`: skill local de diseño, origen y hash declarados; sin dependencias de ejecución de la web.
+
 ### QC-024 — Presentación del carrito
 
 - Revisados cambios pendientes: bolsa de 28 px en escritorio, posición del contador ajustada y formato multilínea en CartProvider sin cambios de lógica.
