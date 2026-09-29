@@ -1,5 +1,10 @@
 # 001 — Validación del rediseño
 
+### QC-023 — Logo en encabezado y footer
+
+- Revisados cambios pendientes: tamaño de logo de escritorio de 68 px, prop de clases opcional y borde amarillo circular en el footer.
+- Build y regresión Chrome responsive a 320/375/390/768/1440/1920 px correctos durante la preparación de commits.
+
 ### QC-022 — Retirada de badges
 
 - Eliminadas etiquetas visibles «Imagen ilustrativa» de HeroPhoto, ProductCard y ProductImage; conservadas descripciones alternativas y documentación de procedencia.
