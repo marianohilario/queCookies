@@ -63,6 +63,8 @@ Cuatro opciones permanentes con icono y texto:
 
 ### RV-05 — Carta y franjas visuales
 
+- Por solicitud posterior del usuario, retirar todos los badges visibles «Imagen ilustrativa» del hero, tarjetas y fotos de producto. La procedencia de los recursos permanece documentada en `docs/assets.md`.
+
 - Aproximar tarjetas, bordes, espaciado y proporción de fotos a la referencia, usando productos y precios reales.
 - Mantener compra de individuales y packs; no incorporar regalos, personalización, cuentas, Mercado Pago o beneficios ficticios presentes en el mockup.
 - Motivos de marca en franja y pie; información operativa real en lugar de afirmaciones no confirmadas.

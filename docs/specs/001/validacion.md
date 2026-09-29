@@ -1,5 +1,10 @@
 # 001 — Validación del rediseño
 
+### QC-022 — Retirada de badges
+
+- Eliminadas etiquetas visibles «Imagen ilustrativa» de HeroPhoto, ProductCard y ProductImage; conservadas descripciones alternativas y documentación de procedencia.
+- Typecheck correcto al implementar; `npm run check` y `npm run test:browser` correctos al preparar commits.
+
 ### QC-021 — QR con logo central
 
 - Entregable: `public/brand/qr-que-cookies.png`, 1376×1376 px, módulos negros, fondo blanco, margen de seguridad y logo central.

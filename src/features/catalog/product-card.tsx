@@ -33,7 +33,6 @@ export function ProductCard({ product }: { product: Product }) {
         <CookiePortrait product={product} />
       </Link>
       <div className="flex flex-1 flex-col px-3 pb-4 sm:px-4 lg:px-5 lg:pb-5">
-        <p className="mb-2 text-[9px] text-muted">Imagen ilustrativa</p>
         <Link href={`/cookies/${product.slug}`}>
           <h3 className="text-base leading-snug font-semibold tracking-tight text-brand lg:text-lg">
             {product.name}

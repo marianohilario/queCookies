@@ -19,9 +19,6 @@ export function HeroPhoto() {
         <BrandMotif name="hand" className="mb-1 h-7 w-6" />
         Tu momento<br />más dulce
       </div>
-      <span className="absolute right-5 bottom-8 z-10 rounded-full bg-cream/95 px-2 py-1 text-[10px] text-muted md:right-10 md:bottom-10">
-        Imagen ilustrativa
-      </span>
     </div>
   );
 }
