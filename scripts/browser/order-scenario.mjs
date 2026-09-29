@@ -5,7 +5,7 @@ import { checkNavigationWithCart } from "./navigation-scenario.mjs";
 export async function checkOrder(browser) {
   await viewport(browser, 390);
   await browser.navigate("/cookies");
-  await click(browser, 'button[aria-label="Agregar Tradicional al carrito"]');
+  await click(browser, 'button[aria-label="Aumentar Tradicional"]');
   await browser.navigate("/carrito");
   await browser.waitFor("document.body.innerText.includes('¡Sumá una más')");
   assert.equal(await browser.evaluate("[...document.querySelectorAll('button')].find(el => el.textContent.includes('Continuar con mi pedido'))?.disabled"), true);

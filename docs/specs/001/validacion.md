@@ -81,3 +81,11 @@ CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area físi
 - No se instalaron dependencias; herramientas de imagen nativas y motor sharp ya incluido por Next. Las pruebas interceptan WhatsApp y no envían mensajes al negocio.
 
 Resultado: CV-01 a CV-08 revisados dentro del alcance de archivos y Chrome emulado. No se declara publicación, aprobación editorial definitiva ni pruebas físicas de Safari/iOS; permanecen en QC-008/QC-009. Las imágenes de tarjetas son ilustrativas y su procedencia está en docs/assets.md.
+
+### QC-017 — Selector de cantidades en las tarjetas
+
+- `ProductCard` consulta el carrito por ID y reutiliza `add`, `setQuantity` y `remove`: cero representa ausencia de línea, sin persistir cantidades inválidas. Eliminados la búsqueda por nombre y el log de depuración.
+- `QuantitySelector` admite mínimo cero y estado deshabilitado. Mínimo uno por defecto para carrito y cantidad pendiente de agregar en la ficha. Revisión de código: las tarjetas bloquean interacción antes de recuperar el carrito y para productos no disponibles; el catálogo actual no incluye un producto no disponible para probar ese estado en navegador.
+- `npm run check`: TypeScript, 22 pruebas de dominio, build de 18 páginas y smoke HTTP correctos.
+- `npm run test:browser`: correcto. Nuevo escenario `card-quantity-scenario.mjs` verifica en inicio y catálogo agregar 0→1→2, contador de dos artículos, subtotal $7.000, sincronización entre vistas, eliminación 1→0 persistida tras recarga y posibilidad de volver a agregar. Comprueba que «−» queda deshabilitado en cero en las tarjetas, en uno en el carrito y en el selector de packs de la ficha; «Quitar» conserva su funcionamiento.
+- Actualizados los escenarios existentes a las etiquetas accesibles del selector. Regresión correcta de mínimo, packs, checkout/WhatsApp, almacenamiento bloqueado/corrupto, sincronización entre pestañas y responsive a 320/375/390/768/1440 px. Sin excepciones JS capturadas.

@@ -20,6 +20,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-014 | Hero próximo a la referencia | RV-04 / CV-06 | Implementado con imagen suministrada; capturas mobile/desktop y regresión Chrome correctas |
 | QC-015 | Ajustar carta y franjas a la nueva dirección | RV-05 / CV-07 | Implementado y revisado: tarjetas, cookies aisladas, franja roja y minis con patrón |
 | QC-016 | Regresión y comparación visual del rediseño | CV-08 | Verificado en Chrome con capturas; 22 pruebas de dominio, build y HTTP correctos |
+| QC-017 | Corregir altas y eliminación desde el selector de las tarjetas | RF-03 / RV-05 / CV-09 | Implementado y verificado en Chrome; typecheck, 22 pruebas, build y smoke HTTP correctos |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 

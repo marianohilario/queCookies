@@ -131,7 +131,7 @@ Los productos se podrán marcar como destacados, edición limitada o no disponib
 
 ### RF-03 — Carrito y mínimo
 
-Agregar, aumentar, reducir y eliminar líneas. Cantidades enteras positivas; eliminar es una acción explícita. Para cookies individuales, la cantidad representa cookies; para mini cookies, representa packs del tamaño seleccionado. Mostrar ambas unidades con etiquetas claras y el subtotal.
+Agregar, aumentar, reducir y eliminar líneas. Las líneas guardadas tienen cantidades enteras positivas. En las tarjetas de inicio y catálogo, el selector muestra la cantidad actual del carrito: «+» desde cero agrega el producto y «−» desde una unidad elimina la línea, mostrando cero sin guardar una línea vacía. En el carrito, el selector conserva mínimo uno y la acción explícita «Quitar». El selector de la ficha prepara una cantidad para agregar y conserva mínimo uno. Para cookies individuales, la cantidad representa cookies; para mini cookies, representa packs del tamaño seleccionado. Mostrar ambas unidades con etiquetas claras y el subtotal.
 
 El mínimo son dos cookies físicas totales: suma de cantidad de cada línea × cookies por unidad de venta. Cada individual aporta una; cada pack aporta 12, 24, 48 o 96. Un pack cumple el mínimo por sí solo, y se permite combinarlo con cookies individuales. No se exige comprar dos packs ni dos cookies grandes adicionales.
 

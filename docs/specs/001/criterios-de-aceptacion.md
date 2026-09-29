@@ -31,3 +31,11 @@ Las tarjetas y franjas reflejan identidad y referencia sin incorporar productos,
 ## CV-08 — Regresión y commits (QC-010 a QC-016)
 
 Typecheck/build y verificaciones pertinentes correctos. El recorrido de compra, persistencia y mensaje WhatsApp conserva resultados. Evidencia en validacion.md, módulos pequeños y commits por issue sin coautoría del asistente.
+
+## CV-09 — Cantidades en tarjetas (RV-05 / RF-03 / QC-017)
+
+- Sin selección, la tarjeta muestra cero y «−» está deshabilitado; «+» agrega la primera unidad.
+- Aumentar y reducir actualiza la cantidad, el contador y los importes del carrito compartido. Desde uno, «−» elimina la línea y vuelve a cero; se puede volver a agregar.
+- La selección se refleja en inicio y catálogo, y persiste al recargar, incluida la eliminación de la última unidad. Cada producto se identifica por su ID.
+- Antes de recuperar el carrito o con un producto no disponible, los controles de la tarjeta están deshabilitados.
+- En el carrito se conserva el mínimo uno y «Quitar»; en la ficha, la cantidad pendiente de agregar conserva mínimo uno. Packs, mínimo de compra y checkout siguen funcionando.

@@ -67,6 +67,7 @@ Cuatro opciones permanentes con icono y texto:
 - Mantener compra de individuales y packs; no incorporar regalos, personalización, cuentas, Mercado Pago o beneficios ficticios presentes en el mockup.
 - Motivos de marca en franja y pie; información operativa real en lugar de afirmaciones no confirmadas.
 - No incorporar animación 360° sin fotografías/secuencia adecuadas.
+- Las tarjetas de inicio y catálogo muestran la cantidad elegida desde el carrito compartido, identificada por ID de producto. Permiten agregar desde cero y eliminar la última unidad con «−» (RF-03 / QC-017). Los controles esperan la recuperación del carrito y no permiten comprar productos no disponibles.
 
 ## Dependencias y orden
 

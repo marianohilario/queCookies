@@ -11,6 +11,7 @@ Cada fila es una unidad de trabajo y commit(s) propios. No se da por terminada u
 | QC-014 | Reconstruir hero | Layout y escena próxima a la referencia, ondas y sello | Recurso fotográfico y QC-012 | Implementado y revisado en capturas |
 | QC-015 | Ajustar carta y franjas | Tarjetas y módulos con identidad consistente, sin cambiar oferta | QC-012/QC-014 | Implementado y revisado |
 | QC-016 | Regresión del rediseño | Capturas comparables, compra preservada y revisión responsive | Tareas visuales terminadas | Verificado en Chrome y documentado |
+| QC-017 | Corregir selector de cantidades de las tarjetas | Agregar desde cero, eliminar desde uno, reflejar carrito por ID y verificar persistencia/regresión (CV-09) | RV-05 / RF-03 | Implementado y verificado en Chrome |
 
 ## Primer incremento ejecutable — QC-013
 

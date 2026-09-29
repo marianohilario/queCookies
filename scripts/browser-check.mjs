@@ -5,25 +5,27 @@ import { checkOrder } from "./browser/order-scenario.mjs";
 import { checkStorage } from "./browser/storage-scenario.mjs";
 import { checkNavigation } from "./browser/navigation-scenario.mjs";
 import { checkRedesign } from "./browser/redesign-scenario.mjs";
+import { checkCardQuantity } from "./browser/card-quantity-scenario.mjs";
 
 const browser = await startBrowserCheck();
 try {
   for (const width of [320, 375, 390, 768, 1440]) {
     await viewport(browser, width, width >= 1024 ? 1000 : 844);
     await browser.navigate("/");
-    await browser.waitFor("!!document.querySelector('button[aria-label=\"Agregar Tradicional al carrito\"]') && !document.querySelector('button[aria-label=\"Agregar Tradicional al carrito\"]').disabled");
+    await browser.waitFor("!!document.querySelector('button[aria-label=\"Aumentar Tradicional\"]') && !document.querySelector('button[aria-label=\"Aumentar Tradicional\"]').disabled");
     await noOverflow(browser, `inicio ${width}`);
     if (width === 390 || width === 1440) {
       await browser.waitFor("[...document.images].filter(img => img.getBoundingClientRect().top < innerHeight).every(img => img.complete)");
       await browser.screenshot(`home-${width}`);
     }
     await browser.navigate("/cookies");
-    await browser.waitFor("!!document.querySelector('button[aria-label=\"Agregar Tradicional al carrito\"]') && !document.querySelector('button[aria-label=\"Agregar Tradicional al carrito\"]').disabled");
+    await browser.waitFor("!!document.querySelector('button[aria-label=\"Aumentar Tradicional\"]') && !document.querySelector('button[aria-label=\"Aumentar Tradicional\"]').disabled");
     await noOverflow(browser, `catálogo ${width}`);
     console.log(`OK responsive sin desbordamiento horizontal a ${width}px`);
   }
   await checkNavigation(browser);
   await checkRedesign(browser);
+  await checkCardQuantity(browser);
   await checkOrder(browser);
   await checkStorage(browser);
   assert.equal(browser.errors.length, 0, JSON.stringify(browser.errors));

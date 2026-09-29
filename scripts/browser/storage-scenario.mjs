@@ -25,8 +25,9 @@ export async function checkStorage(browser) {
   });
   try {
     await browser.navigate("/cookies");
-    await click(browser, 'button[aria-label="Agregar Tradicional al carrito"]');
-    await click(browser, 'button[aria-label="Agregar Tradicional al carrito"]');
+    await click(browser, 'button[aria-label="Aumentar Tradicional"]');
+    await browser.waitFor("document.querySelector('output[aria-label=\"Tradicional\"]')?.textContent === '1'");
+    await click(browser, 'button[aria-label="Aumentar Tradicional"]');
     await click(browser, 'nav[aria-label="Navegación móvil"] a[href="/carrito"]');
     await browser.waitFor("location.pathname === '/carrito' && document.body.innerText.includes('No podemos guardar')");
     assert.ok(await browser.evaluate("document.body.innerText.includes('7.000')"));
