@@ -17,7 +17,7 @@ try {
     if (width === 1920) {
       assert.equal(await browser.evaluate("document.querySelector('header .page-container').getBoundingClientRect().width"), 1536);
       assert.ok(await browser.evaluate("document.querySelector('main section').getBoundingClientRect().height >= 560"));
-      assert.equal(await browser.evaluate("document.querySelector('link[rel=\"icon\"]').getAttribute('href')"), "/brand/favicon-32.png");
+      assert.match(await browser.evaluate("document.querySelector('link[rel=\"icon\"]').getAttribute('href')"), /^\/favicon\.ico(?:\?|$)/);
     }
     if (width === 390 || width === 1440 || width === 1920) {
       await browser.waitFor("[...document.images].filter(img => img.getBoundingClientRect().top < innerHeight).every(img => img.complete)");

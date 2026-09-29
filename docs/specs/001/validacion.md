@@ -1,5 +1,11 @@
 # 001 — Validación del rediseño
 
+### QC-020 — Favicon nativo de Next
+
+- Diagnóstico: el HTML de producción sí incluía los enlaces PNG en head; `/favicon.ico` respondía 404. No se pudo reproducir la caché de la sesión del usuario ni atribuirle con certeza el icono genérico.
+- Generador ampliado para producir `src/app/favicon.ico` con entradas PNG de 16/32/48 px. Next publica `/favicon.ico` y agrega un único enlace de icono con hash; retiradas las dos declaraciones PNG competidoras. Apple mantiene su PNG de 180 px.
+- `npm run build`: correcto. Verificación HTTP: `/favicon.ico` responde 200, `image/x-icon`, contenedor con tres entradas. Chrome decodifica el icono enlazado a 48×48; hay un único `rel=icon` y URL versionada. Esto verifica entrega/decodificación, no la UI de pestañas de la sesión personal del usuario.
+
 ### QC-019 — Mapa de ubicación y favicon contrastado
 
 - BusinessContact compartido por inicio y `/nosotros`: iframe Google Maps derivado de la dirección configurada, carga diferida, título accesible y enlace externo conservado. Dos columnas desde 1024 px; mapa inferior en móvil.

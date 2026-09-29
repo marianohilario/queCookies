@@ -84,6 +84,7 @@ Cuatro opciones permanentes con icono y texto:
 - La sección compartida de contacto incorpora Google Maps con la dirección derivada de `business.address`, junto al texto en escritorio y debajo en móvil. Mantiene el enlace «Cómo llegar», carga diferida y título accesible.
 - Composición `[contacto | mapa]` con panel cartográfico de al menos 320 px de alto, esquinas redondeadas y borde discreto de marca. Paleta y tipografías de RV-06; sin motivos adicionales encima del mapa.
 - Favicon derivado del logo corregido con contorno circular amarillo #fcc256, transparente fuera del círculo. Generar tamaños 32/192 px y Apple 180 px sin modificar el logo de la web.
+- Compatibilidad Chrome (QC-020): usar además la convención `src/app/favicon.ico` de Next, con entradas de 16/32/48 px y metadata automática. `/favicon.ico` debe responder 200; evitar múltiples iconos de pestaña que compitan entre sí.
 - Aceptación: mapa con dirección correcta en inicio y contacto, sin overflow móvil; iconos servidos con tamaños declarados y contorno visible al revisar la imagen.
 
 ## Dependencias y orden
