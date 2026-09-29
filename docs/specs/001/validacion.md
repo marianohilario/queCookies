@@ -136,3 +136,8 @@ Resultado: CV-01 a CV-08 revisados dentro del alcance de archivos y Chrome emula
 - `npm run check`: TypeScript, 22 pruebas de dominio, build de 18 páginas y smoke HTTP correctos.
 - `npm run test:browser`: correcto. Nuevo escenario `card-quantity-scenario.mjs` verifica en inicio y catálogo agregar 0→1→2, contador de dos artículos, subtotal $7.000, sincronización entre vistas, eliminación 1→0 persistida tras recarga y posibilidad de volver a agregar. Comprueba que «−» queda deshabilitado en cero en las tarjetas, en uno en el carrito y en el selector de packs de la ficha; «Quitar» conserva su funcionamiento.
 - Actualizados los escenarios existentes a las etiquetas accesibles del selector. Regresión correcta de mínimo, packs, checkout/WhatsApp, almacenamiento bloqueado/corrupto, sincronización entre pestañas y responsive a 320/375/390/768/1440 px. Sin excepciones JS capturadas.
+# Actualización de contenido de la franja de servicios
+
+- Implementados los cuatro textos de la referencia solicitada y sus iconos SVG lineales reutilizables.
+- Conservados los tokens de color de marca y la cuadrícula responsive existente (dos/cuatro columnas).
+- Verificación: `npm run typecheck` completado correctamente. Sin comprobación visual en navegador para este cambio.

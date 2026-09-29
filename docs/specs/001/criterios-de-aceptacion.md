@@ -27,6 +27,7 @@ La composición aproxima el plato lateral, texto editorial y ondas de la referen
 ## CV-07 — Carta coherente (RV-05 / QC-015)
 
 Las tarjetas y franjas reflejan identidad y referencia sin incorporar productos, precios, servicios o afirmaciones ajenos al alcance real. Packs y mínimo conservan las reglas de 000.
+La franja de inicio reproduce los cuatro mensajes de la referencia posterior aprobada por el usuario (Ingredientes Premium, Hechas a Mano, Presentación Perfecta y Envíos a Domicilio), con iconos lineales correspondientes, fondo de marca, texto crema e iconos amarillos; mantiene dos columnas en móvil y cuatro en escritorio.
 
 ## CV-08 — Regresión y commits (QC-010 a QC-016)
 
