@@ -55,3 +55,20 @@ test("mensaje extenso conserva contenido completo sin truncar", () => {
   assert.ok(result.text.includes(notes));
   assert.equal(new URL(result.url).searchParams.get("text"), result.text);
 });
+
+
+test("saludo y secciones conservan emojis al abrir el enlace de ambas modalidades", () => {
+  for (const mode of ["pickup", "delivery"] as const) {
+    const result = prepareOrder(items, { ...draft, mode, locality: "Banfield", zone: "Buenos Aires", notes: "Sin timbre" }, now);
+    assert.equal(result.ok, true);
+    if (!result.ok) continue;
+    const decoded = new URL(result.url).searchParams.get("text");
+    assert.equal(decoded, result.text);
+    assert.ok(decoded.startsWith("¡Hola, Que Cookies! 👋\n"));
+    assert.ok(result.url.includes("%F0%9F%91%8B"));
+    for (const heading of ["🍪 *Mi pedido*", "💰 *Resumen*", "👤 *Mis datos*", mode === "pickup" ? "📍 *Retiro*" : "🚚 *Envío*", "📅 *Fecha y horario*", "📝 *Comentarios*"]) {
+      assert.ok(decoded.includes(heading));
+    }
+    assert.ok(!decoded.includes("�"));
+  }
+});

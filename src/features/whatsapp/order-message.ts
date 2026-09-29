@@ -23,17 +23,18 @@ export function prepareOrder(items: CartItem[], draft: CheckoutDraft, now = new 
   });
   const dateLabel = draft.date.split("-").reverse().join("/");
   const text = [
-    `Hola, ${business.name} 👋 Quiero solicitar este pedido:`, "", ...lines, "",
+    `¡Hola, ${business.name}! 👋`, "Quiero solicitar este pedido:", "",
+    "🍪 *Mi pedido*", ...lines, "", "💰 *Resumen*",
     `Subtotal de productos: ${formatMoney(summary.subtotal)}`,
     ...(draft.mode === "pickup"
       ? ["Retiro: sin cargo", `Total: ${formatMoney(summary.subtotal)}`]
       : ["Envío: a confirmar", "Total final: pendiente de cotizar el envío"]),
-    "", `Nombre: ${draft.name.trim()}`, `Teléfono: ${draft.phone.trim()}`, "",
+    "", "👤 *Mis datos*", `Nombre: ${draft.name.trim()}`, `Teléfono: ${draft.phone.trim()}`, "",
     ...(draft.mode === "pickup"
-      ? [`Retiro en: ${business.address}`]
-      : [`Envío a: ${formatAddress(draft)}`, ...(draft.references.trim() ? [`Referencias: ${draft.references.trim()}`] : [])]),
-    `Fecha preferida: ${dateLabel}`, `Horario preferido: ${draft.time} h (sujeto a confirmación)`,
-    ...(draft.notes.trim() ? ["", `Comentarios: ${draft.notes.trim()}`] : []), "",
+      ? ["📍 *Retiro*", `Retiro en: ${business.address}`]
+      : ["🚚 *Envío*", `Envío a: ${formatAddress(draft)}`, ...(draft.references.trim() ? [`Referencias: ${draft.references.trim()}`] : [])]),
+    "", "📅 *Fecha y horario*", `Fecha preferida: ${dateLabel}`, `Horario preferido: ${draft.time} h (sujeto a confirmación)`,
+    ...(draft.notes.trim() ? ["", "📝 *Comentarios*", draft.notes.trim()] : []), "",
     "¿Me confirman disponibilidad, entrega, importe final si corresponde y cómo realizar el pago?",
   ].join("\n");
   return { ok: true as const, summary, errors, text, url: `${contactUrl}?text=${encodeURIComponent(text)}` };
