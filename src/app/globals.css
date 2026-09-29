@@ -26,15 +26,15 @@
 }
 
 @layer components {
-  .page-container { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12; }
+  .page-container { @apply mx-auto w-full max-w-[96rem] px-5 sm:px-8 lg:px-12 2xl:px-16; }
   .section-space { @apply py-14 md:py-20; }
   .section-title { @apply font-display text-3xl leading-[1.1] font-semibold tracking-[-.035em] text-brand sm:text-4xl lg:text-5xl; }
-  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[.17em] text-brand; }
+  .eyebrow { @apply text-sm font-medium text-brand; }
   .button { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-6 py-3 text-sm font-semibold transition-colors disabled:opacity-45; }
   .icon-button { @apply inline-flex size-11 shrink-0 items-center justify-center rounded-full transition-colors; }
-  .nav-link { @apply py-3 text-muted transition-colors hover:text-brand; }
+  .nav-link { @apply py-3 text-muted decoration-brand/40 underline-offset-8 transition-colors hover:text-brand hover:underline; }
   .footer-link { @apply block text-sm leading-6 text-cream/90 underline-offset-4 hover:underline; }
-  .product-grid { @apply grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4; }
+  .product-grid { @apply grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 md:grid-cols-3 md:gap-5 lg:grid-cols-4 xl:gap-6; }
   .field { @apply min-h-12 w-full rounded-xl border border-muted/60 bg-white px-4 py-3 text-base text-ink; }
   .mobile-bottom-nav {
     @apply fixed inset-x-0 bottom-0 z-40 border-t border-yellow/20 shadow-[0_-4px_20px_#36191b12];

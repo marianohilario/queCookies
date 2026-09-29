@@ -7,9 +7,9 @@ import { BrandMotif, BrandPattern } from "@/components/brand/brand-motif";
 export function MiniBanner() {
   return (
     <section className="page-container py-12 md:py-16">
-      <div className="overflow-hidden rounded-2xl bg-yellow-soft text-brand">
+      <div className="overflow-hidden rounded-[2rem] bg-yellow-soft text-brand">
         <BrandPattern className="h-8 text-brand/20" />
-        <div className="flex flex-col items-center gap-7 px-6 py-7 text-center md:flex-row md:justify-between md:px-10 md:text-left">
+        <div className="flex flex-col items-center gap-7 px-6 py-9 text-center md:flex-row md:justify-between md:px-10 md:py-12 md:text-left lg:px-14">
           <div className="flex flex-col items-center gap-4 md:flex-row md:gap-6">
             <BrandMotif name="hand" className="hidden h-24 w-18 md:block" />
             <div>

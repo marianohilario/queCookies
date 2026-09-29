@@ -13,6 +13,10 @@ const display = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", disp
 export const metadata: Metadata = {
   title: { default: `${business.name} | Tu próximo antojo en Banfield`, template: `%s | ${business.name}` },
   description: "Cookies estilo New York y mini cookies. Retiro en Banfield y envíos a coordinar por WhatsApp.",
+  icons: {
+    icon: { url: "/brand/que-cookies-logo.png", type: "image/png" },
+    apple: { url: "/brand/que-cookies-logo.png", type: "image/png" },
+  },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };

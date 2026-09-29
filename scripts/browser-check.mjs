@@ -9,12 +9,17 @@ import { checkCardQuantity } from "./browser/card-quantity-scenario.mjs";
 
 const browser = await startBrowserCheck();
 try {
-  for (const width of [320, 375, 390, 768, 1440]) {
+  for (const width of [320, 375, 390, 768, 1440, 1920]) {
     await viewport(browser, width, width >= 1024 ? 1000 : 844);
     await browser.navigate("/");
     await browser.waitFor("!!document.querySelector('button[aria-label=\"Aumentar Tradicional\"]') && !document.querySelector('button[aria-label=\"Aumentar Tradicional\"]').disabled");
     await noOverflow(browser, `inicio ${width}`);
-    if (width === 390 || width === 1440) {
+    if (width === 1920) {
+      assert.equal(await browser.evaluate("document.querySelector('header .page-container').getBoundingClientRect().width"), 1536);
+      assert.ok(await browser.evaluate("document.querySelector('main section').getBoundingClientRect().height >= 560"));
+      assert.equal(await browser.evaluate("document.querySelector('link[rel=\"icon\"]').getAttribute('href')"), "/brand/que-cookies-logo.png");
+    }
+    if (width === 390 || width === 1440 || width === 1920) {
       await browser.waitFor("[...document.images].filter(img => img.getBoundingClientRect().top < innerHeight).every(img => img.complete)");
       await browser.screenshot(`home-${width}`);
     }

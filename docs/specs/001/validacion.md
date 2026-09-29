@@ -1,5 +1,14 @@
 # 001 — Validación del rediseño
 
+### QC-018 — Amplitud y refinamiento visual
+
+- Contenedor compartido de 1536 px, hero de escritorio de 560–680 px mínimos según viewport, tipografía fluida y fotografía ampliada. Refinadas jerarquía, espaciado, tarjetas y banner de minis conservando los colores de marca.
+- Metadata con favicon e icono Apple apuntando al logo corregido existente.
+- `npm run check`: TypeScript, 22 pruebas, build y smoke HTTP correctos.
+- `npm run test:browser`: sin overflow en inicio y catálogo a 320/375/390/768/1440/1920 px. Aserciones de contenedor de 1536 px, hero ≥560 px y enlace de favicon correctas; recurso del logo con HTTP 200 y tipo imagen.
+- Revisadas visualmente `.artifacts/browser/home-390.png`, `home-1440.png` y `home-1920.png`: jerarquía del hero, composición fotográfica, amplitud de escritorio y disposición móvil.
+- Regresión correcta de navegación, cantidades, checkout, WhatsApp interceptado, almacenamiento y sincronización; sin excepciones JavaScript capturadas.
+
 ## Estado actual
 
 - Referencias originales recibidas en public/brand/references/.

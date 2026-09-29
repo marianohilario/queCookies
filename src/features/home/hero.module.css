@@ -1,5 +1,17 @@
 .surface {
-  background: linear-gradient(115deg, var(--color-vanilla), #fff6e4 62%, #f8edd8);
+  background: var(--color-vanilla);
+}
+
+.content {
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(2.25rem, 4vw, 4.25rem);
+  line-height: 1.06;
+  letter-spacing: -.045em;
+  text-wrap: balance;
 }
 
 .photo {
@@ -7,7 +19,21 @@
 }
 
 @media (width >= 48rem) {
+  .content {
+    display: flex;
+    align-items: center;
+    min-height: 480px;
+    padding-block: 4rem;
+  }
+
   .photo {
-    mask-image: linear-gradient(to right, transparent, black 21%);
+    mask-image: linear-gradient(to right, transparent, black 28%);
+  }
+}
+
+@media (width >= 64rem) {
+  .content {
+    min-height: clamp(560px, 40vw, 680px);
+    padding-block: 5rem;
   }
 }

@@ -69,6 +69,16 @@ Cuatro opciones permanentes con icono y texto:
 - No incorporar animación 360° sin fotografías/secuencia adecuadas.
 - Las tarjetas de inicio y catálogo muestran la cantidad elegida desde el carrito compartido, identificada por ID de producto. Permiten agregar desde cero y eliminar la última unidad con «−» (RF-03 / QC-017). Los controles esperan la recuperación del carrito y no permiten comprar productos no disponibles.
 
+### RV-06 — Amplitud y refinamiento visual (QC-018)
+
+- Ampliar el contenedor compartido de 1280 a 1536 px, con márgenes fluidos y textos de lectura acotados.
+- Hero de escritorio más alto (mínimo 560 px desde 1024 px), con título y fotografía de mayor presencia; composición apilada en móvil.
+- Conservar rojo #92191e, amarillo #fcc256, amarillo suave #fed36d, crema #fff8ec, tinta #36191b y secundario #705b56. Fraunces para titulares y DM Sans para lectura y controles.
+- Composición: `[texto alineado a izquierda | fotografía amplia]`, seguida de `[título centrado / carta con aire]`. En móvil: `[texto centrado / acciones / fotografía]`.
+- Concentrar la expresión en el hero gastronómico. Evitar añadir gradientes ornamentales, animaciones o etiquetas; unificar el peso del titular en lugar de enfatizar frases en cursiva. Tarjetas con jerarquía tipográfica y superficies sutiles, sin sombras repetidas.
+- Usar el logo corregido existente como favicon y como icono de acceso en dispositivos Apple.
+- Aceptación: sin desbordamiento a 320, 390, 768, 1440 y 1920 px; contenedor de 1536 px en 1920; hero de al menos 560 px en escritorio; icono de marca servido correctamente; conservar interacción del carrito y foco visible.
+
 ## Dependencias y orden
 
 Los archivos originales de logo, patrón y escena fotográfica ya están disponibles. La navegación inferior se implementó y verificó de forma independiente en QC-013.
