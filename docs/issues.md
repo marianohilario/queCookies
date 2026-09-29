@@ -24,6 +24,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-018 | Ampliar hero y contenedores, refinar estilos e incorporar favicon | RV-06 | Implementado; check y regresión Chrome correctos de 320 a 1920 px; capturas revisadas |
 | QC-019 | Mapa de ubicación y favicon con contorno amarillo | RV-07 | Implementado; check, regresión Chrome y revisión visual de mapa/icono correctos |
 | QC-020 | Publicar favicon mediante convención nativa de Next y ruta estándar | RV-07 | Build correcto; ICO HTTP 200 y decodificación Chrome comprobados |
+| QC-021 | QR del sitio con logo central | Recurso de marca | PNG 1376×1376 generado y decodificado a https://www.quecookies.com.ar |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 

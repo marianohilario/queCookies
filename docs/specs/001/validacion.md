@@ -1,5 +1,10 @@
 # 001 — Validación del rediseño
 
+### QC-021 — QR con logo central
+
+- Entregable: `public/brand/qr-que-cookies.png`, 1376×1376 px, módulos negros, fondo blanco, margen de seguridad y logo central.
+- Generado con CoreImage y corrección H; Vision decodificó el resultado compuesto a `https://www.quecookies.com.ar` antes de guardarlo. No se declara una prueba de impresión física.
+
 ### QC-020 — Favicon nativo de Next
 
 - Diagnóstico: el HTML de producción sí incluía los enlaces PNG en head; `/favicon.ico` respondía 404. No se pudo reproducir la caché de la sesión del usuario ni atribuirle con certeza el icono genérico.
