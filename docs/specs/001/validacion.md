@@ -1,5 +1,10 @@
 # 001 — Validación del rediseño
 
+### QC-024 — Presentación del carrito
+
+- Revisados cambios pendientes: bolsa de 28 px en escritorio, posición del contador ajustada y formato multilínea en CartProvider sin cambios de lógica.
+- `npm run check` y `npm run test:browser` correctos sobre el estado final: 22 pruebas, compilación, smoke HTTP y recorrido de cantidades, persistencia y checkout.
+
 ### QC-023 — Logo en encabezado y footer
 
 - Revisados cambios pendientes: tamaño de logo de escritorio de 68 px, prop de clases opcional y borde amarillo circular en el footer.

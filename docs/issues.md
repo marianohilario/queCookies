@@ -27,6 +27,7 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 | QC-021 | QR del sitio con logo central | Recurso de marca | PNG 1376×1376 generado y decodificado a https://www.quecookies.com.ar |
 | QC-022 | Retirar badges de imágenes ilustrativas | RV-05 | Eliminados del hero, tarjetas y fichas; typecheck y regresión correctos |
 | QC-023 | Ajustar logo de encabezado y contorno del footer | RV-01 / RV-02 | Cambios pendientes revisados; build y regresión Chrome correctos |
+| QC-024 | Ajustar indicador visual del carrito y formato del proveedor | RV-03 / RF-03 | Cambios pendientes revisados; 22 pruebas y regresión Chrome correctos |
 
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 

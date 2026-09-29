@@ -14,19 +14,37 @@ function useCartState() {
     const product = findProduct(productId);
     if (!ready || !product?.available || !validQuantity(quantity)) return;
     setItems((current) => addItem(current, product, quantity));
-    setAnnouncement(`Agregaste ${quantity} ${product.kind === "pack" ? "pack(s) de " : ""}${product.name} al carrito.`);
+    setAnnouncement(
+      `Agregaste ${quantity} ${product.kind === "pack" ? "pack(s) de " : ""}${product.name} al carrito.`,
+    );
   }
 
   function setQuantity(productId: string, quantity: number) {
     if (!validQuantity(quantity)) return;
-    setItems((current) => current.map((item) => item.productId === productId ? { ...item, quantity } : item));
+    setItems((current) =>
+      current.map((item) =>
+        item.productId === productId ? { ...item, quantity } : item,
+      ),
+    );
   }
 
   return {
-    summary, ready, storageNotice, announcement, add, setQuantity,
-    remove: (id: string) => setItems((current) => current.filter((item) => item.productId !== id)),
+    summary,
+    ready,
+    storageNotice,
+    announcement,
+    add,
+    setQuantity,
+    remove: (id: string) =>
+      setItems((current) => current.filter((item) => item.productId !== id)),
     clear: () => setItems([]),
-    acknowledgePrices: () => setItems((current) => current.map((item) => ({ ...item, lastPrice: findProduct(item.productId)?.price ?? item.lastPrice }))),
+    acknowledgePrices: () =>
+      setItems((current) =>
+        current.map((item) => ({
+          ...item,
+          lastPrice: findProduct(item.productId)?.price ?? item.lastPrice,
+        })),
+      ),
   };
 }
 
@@ -34,7 +52,14 @@ const CartContext = createContext<ReturnType<typeof useCartState> | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const value = useCartState();
-  return <CartContext.Provider value={value}>{children}<p role="status" className="sr-only">{value.announcement}</p></CartContext.Provider>;
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+      <p role="status" className="sr-only">
+        {value.announcement}
+      </p>
+    </CartContext.Provider>
+  );
 }
 
 export function useCart() {

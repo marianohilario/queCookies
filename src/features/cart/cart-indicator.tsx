@@ -7,8 +7,12 @@ import { CartCount } from "./cart-count";
 export function CartIndicator() {
   const { summary, ready } = useCart();
   return (
-    <Link href="/carrito" aria-label={`Carrito, ${ready ? summary.articleCount : 0} artículos`} className="icon-button relative">
-      <Icon name="bag" />
+    <Link
+      href="/carrito"
+      aria-label={`Carrito, ${ready ? summary.articleCount : 0} artículos`}
+      className="icon-button relative"
+    >
+      <Icon name="bag" className="size-7" />
       <CartCount count={ready ? summary.articleCount : 0} />
     </Link>
   );
