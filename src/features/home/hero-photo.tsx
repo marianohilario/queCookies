@@ -16,9 +16,15 @@ export function HeroPhoto() {
         />
       </div>
       <div className="absolute top-2 right-5 z-10 flex size-22 rotate-8 flex-col items-center justify-center rounded-full border-3 border-brand bg-brand p-2 text-center text-[11px] leading-3 font-medium text-yellow md:top-13 md:right-10 lg:size-28 lg:text-sm lg:leading-4">
-        <div className="absolute top-0 z-11 rounded-full min-h-26.5 w-26.5 border-2 border-yellow" />
-        <BrandMotif name="heart" className="mr-2 h-4 w-3" />
-        <BrandMotif name="hand" className="mb-1 h-7 w-6" />
+        <div className="absolute top-0 z-11 rounded-full min-h-20.5 w-20.5 border-2 border-yellow lg:min-h-26.5 lg:w-26.5" />
+        <BrandMotif
+          name="heart"
+          className="mr-2 lg:h-4 lg:w-3 hidden lg:block"
+        />
+        <BrandMotif
+          name="hand"
+          className="mb-1 lg:h-7 lg:w-6 hidden lg:block"
+        />
         Tu momento
         <br />
         más dulce
