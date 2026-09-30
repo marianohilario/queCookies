@@ -5,9 +5,11 @@ export type Address = {
 };
 export type CheckoutDraft = Address & {
   name: string; phone: string; mode: DeliveryMode;
-  date: string; time: string; notes: string;
+  date: string; hour: string; minute: string; notes: string;
 };
-export type FieldErrors = Partial<Record<keyof CheckoutDraft, string>>;
+// "time" agrupa el error de los dos selectores de hora y minutos.
+export type FieldErrorKey = keyof CheckoutDraft | "time";
+export type FieldErrors = Partial<Record<FieldErrorKey, string>>;
 export type CustomerProfile = {
   name: string; phone: string; mode: DeliveryMode; address: Address | null;
 };
@@ -16,7 +18,7 @@ export const emptyAddress: Address = {
   street: "", number: "", noNumber: false, locality: "", zone: "", unit: "", references: "",
 };
 export const emptyDraft: CheckoutDraft = {
-  ...emptyAddress, name: "", phone: "", mode: "", date: "", time: "", notes: "",
+  ...emptyAddress, name: "", phone: "", mode: "", date: "", hour: "", minute: "", notes: "",
 };
 
 export const fieldLimits = {

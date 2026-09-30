@@ -7,6 +7,7 @@ export const business = {
   hoursLabel: "Todos los días, de 9 a 19 h",
   opens: "09:00",
   closes: "19:00",
+  slotMinutes: 15,
   timezone: "America/Argentina/Buenos_Aires",
   currency: "ARS",
   locale: "es-AR",

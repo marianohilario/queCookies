@@ -42,6 +42,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-031 | Solicitar envíos a cualquier destino con costo a cargo del cliente | RF-06 / CA-13 / CA-14 / docs/specs/000/validacion.md | Implementado; 23 pruebas, build, smoke y recorrido Chrome con destino Córdoba correctos |
 
+| QC-032 | Limitar el horario del checkout a franjas de cuarto de hora | RF-07 / CA-15 / docs/specs/000/diseno-ui-ux.md | Implementado; selector en dos listas nativas, 28 pruebas, build y recorrido Chrome con el horario compuesto en el mensaje correctos |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.

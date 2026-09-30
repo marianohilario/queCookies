@@ -99,6 +99,7 @@ Cobertura: CA-05, CA-06, CA-07, CA-08, CA-10, CA-11, CA-24.
 - Verificar destinos dentro y fuera de las zonas originales: Lomas de Zamora, Quilmes, Burzaco y Córdoba.
 - Confirmar provincia/región de texto libre, sin bloqueo geográfico, con dirección completa y costo a cargo del cliente sujeto a cotización.
 - Revisar fecha pasada, hora transcurrida, horario válido y límites 09:00/19:00 para retiro y envío; rechazar 08:59/19:01 y fechas del día después del cierre.
+- Comprobar que la hora solo se ofrece en franjas de cuarto de hora (:00, :15, :30, :45), que con la hora de cierre solo aparece :00 y que ninguna combinación de las dos listas excede las 19:00.
 - Probar con reloj controlado cerca de medianoche y dispositivo configurado en otra zona horaria.
 - Verificar disponibilidad de preferencias de lunes a domingo, incluidos sábados y domingos; P-02 resuelto con 09:00–19:00 para ambas modalidades.
 - Introducir texto parecido a HTML y comprobar que se muestra sin ejecución.

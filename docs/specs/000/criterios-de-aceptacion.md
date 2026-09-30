@@ -94,6 +94,8 @@ Referencias: RF-06, RN-06; T-02, T-06, T-10; V-04.
 
 No se acepta una fecha pasada ni una hora transcurrida del día actual en Buenos Aires. Retiro y envío respetan 09:00–19:00 de lunes a domingo: 08:59 y 19:01 no son elegibles; 09:00 y 19:00 lo son si no han transcurrido. Después del cierre, solo se pueden solicitar fechas desde el día siguiente. Los casos cercanos a medianoche no cambian involuntariamente la fecha solicitada por conversión de zona horaria.
 
+La hora se elige en franjas de cuarto de hora: solo se ofrecen :00, :15, :30 y :45. Ninguna combinación de las listas de hora y minutos puede exceder el cierre, de modo que 19:15, 19:30 y 19:45 no son elegibles; con la hora de cierre solo se ofrece :00. Elegir solo una de las dos listas no completa el horario.
+
 Referencias: RF-07, RN-13; T-02, T-10; V-04.
 
 ## CA-16 — Solicitud sujeta a confirmación

@@ -5,6 +5,7 @@ import { useCart } from "@/features/cart/cart-provider";
 import { formatMoney } from "@/lib/money";
 import { formatAddress } from "@/features/whatsapp/order-message";
 import { useCheckout } from "./checkout-provider";
+import { composeTime } from "./time-slots";
 import { OrderTotals } from "./order-totals";
 
 export function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
@@ -34,7 +35,7 @@ export function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
         <div className="flex items-center justify-between"><h3 className="font-semibold">{draft.mode === "pickup" ? "Retiro" : "Envío"}</h3><button type="button" className="min-h-11 text-sm underline" onClick={() => onEdit(1)}>Editar entrega</button></div>
         <p className="text-sm leading-7">{draft.mode === "pickup" ? business.address : formatAddress(draft)}</p>
         {draft.mode === "delivery" && draft.references && <p className="text-sm leading-7 text-muted">{draft.references}</p>}
-        <p className="mt-2 text-sm">{draft.date.split("-").reverse().join("/")} · {draft.time} h</p>
+        <p className="mt-2 text-sm">{draft.date.split("-").reverse().join("/")} · {composeTime(draft.hour, draft.minute)} h</p>
         <p className="mt-1 text-xs text-muted">Sujeto a confirmación del negocio.</p>
         {draft.notes && <p className="mt-4 whitespace-pre-wrap text-sm">Comentarios: {draft.notes}</p>}
       </section>

@@ -1,5 +1,6 @@
 import { business } from "../../config/business.ts";
 import { fieldLimits } from "./checkout.ts";
+import { composeTime } from "./time-slots.ts";
 import type { Address, CheckoutDraft, FieldErrors } from "./checkout.ts";
 
 export function businessClock(now = new Date()) {
@@ -43,10 +44,11 @@ export function validateDelivery(data: CheckoutDraft, now = new Date()): FieldEr
   const errors: FieldErrors = data.mode === "delivery" ? validateAddress(data) : {};
   if (data.mode !== "pickup" && data.mode !== "delivery") errors.mode = "Elegí retiro o envío.";
   const clock = businessClock(now);
+  const time = composeTime(data.hour, data.minute);
   const parsed = new Date(`${data.date}T12:00:00Z`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(data.date) || Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== data.date || data.date < firstOrderDate(now)) errors.date = "Elegí una fecha válida; después de las 19 h, solicitá desde el día siguiente.";
-  if (!/^\d{2}:\d{2}$/.test(data.time) || data.time < business.opens || data.time > business.closes || Number(data.time.slice(3)) > 59) errors.time = "Elegí un horario entre las 9 y las 19 h.";
-  if (data.date === clock.date && data.time <= clock.time) errors.time = "Ese horario ya pasó. Elegí uno posterior o pedí para otro día.";
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(time) || time < business.opens || time > business.closes || Number(time.slice(3)) % business.slotMinutes !== 0) errors.time = `Elegí un horario entre las 9 y las 19 h, en franjas de ${business.slotMinutes} minutos.`;
+  if (data.date === clock.date && time && time <= clock.time) errors.time = "Ese horario ya pasó. Elegí uno posterior o pedí para otro día.";
   if (data.notes.length > fieldLimits.notes) errors.notes = `Usá hasta ${fieldLimits.notes} caracteres.`;
   return errors;
 }

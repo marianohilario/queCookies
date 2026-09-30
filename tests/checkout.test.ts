@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
+import { business } from "../src/config/business.ts";
 import { businessClock, firstOrderDate, validateCheckout, validateDelivery } from "../src/features/checkout/validation.ts";
+import { alignMinute, composeTime, hourOptions, minuteOptions, timeSlots } from "../src/features/checkout/time-slots.ts";
 
+const at = (time: string) => ({ hour: time.slice(0, 2), minute: time.slice(3) });
 const now = new Date("2026-10-01T15:00:00Z");
-const pickup = { ...emptyDraft, name: "Cliente de prueba", phone: "+54 9 11 1234-5678", mode: "pickup" as const, date: "2026-10-02", time: "10:00" };
+const pickup = { ...emptyDraft, name: "Cliente de prueba", phone: "+54 9 11 1234-5678", mode: "pickup" as const, date: "2026-10-02", ...at("10:00") };
 
 test("retiro válido no exige domicilio y exige contacto", () => {
   assert.deepEqual(validateCheckout(pickup, now), {});
@@ -34,16 +37,62 @@ test("dirección sin número y notas opcionales tienen límites", () => {
 
 test("horarios 09–19 también sábados y domingos; rechaza fuera de rango", () => {
   for (const date of ["2026-10-03", "2026-10-04"]) {
-    for (const time of ["09:00", "19:00"]) assert.deepEqual(validateDelivery({ ...pickup, date, time }, now), {});
+    for (const time of ["09:00", "19:00"]) assert.deepEqual(validateDelivery({ ...pickup, date, ...at(time) }, now), {});
   }
-  for (const time of ["08:59", "19:01", "12:99", "25:00", ""]) assert.ok(validateDelivery({ ...pickup, time }, now).time);
+  for (const time of ["08:59", "19:01", "12:99", "25:00", ""]) assert.ok(validateDelivery({ ...pickup, ...at(time) }, now).time);
+});
+
+test("solo se aceptan franjas de 15 minutos", () => {
+  for (const time of ["09:00", "09:15", "09:30", "09:45", "18:45"]) assert.deepEqual(validateDelivery({ ...pickup, ...at(time) }, now), {});
+  for (const time of ["09:01", "09:07", "10:20", "12:75", "18:59"]) assert.ok(validateDelivery({ ...pickup, ...at(time) }, now).time);
+});
+
+test("elegir solo hora o solo minutos no completa el horario", () => {
+  assert.ok(validateDelivery({ ...pickup, ...at(""), minute: "30" }, now).time);
+  assert.ok(validateDelivery({ ...pickup, ...at(""), hour: "10" }, now).time);
+  assert.ok(validateDelivery({ ...pickup, hour: "", minute: "" }, now).time);
+});
+
+test("hora y minutos separados se componen en un único horario", () => {
+  assert.equal(composeTime("09", "45"), "09:45");
+  assert.equal(composeTime("19", "00"), "19:00");
+  assert.equal(composeTime("09", ""), "");
+  assert.equal(composeTime("", "15"), "");
+  assert.deepEqual(hourOptions(), ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]);
+  assert.deepEqual(minuteOptions(""), ["00", "15", "30", "45"]);
+});
+
+test("los minutos se ajustan a la hora para no ofrecer franjas imposibles", () => {
+  assert.deepEqual(minuteOptions("09"), ["00", "15", "30", "45"]);
+  assert.deepEqual(minuteOptions("12"), ["00", "15", "30", "45"]);
+  assert.deepEqual(minuteOptions("19"), ["00"]);
+  assert.equal(alignMinute("19", "45"), "");
+  assert.equal(alignMinute("19", "00"), "00");
+  assert.equal(alignMinute("12", "45"), "45");
+  // Toda combinación que los dos selectores permiten debe pasar la validación.
+  for (const hour of hourOptions()) {
+    for (const minute of minuteOptions(hour)) {
+      const time = composeTime(hour, minute);
+      assert.ok(timeSlots().includes(time), `${time} no es una franja válida`);
+      assert.deepEqual(validateDelivery({ ...pickup, date: "2026-10-02", ...at(time) }, now), {}, `${time} debería ser válido`);
+    }
+  }
+});
+
+test("el selector de horario ofrece solo franjas de 15 minutos", () => {
+  const slots = timeSlots();
+  assert.equal(slots[0], business.opens);
+  assert.equal(slots.at(-1), business.closes);
+  assert.ok(slots.every((slot) => Number(slot.slice(3)) % 15 === 0), "ninguna franja cae fuera de :00/:15/:30/:45");
+  assert.deepEqual(slots.slice(0, 5), ["09:00", "09:15", "09:30", "09:45", "10:00"]);
+  for (const slot of slots) assert.deepEqual(validateDelivery({ ...pickup, date: "2026-10-02", ...at(slot) }, now), {}, `${slot} debería ser válido`);
 });
 
 test("fechas pasadas, inexistentes y horarios ya transcurridos se rechazan", () => {
   assert.ok(validateDelivery({ ...pickup, date: "2026-09-30" }, now).date);
   assert.ok(validateDelivery({ ...pickup, date: "2026-02-30" }, now).date);
-  assert.ok(validateDelivery({ ...pickup, date: "2026-10-01", time: "11:00" }, now).time);
-  assert.ok(validateDelivery({ ...pickup, date: "2026-10-01", time: "19:00" }, new Date("2026-10-01T22:01:00Z")).time);
+  assert.ok(validateDelivery({ ...pickup, date: "2026-10-01", ...at("11:00") }, now).time);
+  assert.ok(validateDelivery({ ...pickup, date: "2026-10-01", ...at("19:00") }, new Date("2026-10-01T22:01:00Z")).time);
 });
 
 test("la medianoche UTC no adelanta el día operativo de Buenos Aires", () => {

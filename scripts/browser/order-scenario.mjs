@@ -30,7 +30,18 @@ export async function checkOrder(browser) {
   await fill(browser, "#street", "Calle de prueba");
   await fill(browser, "#number", "123");
   await fill(browser, "#date", "2030-01-15");
-  await fill(browser, "#time", "15:00");
+  const hourOptions = await browser.evaluate("[...document.querySelectorAll('[aria-label=\"Hora\"] option')].map((o) => o.value).filter(Boolean)");
+  assert.deepEqual(hourOptions, ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]);
+  assert.deepEqual(await browser.evaluate("[...document.querySelectorAll('[aria-label=\"Minutos\"] option')].map((o) => o.value).filter(Boolean)"), ["00", "15", "30", "45"]);
+  await fill(browser, '[aria-label="Hora"]', "12");
+  await fill(browser, '[aria-label="Minutos"]', "45");
+  assert.equal(await browser.evaluate("document.querySelector('.sr-only[aria-live]').textContent"), "12:45");
+  await fill(browser, '[aria-label="Hora"]', "19");
+  assert.deepEqual(await browser.evaluate("[...document.querySelectorAll('[aria-label=\"Minutos\"] option')].map((o) => o.value).filter(Boolean)"), ["00"]);
+  assert.equal(await browser.evaluate("document.querySelector('[aria-label=\"Minutos\"]').value"), "");
+  await fill(browser, '[aria-label="Hora"]', "15");
+  await fill(browser, '[aria-label="Minutos"]', "00");
+  console.log("OK selector de horario en dos listas: minutos alineados a la hora y nunca por encima del cierre");
   await fill(browser, "#notes", "PRUEBA — NO PREPARAR");
   await clickText(browser, "Revisar pedido");
   await browser.waitFor("document.body.innerText.includes('Pendiente de cotizar el envío')");
@@ -51,6 +62,7 @@ export async function checkOrder(browser) {
   assert.match(message, /a cargo del cliente/);
   assert.match(message, /Total final: pendiente/);
   assert.match(message, /PRUEBA — NO PREPARAR/);
+  assert.match(message, /Horario preferido: 15:00 h \(sujeto a confirmación\)/);
   assert.equal(new URL(url).origin + new URL(url).pathname, "https://api.whatsapp.com/send/");
   assert.equal(new URL(url).searchParams.get("phone"), "5491161919801");
   console.log("OK checkout de envío y enlace final de WhatsApp (apertura interceptada, no se envían mensajes)");
@@ -67,7 +79,8 @@ export async function checkOrder(browser) {
   assert.equal(await browser.evaluate("document.querySelector('#date').value"), "");
   await browser.evaluate("[...document.querySelectorAll('label')].find(el => el.textContent.trim() === 'Retiro').click()");
   await fill(browser, "#date", "2030-01-15");
-  await fill(browser, "#time", "15:00");
+  await fill(browser, '[aria-label="Hora"]', "15");
+  await fill(browser, '[aria-label="Minutos"]', "00");
   await clickText(browser, "Revisar pedido");
   await browser.waitFor("document.body.innerText.includes('Peña 298')");
   await browser.evaluate("window.open = (url) => { window.__orderUrl = url; return null; }");

@@ -4,7 +4,7 @@ import { prepareOrder } from "../src/features/whatsapp/order-message.ts";
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
 
 const now = new Date("2026-10-01T12:00:00Z");
-const draft = { ...emptyDraft, name: "Cliente Ñ & + # % 👋", phone: "+54 9 11 1234-5678", mode: "pickup" as const, date: "2026-10-02", time: "10:00", street: "DOMICILIO PRIVADO", number: "1", references: "REFERENCIA PRIVADA" };
+const draft = { ...emptyDraft, name: "Cliente Ñ & + # % 👋", phone: "+54 9 11 1234-5678", mode: "pickup" as const, date: "2026-10-02", hour: "10", minute: "00", street: "DOMICILIO PRIVADO", number: "1", references: "REFERENCIA PRIVADA" };
 const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 1 }];
 
 test("mensaje de retiro excluye domicilio y usa precios vigentes", () => {

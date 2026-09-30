@@ -171,6 +171,8 @@ Solicitar fecha y horario preferidos, sujetos a confirmación. No usar «turno r
 
 Para retiro y envío, la preferencia queda dentro de 09:00–19:00 de lunes a domingo. Fuera de ese rango no se ofrece una preferencia válida; después del cierre, la primera fecha solicitada posible es el día siguiente. Pedidos para el día están sujetos a consulta, sin promesa de preparación inmediata. El horario operativo confirmado no garantiza capacidad para una solicitud concreta.
 
+La hora se captura en franjas de cuarto de hora (:00, :15, :30, :45) con dos listas nativas de hora y minutos, y el horario combinado nunca excede el cierre.
+
 ### RF-08 — Datos recordados
 
 Ofrecer una casilla desmarcada por defecto: «Recordar mis datos y domicilio en este dispositivo». Al activarla, guardar nombre, teléfono, modalidad y último domicilio válido; nunca fecha, hora o comentarios particulares de la compra.

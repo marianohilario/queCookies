@@ -4,6 +4,7 @@ import { summarizeCart } from "../cart/cart.ts";
 import type { CartItem } from "../cart/cart.ts";
 import type { CheckoutDraft } from "../checkout/checkout.ts";
 import { validateCheckout } from "../checkout/validation.ts";
+import { composeTime } from "../checkout/time-slots.ts";
 
 export function formatAddress(draft: CheckoutDraft) {
   return [
@@ -33,7 +34,7 @@ export function prepareOrder(items: CartItem[], draft: CheckoutDraft, now = new 
     ...(draft.mode === "pickup"
       ? ["📍 *Retiro*", `Retiro en: ${business.address}`]
       : ["🚚 *Envío*", `Envío a: ${formatAddress(draft)}`, ...(draft.references.trim() ? [`Referencias: ${draft.references.trim()}`] : [])]),
-    "", "📅 *Fecha y horario*", `Fecha preferida: ${dateLabel}`, `Horario preferido: ${draft.time} h (sujeto a confirmación)`,
+    "", "📅 *Fecha y horario*", `Fecha preferida: ${dateLabel}`, `Horario preferido: ${composeTime(draft.hour, draft.minute)} h (sujeto a confirmación)`,
     ...(draft.notes.trim() ? ["", "📝 *Comentarios*", draft.notes.trim()] : []), "",
     "¿Me confirman disponibilidad, entrega, importe final si corresponde y cómo realizar el pago?",
   ].join("\n");

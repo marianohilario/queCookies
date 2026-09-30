@@ -5,6 +5,7 @@ import { Notice } from "@/components/ui/notice";
 import { AddressFields } from "./address-fields";
 import { useCheckout } from "./checkout-provider";
 import { firstOrderDate } from "./validation";
+import { TimeField } from "./time-field";
 import { fieldLimits } from "./checkout";
 import type { FieldErrors } from "./checkout";
 
@@ -27,7 +28,7 @@ export function DeliveryStep({ errors }: { errors: FieldErrors }) {
       {draft.mode === "delivery" && <AddressFields errors={errors} />}
       <div className="grid gap-4 sm:grid-cols-2">
         <FormField id="date" label="Día preferido" type="date" min={firstOrderDate()} required value={draft.date} onChange={(e) => update({ date: e.target.value })} error={errors.date} />
-        <FormField id="time" label="Horario preferido" type="time" min={business.opens} max={business.closes} required value={draft.time} onChange={(e) => update({ time: e.target.value })} error={errors.time} />
+        <TimeField hour={draft.hour} minute={draft.minute} onChange={update} error={errors.time} />
       </div>
       <p className="text-sm text-muted">{business.hoursLabel}. Fecha y horario sujetos a confirmación.</p>
       <div>
