@@ -1,5 +1,12 @@
 # 001 — Validación del rediseño
 
+### QC-029 — Marco de manitos y galletas (RV-05)
+
+- Implementado el marco con `pattern2.png` arriba, `pattern3.png` abajo, `pattern_vert.png` a la izquierda y `pattern_vert1.png` a la derecha. Máscaras con repetición `round` en su eje para ajustar pares completos y espacio interior reservado al contenido. Incluye ajustes del usuario de márgenes, corazón sobre la mano central y escala del patrón compartido.
+- `npm run typecheck`, `npm run build` y `npm run test:browser`: correctos. Inicio y catálogo sin desbordamiento a 320/375/390/768/1440/1920 px; recorrido de compra existente sin regresiones ni excepciones JavaScript.
+- Revisada visualmente `.artifacts/browser/brand-minis-390.png`: cuatro franjas visibles, motivos completos y texto/CTA separados del marco. La revisión visual específica del banner en escritorio queda pendiente; las comprobaciones responsive automatizadas sí incluyen escritorio.
+- Verificación al preparar el commit: `npm run check` y `npm run test:browser` correctos, incluidos los ajustes finales del usuario en patrones y márgenes.
+
 ### QC-025 — Skill de diseño local
 
 - Revisados `.agents/skills/frontend-design/SKILL.md`, licencia Apache 2.0 y `skills-lock.json`: skill local de diseño, origen y hash declarados; sin dependencias de ejecución de la web.

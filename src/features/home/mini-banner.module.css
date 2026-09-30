@@ -1,0 +1,30 @@
+.horizontal,
+.vertical {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Repeat whole pairs, leaving the rounded corners free of clipped motifs. */
+.horizontal {
+  inset-inline: 0.6rem;
+  height: 2rem;
+  mask-image: url("/brand/motifs/pattern2.png");
+  mask-size: 4rem 2rem;
+  mask-repeat: round no-repeat;
+}
+
+.bottom {
+  mask-image: url("/brand/motifs/pattern3.png");
+}
+
+.vertical {
+  inset-block: 2.7rem;
+  width: 2rem;
+  mask-image: url("/brand/motifs/pattern_vert.png");
+  mask-size: 2rem 4rem;
+  mask-repeat: no-repeat round;
+}
+
+.vertica_right {
+  mask-image: url("/brand/motifs/pattern_vert1.png");
+}

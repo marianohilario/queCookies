@@ -36,6 +36,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-028 | Evitar pérdida de emojis en redirección de WhatsApp | RF-10 / docs/specs/000/mensaje-whatsapp.md | Corregido; causa reproducida por HTTP, destino directo conserva emoji; 23 pruebas y typecheck correctos |
 
+| QC-029 | Marco completo de manitos y galletas en mini banner y patrones limpios | RV-05 / docs/specs/001/validacion.md | Implementado; ajustes finales revisados, check y regresión Chrome correctos |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.
