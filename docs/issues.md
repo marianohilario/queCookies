@@ -38,6 +38,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-029 | Marco completo de manitos y galletas en mini banner y patrones limpios | RV-05 / docs/specs/001/validacion.md | Implementado; ajustes finales revisados, check y regresión Chrome correctos |
 
+| QC-030 | Logos de Instagram y WhatsApp en enlaces del footer | RV-02 / docs/specs/001/validacion.md | Implementado; capturas móvil/escritorio revisadas y regresión correcta |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.

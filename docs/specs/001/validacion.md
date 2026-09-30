@@ -1,5 +1,12 @@
 # 001 — Validación del rediseño
 
+### QC-030 — Instagram y WhatsApp en el footer (RV-02)
+
+- Logos SVG en el componente `Icon`; enlaces presentados en `FooterSocialLinks`, con superficies rojas sutiles, iconos amarillos, etiquetas visibles y borde/hover. URLs derivadas de la configuración del negocio.
+- Revisadas `.artifacts/browser/footer-social-390.png` y `footer-social-1440.png`: alineación, legibilidad e identidad. Enlaces sociales de 68 px de alto y destinos comprobados: `https://wa.me/5491161919801` y `https://www.instagram.com/quecookiss/`.
+- `npm run check` y `npm run test:browser` correctos en la implementación inicial: 22 pruebas, build, smoke HTTP, responsive de 320 a 1920 px y regresión de compra.
+- Verificación al preparar el commit: `npm run check` y `npm run test:browser` correctos sobre el estado final, con 23 pruebas de dominio.
+
 ### QC-029 — Marco de manitos y galletas (RV-05)
 
 - Implementado el marco con `pattern2.png` arriba, `pattern3.png` abajo, `pattern_vert.png` a la izquierda y `pattern_vert1.png` a la derecha. Máscaras con repetición `round` en su eje para ajustar pares completos y espacio interior reservado al contenido. Incluye ajustes del usuario de márgenes, corazón sobre la mano central y escala del patrón compartido.

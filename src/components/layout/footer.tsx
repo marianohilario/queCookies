@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { business, contactUrl, mapsUrl } from "@/config/business";
+import { business, mapsUrl } from "@/config/business";
+import { FooterSocialLinks } from "./footer-social-links";
 import { Brand } from "./brand";
 import { BrandPattern } from "@/components/brand/brand-motif";
 
@@ -28,22 +29,7 @@ export function Footer() {
         </div>
         <div>
           <h2 className="mb-4 font-semibold">Hablemos</h2>
-          <a
-            className="footer-link"
-            href={contactUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            WhatsApp · {business.phoneLabel}
-          </a>
-          <a
-            className="footer-link mt-3"
-            href={business.instagram}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Instagram ↗
-          </a>
+          <FooterSocialLinks />
         </div>
         <div>
           <h2 className="mb-4 font-semibold">Antes de pedir</h2>
