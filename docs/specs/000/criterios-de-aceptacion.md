@@ -80,13 +80,13 @@ Referencias: RF-06, RN-07; T-02, T-06, T-10; V-04, V-05.
 
 ## CA-13 — Envío y campos condicionales
 
-Elegir envío requiere calle, número o indicación explícita sin número, localidad y zona. Piso/departamento y referencias son opcionales. Se puede alternar a retiro y regresar sin perder el borrador de dirección. El mensaje de envío incluye dirección y campos opcionales solo cuando tienen valor.
+Elegir envío requiere calle, número o indicación explícita sin número, localidad y provincia/región en texto libre. Piso/departamento y referencias son opcionales. Se puede alternar a retiro y regresar sin perder el borrador de dirección. El mensaje de envío incluye dirección y campos opcionales solo cuando tienen valor.
 
 Referencias: RF-06, RF-09; T-10, T-12; V-04, V-05.
 
 ## CA-14 — Cobertura
 
-Se admite declarar direcciones de los partidos de Lomas de Zamora y Lanús y de la localidad de Adrogué. No se ofrece todo Almirante Brown como cubierto. Una dirección declarada fuera de cobertura propone retiro o consulta especial y no permite presentar el envío estándar como disponible. Se aclara que el negocio confirma la dirección; no se afirma haberla geocodificado.
+Se admiten solicitudes a cualquier destino, incluidas localidades fuera de Lomas de Zamora, Lanús y Adrogué. Provincia/región es obligatoria, admite texto libre y tiene un límite de 80 caracteres. Los domicilios recordados anteriores siguen siendo editables. Footer, FAQ y checkout comunican envíos a coordinar, con costo a cargo del cliente según destino y confirmado por WhatsApp. El resumen y mensaje mantienen el total final pendiente de cotización; no se afirma haber geocodificado ni confirmado la entrega.
 
 Referencias: RF-06, RN-06; T-02, T-06, T-10; V-04.
 

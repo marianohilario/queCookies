@@ -1,4 +1,5 @@
 import { Icon } from "@/components/ui/icon";
+import { shipping } from "@/config/business";
 
 const items = [
   {
@@ -17,8 +18,8 @@ const items = [
     icon: "gift",
   },
   {
-    title: "Envíos a Domicilio",
-    text: "Llegamos a donde estés con mucho cuidado.",
+    title: shipping.title,
+    text: shipping.summary,
     icon: "truck",
   },
 ] as const;

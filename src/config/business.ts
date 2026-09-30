@@ -11,7 +11,12 @@ export const business = {
   currency: "ARS",
   locale: "es-AR",
   minimumCookies: 2,
-  coverage: ["Lomas de Zamora", "Lanús", "Adrogué (Almirante Brown)"],
+} as const;
+
+export const shipping = {
+  title: "Tus cookies, donde estés",
+  summary: "Envíos a coordinar · Costo según destino",
+  description: "Coordinamos el envío a la dirección que nos indiques. El costo es a tu cargo y te lo confirmamos por WhatsApp antes de cerrar el pedido.",
 } as const;
 
 export const contactUrl = `https://wa.me/${business.whatsapp}`;

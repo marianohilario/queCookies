@@ -12,14 +12,17 @@ test("retiro válido no exige domicilio y exige contacto", () => {
   assert.ok(validateCheckout({ ...pickup, phone: "12" }, now).phone);
 });
 
-test("envío exige dirección y zona; fuera de cobertura no se acepta", () => {
+test("envío exige dirección completa y admite destinos sin restricción zonal", () => {
   const delivery = { ...pickup, mode: "delivery" as const };
   assert.ok(validateCheckout(delivery, now).street);
   const complete = { ...delivery, street: "Calle de prueba", number: "123", locality: "Banfield", zone: "Lomas de Zamora" };
   assert.deepEqual(validateCheckout(complete, now), {});
-  assert.ok(validateCheckout({ ...complete, zone: "Quilmes" }, now).zone);
-  assert.ok(validateCheckout({ ...complete, zone: "Adrogué (Almirante Brown)", locality: "Burzaco" }, now).locality);
-  assert.deepEqual(validateCheckout({ ...complete, zone: "Adrogué (Almirante Brown)", locality: "Adrogue" }, now), {});
+  for (const [zone, locality] of [["Buenos Aires", "Quilmes"], ["Buenos Aires", "Burzaco"], ["Córdoba", "Villa Carlos Paz"]]) {
+    assert.deepEqual(validateCheckout({ ...complete, zone, locality }, now), {});
+  }
+  assert.ok(validateCheckout({ ...complete, zone: " " }, now).zone);
+  assert.ok(validateCheckout({ ...complete, zone: "x".repeat(81) }, now).zone);
+  assert.ok(validateCheckout({ ...complete, locality: " " }, now).locality);
 });
 
 test("dirección sin número y notas opcionales tienen límites", () => {

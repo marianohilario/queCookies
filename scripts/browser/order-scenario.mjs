@@ -25,8 +25,8 @@ export async function checkOrder(browser) {
   await click(browser, 'input[type="checkbox"]');
   await clickText(browser, "Elegir entrega");
   await browser.evaluate("[...document.querySelectorAll('label')].find(el => el.textContent.trim() === 'Envío').click()");
-  await fill(browser, "#zone", "Lomas de Zamora");
-  await fill(browser, "#locality", "Banfield");
+  await fill(browser, "#zone", "Córdoba");
+  await fill(browser, "#locality", "Villa Carlos Paz");
   await fill(browser, "#street", "Calle de prueba");
   await fill(browser, "#number", "123");
   await fill(browser, "#date", "2030-01-15");
@@ -47,9 +47,12 @@ export async function checkOrder(browser) {
   const message = new URL(url).searchParams.get("text");
   assert.match(message, /13\.004/);
   assert.match(message, /Calle de prueba 123/);
+  assert.match(message, /Villa Carlos Paz, Córdoba/);
+  assert.match(message, /a cargo del cliente/);
   assert.match(message, /Total final: pendiente/);
   assert.match(message, /PRUEBA — NO PREPARAR/);
-  assert.equal(new URL(url).pathname, "/5491161919801");
+  assert.equal(new URL(url).origin + new URL(url).pathname, "https://api.whatsapp.com/send/");
+  assert.equal(new URL(url).searchParams.get("phone"), "5491161919801");
   console.log("OK checkout de envío y enlace final de WhatsApp (apertura interceptada, no se envían mensajes)");
 
   await browser.waitFor("!!localStorage.getItem('quecookies:profile:v1')");
@@ -60,6 +63,7 @@ export async function checkOrder(browser) {
   await browser.waitFor("document.querySelector('#name')?.value === 'Cliente de prueba'");
   await clickText(browser, "Elegir entrega");
   assert.equal(await browser.evaluate("document.querySelector('#street').value"), "Calle de prueba");
+  assert.equal(await browser.evaluate("document.querySelector('#zone').value"), "Córdoba");
   assert.equal(await browser.evaluate("document.querySelector('#date').value"), "");
   await browser.evaluate("[...document.querySelectorAll('label')].find(el => el.textContent.trim() === 'Retiro').click()");
   await fill(browser, "#date", "2030-01-15");

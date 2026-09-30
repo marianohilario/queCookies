@@ -5,6 +5,10 @@
 - [x] Ampliar `Icon` con logos SVG de Instagram y WhatsApp y componer enlaces sociales con contactos centralizados, etiquetas visibles y colores de marca.
 - [x] Verificar build, regresión responsive y de compra; revisar capturas específicas del footer a 390/1440 px. Evidencia en `validacion.md`.
 
+## QC-031 — Envíos a cualquier destino (RF-06)
+
+- [x] Presentar «Tus cookies, donde estés» y condiciones de envío en footer; alinear FAQ, franja y checkout con RF-06 actualizado. Evidencia en `../000/validacion.md`.
+
 Cada fila es una unidad de trabajo y commit(s) propios. No se da por terminada una edición gráfica sin revisar el archivo resultante.
 
 | Issue | Tarea | Entregable y comprobación | Dependencia | Estado |

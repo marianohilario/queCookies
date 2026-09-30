@@ -32,10 +32,12 @@ test("destino y codificación conservan tildes, símbolos, emojis y saltos", () 
 });
 
 test("envío muestra dirección y no inventa importe final", () => {
-  const result = prepareOrder(items, { ...draft, mode: "delivery", locality: "Banfield", zone: "Lomas de Zamora", notes: "Timbre del frente" }, now);
+  const result = prepareOrder(items, { ...draft, mode: "delivery", locality: "Villa Carlos Paz", zone: "Córdoba", notes: "Timbre del frente" }, now);
   assert.equal(result.ok, true);
   if (!result.ok) return;
   assert.match(result.text, /Envío: a confirmar/);
+  assert.match(result.text, /a cargo del cliente/);
+  assert.match(result.text, /Villa Carlos Paz, Córdoba/);
   assert.match(result.text, /Total final: pendiente de cotizar el envío/);
   assert.match(result.text, /DOMICILIO PRIVADO/);
   assert.match(result.text, /Timbre del frente/);

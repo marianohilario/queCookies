@@ -33,6 +33,7 @@ Archivos recibidos en `public/brand/references/`: logo-original.png, patron-marc
 - Incorporar cookies, manos y corazones como SVG reutilizables o recursos extraídos del original. Identificar una reconstrucción como tal cuando no sea el vector original.
 - Usar motivos con moderación en separadores, sellos y franjas; no reducir legibilidad ni convertir ilustraciones decorativas en controles confusos.
 - Footer (QC-030): enlaces a Instagram y WhatsApp con sus logos SVG reconocibles, texto visible y contactos configurados. Composición de icono amarillo en superficie roja sutil, bordes discretos, foco visible y áreas táctiles de al menos 44 px; sin desbordamiento desde 320 px.
+- Envíos (QC-031): comunicar «Envíos a coordinar · Costo según destino», con costo a cargo del cliente conforme a RF-06 actualizado.
 
 ### RV-03 — Navegación móvil inferior
 

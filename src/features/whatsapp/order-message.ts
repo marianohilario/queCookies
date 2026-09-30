@@ -8,7 +8,7 @@ import { validateCheckout } from "../checkout/validation.ts";
 export function formatAddress(draft: CheckoutDraft) {
   return [
     `${draft.street.trim()} ${draft.noNumber ? "s/n" : draft.number.trim()}`,
-    draft.unit.trim(), draft.locality.trim(), draft.zone,
+    draft.unit.trim(), draft.locality.trim(), draft.zone.trim(),
   ].filter(Boolean).join(", ");
 }
 
@@ -28,7 +28,7 @@ export function prepareOrder(items: CartItem[], draft: CheckoutDraft, now = new 
     `Subtotal de productos: ${formatMoney(summary.subtotal)}`,
     ...(draft.mode === "pickup"
       ? ["Retiro: sin cargo", `Total: ${formatMoney(summary.subtotal)}`]
-      : ["Envío: a confirmar", "Total final: pendiente de cotizar el envío"]),
+      : ["Envío: a confirmar, a cargo del cliente", "Total final: pendiente de cotizar el envío"]),
     "", "👤 *Mis datos*", `Nombre: ${draft.name.trim()}`, `Teléfono: ${draft.phone.trim()}`, "",
     ...(draft.mode === "pickup"
       ? ["📍 *Retiro*", `Retiro en: ${business.address}`]

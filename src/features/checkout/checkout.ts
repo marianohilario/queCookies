@@ -21,5 +21,5 @@ export const emptyDraft: CheckoutDraft = {
 
 export const fieldLimits = {
   name: 100, phone: 30, street: 120, number: 20,
-  locality: 80, unit: 80, references: 200, notes: 300,
+  locality: 80, zone: 80, unit: 80, references: 200, notes: 300,
 } as const;

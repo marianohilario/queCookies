@@ -29,15 +29,13 @@ export function firstOrderDate(now = new Date()): string {
 
 export function validateAddress(data: Address): FieldErrors {
   const errors: FieldErrors = {};
-  for (const key of ["street", "locality"] as const) {
+  for (const key of ["street", "locality", "zone"] as const) {
     if (!data[key].trim() || data[key].length > fieldLimits[key]) errors[key] = "Completá este campo con una dirección válida.";
   }
   if (!data.noNumber && (!data.number.trim() || data.number.length > fieldLimits.number)) errors.number = "Ingresá la altura o marcá sin número.";
-  if (!(business.coverage as readonly string[]).includes(data.zone)) errors.zone = "Elegí una zona dentro de nuestra cobertura o consultanos por un envío especial.";
   for (const key of ["unit", "references"] as const) {
     if (data[key].length > fieldLimits[key]) errors[key] = `Usá hasta ${fieldLimits[key]} caracteres.`;
   }
-  if (data.zone === "Adrogué (Almirante Brown)" && data.locality.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() !== "adrogue") errors.locality = "La cobertura de Almirante Brown se limita a la localidad de Adrogué.";
   return errors;
 }
 

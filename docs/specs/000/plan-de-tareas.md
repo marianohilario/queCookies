@@ -32,7 +32,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 
 - [x] Confirmar retiro de lunes a domingo de 09:00 a 19:00.
 - [x] Confirmar envíos de lunes a domingo de 09:00 a 19:00.
-- [ ] Ratificar cobertura de Adrogué como localidad.
+- [x] Actualizar cobertura confirmada: solicitudes a cualquier destino, costo a cargo del cliente y cotizado por WhatsApp; textos centralizados y checkout sin restricción zonal (CA-13/CA-14, evidencia en validacion.md).
 - [ ] Precisar si existe cantidad para derivar consultas grandes; no asumir 48 horas.
 - [ ] Confirmar formato de preferencia horaria y mensajes de confirmación manual.
 - Dependencias: ninguna; P-02, P-06 y P-07.
@@ -128,7 +128,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 ### T-10 — Datos, entrega y preferencias
 
 - [x] Implementar formulario de contacto y comentarios.
-- [x] Implementar retiro/envío, dirección y validación de cobertura declarada.
+- [x] Implementar retiro/envío y validación de dirección completa; provincia/región libre de hasta 80 caracteres, sin restricción zonal.
 - [x] Implementar y probar días/horarios 09:00–19:00 en Buenos Aires, incluido cierre y cambio de fecha.
 - [ ] Verificar en navegador errores accesibles, foco y conservación del borrador implementada al retroceder.
 - Dependencias: T-02, T-08 y T-09.

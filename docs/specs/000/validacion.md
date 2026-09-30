@@ -1,5 +1,13 @@
 # 000 — Plan y registro de validación
 
+## QC-031 — Envíos a cualquier destino (RF-06 / CA-13 / CA-14)
+
+- Eliminada la lista de cobertura: provincia/región libre y obligatoria, con máximo de 80 caracteres. El campo interno `zone` se conserva para recuperar domicilios existentes sin cambiar el formato de almacenamiento.
+- Centralizados los textos de envío en `src/config/business.ts`, usados en FAQ, checkout, franja de inicio y footer. WhatsApp aclara costo a cargo del cliente, sin asignar tarifa ni cerrar el total final.
+- `npm run check`: TypeScript, 22 pruebas, build y smoke HTTP correctos. Pruebas de validación actualizadas: Quilmes, Burzaco y Villa Carlos Paz admitidos; región vacía o demasiado larga y localidad vacía rechazadas. Las pruebas existentes de perfiles con zonas anteriores siguen pasando.
+- `npm run test:browser`: recorrido de envío con destino Villa Carlos Paz, Córdoba correcto, incluido domicilio en el mensaje, costo a cargo del cliente, total pendiente y recuperación de región tras recarga. Retiro posterior excluye domicilio; regresión de carrito, persistencia y checkout correcta. WhatsApp interceptado, sin mensajes enviados.
+- Verificación al preparar el commit: `npm run check` y `npm run test:browser` correctos con 23 pruebas. La aserción del enlace de navegador se actualizó al destino directo `api.whatsapp.com/send/` incorporado en QC-028; se comprueba el teléfono mediante el parámetro `phone`.
+
 ## Estado actual
 
 - Documentación inicial creada el 2026-09-26.
@@ -88,8 +96,8 @@ Cobertura: CA-05, CA-06, CA-07, CA-08, CA-10, CA-11, CA-24.
 - Acceder directamente a checkout sin mínimo cumplido.
 - Validar campos vacíos, espacios, límites y formatos razonables de teléfono.
 - Alternar envío/retiro con un domicilio previamente guardado.
-- Verificar Lomas de Zamora, Lanús, Adrogué y una zona no cubierta como Quilmes.
-- Confirmar que seleccionar Adrogué no presenta todo Almirante Brown como cobertura.
+- Verificar destinos dentro y fuera de las zonas originales: Lomas de Zamora, Quilmes, Burzaco y Córdoba.
+- Confirmar provincia/región de texto libre, sin bloqueo geográfico, con dirección completa y costo a cargo del cliente sujeto a cotización.
 - Revisar fecha pasada, hora transcurrida, horario válido y límites 09:00/19:00 para retiro y envío; rechazar 08:59/19:01 y fechas del día después del cierre.
 - Probar con reloj controlado cerca de medianoche y dispositivo configurado en otra zona horaria.
 - Verificar disponibilidad de preferencias de lunes a domingo, incluidos sábados y domingos; P-02 resuelto con 09:00–19:00 para ambas modalidades.

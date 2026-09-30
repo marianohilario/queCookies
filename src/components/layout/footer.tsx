@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { business, mapsUrl } from "@/config/business";
-import { FooterSocialLinks } from "./footer-social-links";
+import { business, mapsUrl, shipping } from "@/config/business";
 import { Brand } from "./brand";
 import { BrandPattern } from "@/components/brand/brand-motif";
+import { Icon } from "@/components/ui/icon";
+import { FooterSocialLinks } from "./footer-social-links";
 
 export function Footer() {
   return (
@@ -39,9 +40,14 @@ export function Footer() {
           <Link className="footer-link mt-3" href="/privacidad">
             Tus datos y privacidad
           </Link>
-          <p className="mt-3 text-sm text-cream/80">
-            Envíos a Lomas de Zamora, Lanús y Adrogué. Costo a confirmar.
-          </p>
+          <div className="mt-6 border-t border-yellow/20 pt-5">
+            <p className="flex items-center gap-2 text-sm font-medium text-yellow">
+              <Icon name="truck" className="size-5 shrink-0" />
+              {shipping.title}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-cream/80">{shipping.summary}</p>
+            <p className="mt-1 text-xs leading-5 text-cream/80">A tu cargo, confirmado por WhatsApp.</p>
+          </div>
         </div>
       </div>
       <div className="page-container border-t border-cream/20 py-5 text-xs text-cream/75">

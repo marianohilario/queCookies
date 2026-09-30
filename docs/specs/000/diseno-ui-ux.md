@@ -218,7 +218,7 @@ Tres pasos lógicos en una misma ruta: **1. Tus datos → 2. Entrega → 3. Revi
 
 - Grupo de radios «Retiro» / «Envío» sin modalidad elegida en una primera visita; precargar la última si el cliente la guardó.
 - Retiro: bloque con Peña 298, Banfield y «Todos los días, de 9 a 19 h · Sin cargo».
-- Envío: cobertura declarada, localidad, calle, número o sin número; piso/departamento y referencias opcionales. Mostrar «El costo del envío lo confirmamos por WhatsApp» junto a esta selección.
+- Envío: provincia/región libre, localidad, calle, número o sin número; piso/departamento y referencias opcionales. Mostrar que se coordina cualquier destino, con costo a cargo del cliente y confirmado por WhatsApp antes de cerrar el pedido.
 - Fecha y hora preferidas, controles nativos, limitadas a las reglas de la especificación. Texto «Sujeto a confirmación del negocio».
 - Comentarios opcionales y contador de caracteres.
 - Botones «Volver» y «Revisar pedido».
@@ -273,7 +273,7 @@ La apertura de WhatsApp no cambia a un estado de pedido enviado. «Copiar pedido
 | Producto no disponible | Etiqueta textual y compra inhabilitada; si estaba en carrito, permitir quitar |
 | Precio actualizado | Aviso antes de continuar y nuevo importe claramente visible |
 | Error de campo | Texto asociado al control; resumen de errores al avanzar si hay varios |
-| Fuera de cobertura | Retiro o consulta especial, sin simular entrega estándar |
+| Destino fuera de las zonas originales | Permitir solicitud con domicilio completo y costo a confirmar por WhatsApp |
 | Perfil precargado | Datos editables y acción para borrarlos del dispositivo |
 | Persistencia fallida | Aviso no bloqueante; selección actual usable en memoria |
 | Mensaje listo | Revisión y CTA de WhatsApp, nunca «pedido confirmado» |

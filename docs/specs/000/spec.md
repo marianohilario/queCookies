@@ -36,15 +36,15 @@ El negocio confirma disponibilidad, entrega e importe definitivo cuando correspo
 | Enlace base | https://wa.me/5491161919801 |
 | Retiro | Peña 298, Banfield, Buenos Aires, Argentina |
 | Horarios de retiro y envío | De 09:00 a 19:00, de lunes a domingo |
-| Cobertura informada | Partidos de Lomas de Zamora y Lanús, y localidad de Adrogué |
-| Costo de envío | A confirmar con el negocio por WhatsApp |
+| Cobertura informada | Envíos a cualquier destino, a coordinar con el negocio |
+| Costo de envío | A cargo del cliente; según destino, confirmado por WhatsApp antes de cerrar el pedido |
 | Moneda / formato | ARS / es-AR |
 | Zona horaria | America/Argentina/Buenos_Aires |
 | Pedido mínimo | 2 cookies físicas, sumando individuales y contenido de packs; no exige dos packs |
 | Venta | Cookies individuales por sabor y mini cookies exclusivamente en packs de 12, 24, 48 y 96 |
 | Fotografías R1 | Imágenes de stock ilustrativas, por seleccionar |
 
-Adrogué pertenece al partido de Almirante Brown. La cobertura se interpreta como la localidad de Adrogué, no todo Almirante Brown. Esta precisión debe figurar en el selector de entrega y validarse con el negocio.
+Actualización confirmada por el usuario: se elimina la restricción a Lomas de Zamora, Lanús y Adrogué. Se puede solicitar cualquier destino; la dirección, logística y costo se coordinan por WhatsApp antes de cerrar el pedido.
 
 El nombre público es Que Cookies desde este release. El enlace de Instagram informado sigue siendo `quecookiss` hasta que el negocio proporcione otro. La carpeta del proyecto conserva su ruta `quecookiss`; el nombre de una carpeta no determina la marca pública.
 
@@ -157,11 +157,11 @@ Comentarios opcionales, con límite propuesto de 300 caracteres. No se presentan
 
 **Retiro:** mostrar Peña 298, Banfield, Buenos Aires; de lunes a domingo de 09:00 a 19:00; costo $0. No exigir ni incluir domicilio del cliente en el mensaje.
 
-**Envío:** solicitar calle, número, localidad y zona de cobertura; piso/departamento y referencias opcionales. Permitir una indicación explícita «sin número» cuando corresponda. La cobertura se elige entre Lomas de Zamora, Lanús y Adrogué (Almirante Brown), con localidad adicional cuando corresponda. Esta declaración no equivale a geocodificar ni validar que la calle pertenezca a esa zona; el negocio confirma la dirección.
+**Envío:** solicitar calle, número, localidad y provincia/región en texto libre; piso/departamento y referencias opcionales. Permitir una indicación explícita «sin número» cuando corresponda. No limitar destinos a una lista de zonas. Esta declaración no equivale a geocodificar; el negocio confirma la dirección y logística. El campo interno `zone` conserva compatibilidad con domicilios recordados previamente.
 
-Los envíos se coordinan de lunes a domingo de 09:00 a 19:00, con costo a confirmar.
+Los envíos se coordinan de lunes a domingo de 09:00 a 19:00, con costo a cargo del cliente, según destino y confirmado por WhatsApp antes de cerrar el pedido.
 
-Direcciones declaradas fuera de cobertura no completan el flujo estándar de envío. Ofrecer cambiar a retiro o consultar por WhatsApp un envío especial, sin presentarlo como disponible ni asignarle una tarifa.
+Todas las direcciones completas pueden avanzar a la solicitud por WhatsApp, sin prometer una tarifa ni entrega confirmada automáticamente.
 
 Elegir retiro oculta los campos de domicilio y no los incluye en la solicitud, aunque exista un domicilio recordado. Volver a envío puede recuperar el borrador.
 
@@ -190,7 +190,7 @@ No usar envío $0, «gratis» ni un total final cerrado cuando falta el costo lo
 
 ### RF-10 — Continuar por WhatsApp
 
-Botón «Continuar por WhatsApp». Antes de habilitarlo, validar mínimo, productos comprables, datos, modalidad, cobertura declarada y preferencias. Construir el mensaje desde el mismo resumen validado, con importes recalculados.
+Botón «Continuar por WhatsApp». Antes de habilitarlo, validar mínimo, productos comprables, datos, modalidad, domicilio y preferencias. Construir el mensaje desde el mismo resumen validado, con importes recalculados.
 
 El mensaje incluye:
 
@@ -224,7 +224,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 | RN-03 | Ninguna selección local reserva stock o producción |
 | RN-04 | La solicitud, entrega y pago se confirman con el negocio por WhatsApp |
 | RN-05 | Retiro sin cargo; envío sin cotización no tiene total final cerrado |
-| RN-06 | Cobertura estándar: Lomas de Zamora, Lanús y localidad de Adrogué |
+| RN-06 | Envíos a cualquier destino a coordinar; costo a cargo del cliente y confirmado por WhatsApp |
 | RN-07 | No se transmite domicilio personal para retiro |
 | RN-08 | Abrir WhatsApp no equivale a enviar, recibir o confirmar un pedido |
 | RN-09 | No vaciar el carrito automáticamente al continuar por WhatsApp |
@@ -253,7 +253,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 | P-03 | Descripciones, ingredientes y alérgenos por producto | Redactar propuestas; información alimentaria debe verificarse antes de publicar la ficha final |
 | P-04 | Fotos de stock y permiso/licencia de uso | Seleccionar recursos permitidos, registrar origen y señalar que son ilustrativos |
 | P-05 | Resuelto en 001: logo y paleta originales | Logo corregido en QC-011, colores medidos y motivos extraídos en QC-012; fuentes preservadas |
-| P-06 | Ratificar cobertura limitada a Adrogué dentro de Almirante Brown | Usar interpretación acotada; no ampliar a todo el partido |
+| P-06 | Resuelto: destinos sin restricción zonal | El negocio confirmó envíos a cualquier destino con costo a cargo del cliente |
 | P-07 | Cantidades que requieren coordinación especial y anticipación | No imponer 48 h como regla general; todas las solicitudes sujetas a confirmación |
 | P-08 | Nombre resuelto; dominio y alojamiento pendientes | Nombre confirmado Que Cookies; centralizar identidad y resolver despliegue antes de publicar |
 | P-09 | Historia de marca y conservación recomendada | No inventar; completar con el negocio |
