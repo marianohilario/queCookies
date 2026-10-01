@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { individualCookies, miniFlavorSlugs, miniFlavors, miniPacks } from "../src/data/catalog.ts";
+import { dipFlavorSlugs, dipFlavors, dipPrice, individualCookies, miniFlavorSlugs, miniFlavors, miniPacks, packPrices, packSizes } from "../src/data/catalog.ts";
 
 test("las ocho cookies individuales tienen receta y alérgenos", () => {
   assert.equal(individualCookies.length, 8);
@@ -75,4 +75,17 @@ test("los packs de minis se arman solo con tradicional, cacao y red velvet", () 
       `${flavor.slug} sin ficha de ingredientes para enlazar`,
     );
   }
+});
+
+test("cada presentación de pack publica el precio cerrado del negocio", () => {
+  assert.deepEqual(packSizes, [12, 24, 48, 96]);
+  assert.deepEqual(packPrices, { 12: 950000, 24: 1850000, 48: 3550000, 96: 6700000 });
+  assert.deepEqual(miniPacks.map((pack) => pack.cookiesPerItem), [...packSizes]);
+  assert.deepEqual(miniPacks.map((pack) => pack.price), [...packSizes].map((size) => packPrices[size]));
+});
+
+test("los dips son dos sabores con el mismo precio extra", () => {
+  assert.deepEqual([...dipFlavorSlugs], ["nutella", "chocolate-blanco"]);
+  assert.deepEqual(dipFlavors.map((dip) => dip.name), ["Dip de Nutella", "Dip de chocolate blanco"]);
+  assert.equal(dipPrice, 200000);
 });

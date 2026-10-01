@@ -212,10 +212,16 @@ export const individualCookies: Product[] = flavors.map(
   }),
 );
 
-// La presentación de 12 define el precio base; las demás lo multiplican por su tamaño relativo.
-export const miniBasePackSize = 12;
-export const miniBasePackPrice = 950000;
 export const packSizes = [12, 24, 48, 96] as const;
+export type PackSize = (typeof packSizes)[number];
+// Cada presentación tiene su precio cerrado: ya no son múltiplos del pack de 12,
+// así que los importes se publican uno por uno en lugar de derivarse de una base.
+export const packPrices: Record<PackSize, number> = {
+  12: 950000,
+  24: 1850000,
+  48: 3550000,
+  96: 6700000,
+};
 export const packSizesLabel = new Intl.ListFormat("es-AR", {
   type: "disjunction",
 }).format(packSizes.map(String));
@@ -233,13 +239,23 @@ export const miniPacks: Product[] = packSizes.map((size) => ({
   slug: "mini-cookies",
   name: `Mini cookies × ${size}`,
   description:
-    "Pequeñas para compartir, de tradicional, cacao y red velvet. Armá tu combinación sabor por sabor.",
-  price: (size / miniBasePackSize) * miniBasePackPrice,
+    "Pequeñas para compartir, de tradicional, cacao y red velvet. Armá tu combinación sabor por sabor y sumale los dips que quieras.",
+  price: packPrices[size],
   cookiesPerItem: size,
   kind: "pack",
   available: true,
   image: stockPhotos.assortment,
 }));
+
+// Los packs se pueden pedir con dips extra: el cliente elige cuántos de cada
+// sabor y cada uno suma el mismo precio al pack.
+export const dipPrice = 200000;
+export const dipFlavorSlugs = ["nutella", "chocolate-blanco"] as const;
+export type DipFlavorSlug = (typeof dipFlavorSlugs)[number];
+export const dipFlavors: { slug: DipFlavorSlug; name: string }[] = [
+  { slug: "nutella", name: "Dip de Nutella" },
+  { slug: "chocolate-blanco", name: "Dip de chocolate blanco" },
+];
 
 export const products: Product[] = [...individualCookies, ...miniPacks];
 export const findProduct = (id: string) =>
