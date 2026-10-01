@@ -32,3 +32,33 @@ export async function checkRedesign(browser) {
   await browser.screenshot("brand-minis-390");
   console.log("OK logo corregido, paleta medida, imágenes locales, motivos y tamaño de ilustraciones");
 }
+
+// La imagen de la sección de minis se estiraba a la altura de la fila del grid
+// (llegó a 303 × 1138 px) porque el elemento de la columna no fijaba proporción.
+export async function checkMiniSectionImage(browser) {
+  const imageRatio = () => browser.evaluate("(() => { const box = document.querySelector('#minis img').getBoundingClientRect(); return box.height / box.width; })()");
+
+  for (const width of [390, 768, 1440]) {
+    await viewport(browser, width);
+    await browser.navigate("/cookies");
+    await browser.waitFor("!!document.querySelector('#minis img')");
+    const ratio = await imageRatio();
+    assert.ok(Math.abs(ratio - 1) < 0.02, `imagen de minis deformada a ${width}px: ratio ${ratio.toFixed(2)}`);
+
+    await browser.navigate("/cookies/mini-cookies");
+    await browser.waitFor("!!document.querySelector('img[alt^=\"Fotografía ilustrativa\"]')");
+    const fichaRatio = await browser.evaluate("(() => { const box = document.querySelector('img[alt^=\"Fotografía ilustrativa\"]').getBoundingClientRect(); return box.height / box.width; })()");
+    assert.ok(Math.abs(fichaRatio - 1) < 0.02, `ficha deformada a ${width}px: ratio ${fichaRatio.toFixed(2)}`);
+
+    await browser.navigate("/cookies");
+    await browser.waitFor("!!document.querySelector('#minis img')");
+    // La imagen acotada no debe empujar el selector fuera de la tarjeta.
+    const dentro = await browser.evaluate("(() => { const img = document.querySelector('#minis img').getBoundingClientRect(); const card = document.querySelector('#minis .grid').getBoundingClientRect(); return img.top >= card.top - 1 && img.bottom <= card.bottom + 1; })()");
+    assert.ok(dentro, `la imagen de minis se sale de la tarjeta a ${width}px`);
+  }
+  await viewport(browser, 390);
+  await browser.navigate("/cookies");
+  await browser.waitFor("!!document.querySelector('#minis img')");
+  await noOverflow(browser, "sección de minis acotada");
+  console.log("OK la imagen de minis respeta 1:1 como la ficha, sin salirse de la tarjeta");
+}

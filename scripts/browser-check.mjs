@@ -4,7 +4,7 @@ import { viewport, noOverflow } from "./browser/helpers.mjs";
 import { checkOrder } from "./browser/order-scenario.mjs";
 import { checkStorage } from "./browser/storage-scenario.mjs";
 import { checkNavigation, checkMiniCookiesAccess } from "./browser/navigation-scenario.mjs";
-import { checkRedesign } from "./browser/redesign-scenario.mjs";
+import { checkMiniSectionImage, checkRedesign } from "./browser/redesign-scenario.mjs";
 import { checkCardQuantity } from "./browser/card-quantity-scenario.mjs";
 import { checkPackMix } from "./browser/pack-mix-scenario.mjs";
 
@@ -32,6 +32,7 @@ try {
   await checkNavigation(browser);
   await checkMiniCookiesAccess(browser);
   await checkRedesign(browser);
+  await checkMiniSectionImage(browser);
   await checkCardQuantity(browser);
   await checkPackMix(browser);
   await checkOrder(browser);
