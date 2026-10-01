@@ -14,6 +14,8 @@ Cada producto público tiene precio correspondiente a las tablas de spec.md, nom
 
 Las presentaciones 12/24/48/96 cuestan $9.500/$19.000/$38.000/$76.000 respectivamente, derivados por múltiplos 1/2/4/8 del pack de 12. Seleccionar un tamaño actualiza precio e ID; no se aceptan tamaños fuera de esas opciones.
 
+Los packs se arman solo con Tradicional, Cacao y Red Velvet. La ficha de un pack no publica una lista de ingredientes propia: explica que las minis usan la misma masa que las cookies grandes y enlaza a las fichas de esos tres sabores.
+
 Referencias: RF-02, RN-12; T-01, T-03, T-06, T-07; V-01, V-02.
 
 ## CA-03 — Importes por sabor
@@ -22,7 +24,13 @@ Dos tradicionales a $3.500 suman $7.000. Una tradicional y una de pistacho suman
 
 Dos packs de 12 mini cookies cuestan $19.000 y contienen 24 mini cookies. Un pack de 12 más una tradicional cuesta $13.000. Un pack de 24 y dos de 12 no se fusionan aunque tengan equivalencia de contenido/precio. El importe de una línea es cantidad de packs × precio del pack, sin volver a multiplicar por 12/24/48/96.
 
-Referencias: RF-03, RF-09, RN-02; T-01, T-06, T-08, T-12; V-02.
+## CA-03b — Combinación de sabores del pack
+
+El pack arranca con reparto equitativo (4/4/4 en el de 12). El cliente sube y baja cada sabor y el total queda clavado en el tamaño del pack: subir un sabor toma una unidad del sabor que más tiene, y bajar abre lugar dejando el pack incompleto. Mientras la suma no iguale el tamaño del pack, la interfaz indica cuántas unidades faltan y el botón de agregar permanece deshabilitado. El precio no cambia según la combinación.
+
+Dos packs del mismo tamaño con combinaciones distintas son líneas separadas del carrito, se muestran por separado y cada una viaja desglosada por sabor al mensaje de WhatsApp. Dos packs con la combinación idéntica sí se acumulan en una sola línea. Una combinación guardada con saborees desconocidos, negativos o fraccionarios se descarta al recuperar el carrito.
+
+Referencias: RF-03, RF-09, RN-02; docs/specs/000/spec.md; docs/issues.md QC-038.
 
 ## CA-04 — Mínimo de dos
 
@@ -44,7 +52,7 @@ Referencias: RF-02, RF-04; T-01, T-07, T-08; V-01, V-03.
 
 ## CA-07 — Restauración y cambio de precio
 
-Tras seleccionar productos y cerrar/reabrir el navegador en condiciones normales de almacenamiento, se recuperan IDs y cantidades, manteniendo tamaño y número de packs. La hidratación no borra el carrito anterior. Si cambia un precio publicado entre visitas, se recalcula el subtotal y se informa antes de continuar; un cambio del precio base de mini cookies actualiza los cuatro packs.
+Tras seleccionar productos y cerrar/reabrir el navegador en condiciones normales de almacenamiento, se recuperan IDs, cantidades y combinaciones de sabores, manteniendo tamaño y número de packs. La hidratación no borra el carrito anterior. Si cambia un precio publicado entre visitas, se recalcula el subtotal y se informa antes de continuar; un cambio del precio base de mini cookies actualiza los cuatro packs.
 
 Referencias: RF-04; T-09; V-03.
 
@@ -112,7 +120,7 @@ Referencias: RF-09, RN-05; T-04, T-12; V-02, V-05.
 
 ## CA-18 — Mensaje completo y consistente
 
-El mensaje saluda a Que Cookies y contiene líneas con nombre, unidades de venta, precio por unidad de venta e importe; subtotal; tratamiento de entrega/total; nombre y teléfono; dirección correspondiente a la modalidad; preferencias y comentarios no vacíos. Los packs identifican tamaño, cantidad y contenido total; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.500 c/u — $19.000». Coincide con el último resumen validado y pide confirmación al negocio. No contiene ID de pedido ficticio ni estado de pago.
+El mensaje saluda a Que Cookies y contiene líneas con nombre, unidades de venta, precio por unidad de venta e importe; subtotal; tratamiento de entrega/total; nombre y teléfono; dirección correspondiente a la modalidad; preferencias y comentarios no vacíos. Los packs identifican tamaño, cantidad y contenido total; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.500 c/u — $19.000». Cada pack añade su desglose de sabores («Sabores: 6 Tradicional · 4 Cacao · 2 Red Velvet») y los sabores en cantidad cero no se listan. Coincide con el último resumen validado y pide confirmación al negocio. No contiene ID de pedido ficticio ni estado de pago.
 
 Referencias: RF-09, RF-10; T-12, T-13; V-05.
 

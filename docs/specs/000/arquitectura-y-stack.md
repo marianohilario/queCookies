@@ -114,6 +114,8 @@ ID de producto/presentación y cantidad de unidades de venta. En individuales la
 
 Identidad de línea por presentación: dos packs de 12 se conservan separados de un pack de 24 aunque ambos contengan 24 mini cookies y cuesten lo mismo. Restaurar el carrito no cambia el tamaño elegido ni acepta IDs de bollos o mini cookies individuales como productos comprables.
 
+En packs la identidad suma la combinación de sabores. `PackMix` es un registro `{tradicional, cacao, red-velvet}` con cantidades enteras no negativas cuya suma iguala el tamaño del pack; `pack-mix.ts` concentra el reparto equitativo, el paso de cantidades y la validación. `lineIdOf` compone el ID de línea con presentación y combinación, de modo que dos combinaciones distintas del mismo pack son líneas separadas y dos idénticas se acumulan. El precio sigue siendo el del pack: la combinación no participa del importe. Al ser la combinación parte de la identidad persistida, el formato del carrito está versionado y una línea guardada sin combinación completa no es comprable.
+
 ### CustomerProfile
 
 Nombre, teléfono, última modalidad y dirección opcional. Perfil recordado separado del borrador transaccional. No incluye fecha, hora, comentarios ni historial de pedidos.

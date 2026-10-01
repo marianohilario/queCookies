@@ -292,3 +292,16 @@ Alcance de evidencia: pruebas reales en Chrome con viewport emulado; no equivale
 - `npm test`: 28 pruebas correctas, incluidos precios de packs ($9.500/$19.000/$38.000/$76.000), dos packs de 12 por $19.000, mixto con tradicional por $13.000, mensaje de WhatsApp con `$9.500 c/u` y subtotal `$19.000`, y persistencia del precio de referencia del pack de 12.
 - `npm run check`: typecheck, pruebas, build y smoke HTTP correctos.
 - `npm run test:browser`: correcto. Regresión completa en Chrome con el total mixto de $13.000: mínimo, pack, persistencia al recargar, enlace de WhatsApp con ese importe, sincronización entre pestañas, almacenamiento corrupto/denegado y responsive de 320 a 1920 px sin excepciones JS.
+
+## QC-038 — Combinación de sabores en los packs de mini cookies
+
+Decisión del usuario: los packs se arman solo con tradicional, cacao y red velvet, el cliente elige la cantidad exacta de cada sabor, el precio sigue siendo cerrado por presentación y cada combinación viaja desglosada al mensaje de WhatsApp.
+
+- Nuevo módulo puro `src/features/catalog/pack-mix.ts` con la regla de combinación: reparto equitativo inicial, `stepMix` clavado en el tamaño del pack (al subir un sabor toma una unidad del sabor con más unidades; al bajar abre lugar y deja el pack incompleto), validación e identidad de línea. No importa React ni almacenamiento.
+- La combinación pasó a formar parte de la identidad de la línea del carrito: dos packs del mismo tamaño con mezclas distintas son líneas separadas, y dos con la misma mezcla se acumulan. El formato de almacenamiento pasa a `quecookies:cart:v2` porque una línea guardada sin combinación ya no es comprable; los carritos de la versión anterior se descartan con el aviso ya existente.
+- La ficha de un pack ya no publica «Estamos completando las fichas»: explica que las minis usan la misma masa que las cookies grandes y enlaza a las fichas de los tres sabores, que son la fuente de la información alimentaria. Los packs siguen sin declarar receta propia en el catálogo.
+- `npm run typecheck`: correcto.
+- `npm test`: 42 pruebas, 41 correctas. La única falla, `los alérgenos de base se corresponden con los insumos de cada receta`, es previa a este trabajo: la prueba busca el insumo `Harina` de forma exacta y las recetas dicen `Harina de trigo`. Se verificó con `git stash` que ya fallaba antes de estos cambios y no se modifica aquí por no ser parte de este issue.
+- `npm run build` y `npm run smoke`: correctos; el HTML generado de `/cookies/mini-cookies` incluye el selector, el reparto equitativo, el resumen de sabores y los enlaces a las tres fichas.
+- `npm run test:browser`: correcto con el escenario nuevo `pack-mix-scenario.mjs`: reparto equitativo 4/4/4, bajar un sabor muestra «Faltan 1» y deshabilita el alta, completar deja la combinación lista sin cambiar el precio, el carrito muestra el desglose, dos combinaciones del mismo pack quedan como dos líneas y cada una persiste por separado. Regresión completa de los escenarios previos correcta, incluida la sincronización entre pestañas con la clave `v2`.
+- No verificado: no se confirmaron las capturas por revisión visual en esta sesión ni se coordinó con el negocio la recepción de un mensaje con el nuevo desglose. Safari y dispositivos físicos siguen pendientes como en QC-009.

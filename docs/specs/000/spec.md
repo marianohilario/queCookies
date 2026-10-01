@@ -81,7 +81,11 @@ Los cuatro bollos se conservan solo como antecedente de la lista recibida; no se
 
 El catálogo público tiene ocho sabores individuales y cuatro presentaciones comprables de mini cookies. Estas últimas pueden presentarse en una ficha con selector de tamaño; cada tamaño conserva su ID en el carrito. El cliente elige cantidad de packs enteros, no mini cookies sueltas ni tamaños arbitrarios. No hay descuento por volumen: el pack de 12 define el precio base de $9.500 y cada presentación se calcula como ese importe por su múltiplo de packs base (×1, ×2, ×4 y ×8).
 
-No se deducirán ingredientes, rellenos, pesos, sabores de las mini cookies o alérgenos a partir del nombre ni de fotografías genéricas. La composición de los packs se documentará con el negocio como contenido del producto; R1 no incluye un configurador de sabores para ellos.
+### Sabores de los packs de mini cookies
+
+Los packs se arman únicamente con **Tradicional, Cacao y Red Velvet**. El cliente define la cantidad exacta de cada sabor dentro del pack y esa combinación pasa a ser parte de la identidad de la línea del carrito: dos packs del mismo tamaño con combinaciones distintas son dos líneas separadas. El precio del pack es cerrado por presentación y no depende de los sabores elegidos. El total de la combinación debe igualar el tamaño del pack; mientras no cierre, el pack no se puede agregar al carrito.
+
+No se deducen ingredientes, rellenos, pesos o alérgenos propios de las mini cookies. Cada minis se hace con la misma receta que la cookie grande de su sabor, así que la ficha de un pack no publica una lista de ingredientes nueva: enlaza a las fichas de Tradicional, Cacao y Red Velvet, que son la fuente de la información alimentaria.
 
 ## 4. Alcance
 
@@ -102,7 +106,7 @@ No se deducirán ingredientes, rellenos, pesos, sabores de las mini cookies o al
 - Registro de pedidos, reservas de stock y capacidad de producción.
 - Pago completo con Mercado Pago, aceptación/rechazo del negocio y reembolsos con motivo obligatorio.
 - Seguimiento privado y notificaciones.
-- Cajas de cookies grandes, otros combos, configuradores y mensajes de regalo; los cuatro packs fijos de mini cookies sí están incluidos en R1.
+- Cajas de cookies grandes, otros combos, mensajes de regalo y configuradores distintos del reparto de sabores de los packs; los cuatro packs fijos de mini cookies con elección de sabores sí están incluidos en R1.
 - Tarifas automáticas de envío y eventual integración logística.
 
 ## 5. Recorrido y requisitos funcionales
