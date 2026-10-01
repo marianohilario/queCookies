@@ -6,10 +6,11 @@ import { PurchaseControls } from "./purchase-controls";
 export function MiniSection() {
   return (
     <section id="minis" className="page-container pb-18">
-      <div className="grid gap-8 rounded-[2rem] border border-brand/15 bg-white p-5 sm:p-8 md:grid-cols-2">
-        {/* Sin self-center la imagen se estira a la altura de la fila y queda muy alargada
-            junto al selector; se acota a 1:1 como en la ficha del pack. */}
-        <ProductImage src={stockPhotos.assortment} className="aspect-square self-center rounded-2xl" />
+      <div className="grid gap-8 rounded-4xl border border-brand/15 bg-white p-5 sm:p-8 md:grid-cols-2">
+        <ProductImage
+          src={stockPhotos.assortment}
+          className="aspect-square rounded-2xl"
+        />
         <div>
           <p className="eyebrow">Pequeñas para compartir</p>
           <h2 className="section-title mt-3">Elegí tus minis.</h2>
