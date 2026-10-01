@@ -134,7 +134,7 @@ Bloque cómo pedir:
 │                                 │
 │ Mini cookies                    │
 │ [12] [24] [48] [96]             │
-│ Pack seleccionado: $9.504       │
+│ Pack seleccionado: $9.500       │
 │ [ Agregar pack ]                │
 ├─────────────────────────────────┤
 │ Ver carrito · artículos · $...  │
@@ -162,9 +162,9 @@ Orden móvil: volver a la carta → foto → nombre → descripción → selecto
 │ Elegí tu presentación            │
 │ [● 12 unidades] [○ 24 unidades]  │
 │ [○ 48 unidades] [○ 96 unidades]  │
-│ $9.504 por pack                  │
+│ $9.500 por pack                  │
 │ Cantidad de packs   [−] 1 [+]    │
-│ [ Agregar pack · $9.504 ]        │
+│ [ Agregar pack · $9.500 ]        │
 │ Ingredientes y alérgenos         │
 └─────────────────────────────────┘
 ```
@@ -186,11 +186,11 @@ En escritorio: imagen a la izquierda y bloque de compra a la derecha, sin duplic
 │ Quitar                 $3.500   │
 │                                 │
 │ Foto · Mini cookies × 12        │
-│ $9.504 por pack [−] 1 [+]       │
+│ $9.500 por pack [−] 1 [+]       │
 │ 1 pack · 12 mini cookies        │
-│ Quitar                 $9.504   │
+│ Quitar                 $9.500   │
 │                                 │
-│ Subtotal de productos $13.004   │
+│ Subtotal de productos $13.000   │
 │ Elegí retiro o envío al seguir. │
 │ [ Continuar con mi pedido ]     │
 │ Seguir eligiendo                │
@@ -231,7 +231,7 @@ Tres pasos lógicos en una misma ruta: **1. Tus datos → 2. Entrega → 3. Revi
 │                                 │
 │ Tu selección          [Editar]  │
 │ 1 Tradicional           $3.500  │
-│ 1 pack Mini cookies ×12 $9.504  │
+│ 1 pack Mini cookies ×12 $9.500  │
 │                                 │
 │ Contacto              [Editar]  │
 │ Nombre · Teléfono                │
@@ -239,7 +239,7 @@ Tres pasos lógicos en una misma ruta: **1. Tus datos → 2. Entrega → 3. Revi
 │ Dirección · Localidad            │
 │ Fecha y hora preferidas          │
 │                                 │
-│ Productos              $13.004  │
+│ Productos              $13.000  │
 │ Envío               A confirmar │
 │ Total final: pendiente de envío │
 │                                 │
@@ -251,7 +251,7 @@ Tres pasos lógicos en una misma ruta: **1. Tus datos → 2. Entrega → 3. Revi
 └─────────────────────────────────┘
 ```
 
-Con retiro, el resumen cambia a «Retiro $0» y «Total $13.004». Con envío, la etiqueta completa será «Total final: pendiente de cotizar el envío»; el wireframe abrevia solo por espacio.
+Con retiro, el resumen cambia a «Retiro $0» y «Total $13.000». Con envío, la etiqueta completa será «Total final: pendiente de cotizar el envío»; el wireframe abrevia solo por espacio.
 
 Editar dirige al paso o carrito correspondiente. Al regresar, derivar de nuevo el resumen; no mantener una copia independiente de totales. En escritorio, un resumen compacto acompaña los pasos; en móvil aparece completo al revisar para reducir ruido visual.
 

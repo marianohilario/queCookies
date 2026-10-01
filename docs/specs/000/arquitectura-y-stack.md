@@ -102,11 +102,11 @@ Nombre público Que Cookies, logo con el nuevo texto y la misma identidad, enlac
 
 ID estable, slug, nombre público, descripción verificada, precio por unidad de venta en unidades monetarias menores, moneda ARS, imagen, texto alternativo, ingredientes/alérgenos, etiquetas, disponibilidad editorial, tipo de venta (individual/pack) y cookies por unidad de venta. Los campos alimentarios pendientes no se completan por inferencia.
 
-Las ocho cookies individuales tienen contenido 1. Las mini cookies tienen cuatro presentaciones con IDs `mini-cookies-12`, `mini-cookies-24`, `mini-cookies-48` y `mini-cookies-96`, contenido 12/24/48/96 y precio derivado de una base central de 79200 centavos por mini cookie. Una ficha puede agruparlas con selector, pero se resuelve un ID de presentación concreto antes de agregar. No exponer `mini-cookie` individual ni bollos en el catálogo comprable.
+Las ocho cookies individuales tienen contenido 1. Las mini cookies tienen cuatro presentaciones con IDs `mini-cookies-12`, `mini-cookies-24`, `mini-cookies-48` y `mini-cookies-96`, contenido 12/24/48/96 y precio derivado de una base central de 950000 centavos para el pack de 12. Una ficha puede agruparlas con selector, pero se resuelve un ID de presentación concreto antes de agregar. No exponer `mini-cookie` individual ni bollos en el catálogo comprable.
 
 Los importes recibidos se convierten de pesos a centavos al ingresar en el modelo (3500 ARS = 350000 centavos). Cálculos enteros; presentación con Intl.NumberFormat, sin aritmética de dinero en flotantes.
 
-Precios de packs en centavos: 950400, 1900800, 3801600 y 7603200. Derivarlos del precio base y tamaño para evitar duplicar valores que puedan divergir. No aplicar descuentos implícitos ni permitir tamaños arbitrarios enviados desde almacenamiento.
+Precios de packs en centavos: 950000, 1900000, 3800000 y 7600000. Derivarlos del precio base del pack de 12 y del múltiplo de packs base (1, 2, 4, 8) para evitar duplicar valores que puedan divergir. No aplicar descuentos implícitos ni permitir tamaños arbitrarios enviados desde almacenamiento.
 
 ### CartLine
 

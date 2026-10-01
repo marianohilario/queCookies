@@ -63,23 +63,23 @@ Transcripción de la imagen facilitada por el usuario. Los importes se interpret
 | cookie-pistacho | cookie pistacho | 6000 | Cookie individual |
 | bollo-vainilla | bollo vainilla | 1150 | Excluido de la venta web |
 | bollo-red-velvet | bollo red velvet | 2000 | Excluido de la venta web |
-| mini-cookie | Mini Cookie | 792 | Base de cálculo por mini cookie; no vendible individualmente |
+| mini-cookie | Mini Cookie | 792 | Antecedente de la lista recibida; no vendible individualmente ni base de cálculo |
 | bollo-choco | bollo choco | 2000 | Excluido de la venta web |
 | bollo-tradicional | bollo tradicional | 2000 | Excluido de la venta web |
 | cookie-cacao-chocolate-blanco | cookie cacao choco blanco | 4000 | Cookie individual |
 
-Los cuatro bollos se conservan solo como antecedente de la lista recibida; no se publican ni se pueden comprar por la web. La referencia Mini Cookie a $792 es la base para calcular packs, no un artículo comprable de una unidad.
+Los cuatro bollos se conservan solo como antecedente de la lista recibida; no se publican ni se pueden comprar por la web. La referencia Mini Cookie a $792 queda como antecedente: los packs tienen precio cerrado por presentación y ya no se derivan de un precio por unidad.
 
 ### Presentaciones de mini cookies incluidas en R1
 
 | ID estable de presentación | Nombre público | Cookies por pack | Cálculo ARS | Precio del pack ARS |
 | --- | --- | ---: | --- | ---: |
-| mini-cookies-12 | Mini cookies × 12 | 12 | 12 × 792 | 9504 |
-| mini-cookies-24 | Mini cookies × 24 | 24 | 24 × 792 | 19008 |
-| mini-cookies-48 | Mini cookies × 48 | 48 | 48 × 792 | 38016 |
-| mini-cookies-96 | Mini cookies × 96 | 96 | 96 × 792 | 76032 |
+| mini-cookies-12 | Mini cookies × 12 | 12 | 9500 × 1 | 9500 |
+| mini-cookies-24 | Mini cookies × 24 | 24 | 9500 × 2 | 19000 |
+| mini-cookies-48 | Mini cookies × 48 | 48 | 9500 × 4 | 38000 |
+| mini-cookies-96 | Mini cookies × 96 | 96 | 9500 × 8 | 76000 |
 
-El catálogo público tiene ocho sabores individuales y cuatro presentaciones comprables de mini cookies. Estas últimas pueden presentarse en una ficha con selector de tamaño; cada tamaño conserva su ID en el carrito. El cliente elige cantidad de packs enteros, no mini cookies sueltas ni tamaños arbitrarios. No hay descuento por volumen: precio del pack = tamaño × $792.
+El catálogo público tiene ocho sabores individuales y cuatro presentaciones comprables de mini cookies. Estas últimas pueden presentarse en una ficha con selector de tamaño; cada tamaño conserva su ID en el carrito. El cliente elige cantidad de packs enteros, no mini cookies sueltas ni tamaños arbitrarios. No hay descuento por volumen: el pack de 12 define el precio base de $9.500 y cada presentación se calcula como ese importe por su múltiplo de packs base (×1, ×2, ×4 y ×8).
 
 No se deducirán ingredientes, rellenos, pesos, sabores de las mini cookies o alérgenos a partir del nombre ni de fotografías genéricas. La composición de los packs se documentará con el negocio como contenido del producto; R1 no incluye un configurador de sabores para ellos.
 
@@ -125,7 +125,7 @@ No se inventarán historia, testimonios, premios, afirmaciones nutricionales ni 
 
 Cada producto público tendrá ID estable, nombre, precio, imagen con texto alternativo, descripción y espacio para ingredientes destacados y alérgenos verificados. Estos últimos contenidos están pendientes de aporte del negocio; no se publicarán afirmaciones de ausencia de alérgenos sin respaldo.
 
-Las mini cookies muestran claramente la presentación de 12, 24, 48 o 96 unidades y el precio completo del pack seleccionado. El precio base de $792 puede mostrarse como referencia por mini cookie, sin un botón de compra individual. Cambiar el tamaño actualiza precio e ID antes de agregar al carrito.
+Las mini cookies muestran claramente la presentación de 12, 24, 48 o 96 unidades y el precio completo del pack seleccionado. Cada presentación tiene precio propio y cerrado; no se muestra un precio por mini cookie ni un botón de compra individual. Cambiar el tamaño actualiza precio e ID antes de agregar al carrito.
 
 Los productos se podrán marcar como destacados, edición limitada o no disponibles mediante la configuración local. Esas etiquetas requieren confirmación del negocio. No se anunciarán cantidades de stock en tiempo real. Un producto marcado no disponible no puede agregarse ni enviarse en la solicitud.
 
@@ -135,7 +135,7 @@ Agregar, aumentar, reducir y eliminar líneas. Las líneas guardadas tienen cant
 
 El mínimo son dos cookies físicas totales: suma de cantidad de cada línea × cookies por unidad de venta. Cada individual aporta una; cada pack aporta 12, 24, 48 o 96. Un pack cumple el mínimo por sí solo, y se permite combinarlo con cookies individuales. No se exige comprar dos packs ni dos cookies grandes adicionales.
 
-Ejemplo: «2 packs de Mini cookies × 12» representa 24 mini cookies y cuesta $19.008. Se conserva como dos packs de 12, sin transformarlo automáticamente en un pack de 24 aunque el precio coincida. El contador principal del carrito muestra unidades de venta (individuales + packs), etiquetadas como artículos, y el resumen distingue el contenido de los packs. Ese contador no se usa para validar el mínimo.
+Ejemplo: «2 packs de Mini cookies × 12» representa 24 mini cookies y cuesta $19.000. Se conserva como dos packs de 12, sin transformarlo automáticamente en un pack de 24 aunque el precio coincida. El contador principal del carrito muestra unidades de venta (individuales + packs), etiquetadas como artículos, y el resumen distingue el contenido de los packs. Ese contador no se usa para validar el mínimo.
 
 Un carrito con una cookie es válido como borrador, pero no permite continuar ni generar el enlace de pedido. Mensaje: «El pedido mínimo es de 2 cookies. ¡Sumá una más para continuar!». El estado vacío invita a volver a la carta.
 
@@ -197,7 +197,7 @@ Botón «Continuar por WhatsApp». Antes de habilitarlo, validar mínimo, produc
 El mensaje incluye:
 
 1. Saludo a Que Cookies y expresión «Quiero solicitar este pedido».
-2. Nombre, cantidad, precio por unidad de venta e importe de cada producto. En packs, tamaño y número de packs explícitos; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.504 c/u — $19.008».
+2. Nombre, cantidad, precio por unidad de venta e importe de cada producto. En packs, tamaño y número de packs explícitos; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.500 c/u — $19.000».
 3. Subtotal y tratamiento de envío/total según modalidad.
 4. Nombre y teléfono del cliente.
 5. Retiro con dirección del negocio, o envío con domicilio completo.
@@ -222,7 +222,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 | ID | Regla |
 | --- | --- |
 | RN-01 | Mínimo de 2 cookies físicas comprables; suma de cantidades × contenido de la unidad de venta. Un pack de mini cookies cumple el mínimo |
-| RN-02 | Cada sabor conserva su precio individual; cantidad de individuales o packs siempre entera; precio de pack = tamaño × $792 |
+| RN-02 | Cada sabor conserva su precio individual; cantidad de individuales o packs siempre entera; los packs parten de $9.500 por presentación de 12 y se multiplican por 1, 2, 4 y 8 |
 | RN-03 | Ninguna selección local reserva stock o producción |
 | RN-04 | La solicitud, entrega y pago se confirman con el negocio por WhatsApp |
 | RN-05 | Retiro sin cargo; envío sin cotización no tiene total final cerrado |
@@ -250,7 +250,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 
 | ID | Tema / estado | Resolución o siguiente acción |
 | --- | --- | --- |
-| P-01 | Resuelto: bollos y presentaciones de mini cookies | Bollos excluidos; packs de 12/24/48/96 a $792 por mini cookie; mínimo aplicado al contenido físico |
+| P-01 | Resuelto: bollos y presentaciones de mini cookies | Bollos excluidos; packs de 12/24/48/96 a $9.500/$19.000/$38.000/$76.000, derivados del pack de 12; mínimo aplicado al contenido físico |
 | P-02 | Resuelto: días y horarios | Retiro y envío de lunes a domingo, de 09:00 a 19:00 |
 | P-03 | Descripciones, ingredientes y alérgenos por producto | Redactar propuestas; información alimentaria debe verificarse antes de publicar la ficha final |
 | P-04 | Fotos de stock y permiso/licencia de uso | Seleccionar recursos permitidos, registrar origen y señalar que son ilustrativos |

@@ -12,7 +12,7 @@ Referencias: RF-01; T-03, T-04, T-07; V-01, V-07.
 
 Cada producto público tiene precio correspondiente a las tablas de spec.md, nombre, foto accesible, descripción e información alimentaria verificada. No se inventan pesos, rellenos o alérgenos. Se ofrecen ocho cookies individuales y cuatro presentaciones de mini cookies, que pueden agruparse en una ficha con selector. Bollos y mini cookies sueltas no tienen acciones de compra. Un cambio de nombre de presentación no duplica ni cambia el ID del producto.
 
-Las presentaciones 12/24/48/96 cuestan $9.504/$19.008/$38.016/$76.032 respectivamente. Seleccionar un tamaño actualiza precio e ID; no se aceptan tamaños fuera de esas opciones.
+Las presentaciones 12/24/48/96 cuestan $9.500/$19.000/$38.000/$76.000 respectivamente, derivados por múltiplos 1/2/4/8 del pack de 12. Seleccionar un tamaño actualiza precio e ID; no se aceptan tamaños fuera de esas opciones.
 
 Referencias: RF-02, RN-12; T-01, T-03, T-06, T-07; V-01, V-02.
 
@@ -20,7 +20,7 @@ Referencias: RF-02, RN-12; T-01, T-03, T-06, T-07; V-01, V-02.
 
 Dos tradicionales a $3.500 suman $7.000. Una tradicional y una de pistacho suman $9.500. Dos tradicionales más una de cacao suman $11.000. Ediciones de cantidades actualizan líneas, subtotal y resumen; no hay errores de redondeo ni precios almacenados usados como autoridad.
 
-Dos packs de 12 mini cookies cuestan $19.008 y contienen 24 mini cookies. Un pack de 12 más una tradicional cuesta $13.004. Un pack de 24 y dos de 12 no se fusionan aunque tengan equivalencia de contenido/precio. El importe de una línea es cantidad de packs × precio del pack, sin volver a multiplicar por 12/24/48/96.
+Dos packs de 12 mini cookies cuestan $19.000 y contienen 24 mini cookies. Un pack de 12 más una tradicional cuesta $13.000. Un pack de 24 y dos de 12 no se fusionan aunque tengan equivalencia de contenido/precio. El importe de una línea es cantidad de packs × precio del pack, sin volver a multiplicar por 12/24/48/96.
 
 Referencias: RF-03, RF-09, RN-02; T-01, T-06, T-08, T-12; V-02.
 
@@ -112,7 +112,7 @@ Referencias: RF-09, RN-05; T-04, T-12; V-02, V-05.
 
 ## CA-18 — Mensaje completo y consistente
 
-El mensaje saluda a Que Cookies y contiene líneas con nombre, unidades de venta, precio por unidad de venta e importe; subtotal; tratamiento de entrega/total; nombre y teléfono; dirección correspondiente a la modalidad; preferencias y comentarios no vacíos. Los packs identifican tamaño, cantidad y contenido total; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.504 c/u — $19.008». Coincide con el último resumen validado y pide confirmación al negocio. No contiene ID de pedido ficticio ni estado de pago.
+El mensaje saluda a Que Cookies y contiene líneas con nombre, unidades de venta, precio por unidad de venta e importe; subtotal; tratamiento de entrega/total; nombre y teléfono; dirección correspondiente a la modalidad; preferencias y comentarios no vacíos. Los packs identifican tamaño, cantidad y contenido total; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.500 c/u — $19.000». Coincide con el último resumen validado y pide confirmación al negocio. No contiene ID de pedido ficticio ni estado de pago.
 
 Referencias: RF-09, RF-10; T-12, T-13; V-05.
 

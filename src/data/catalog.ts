@@ -29,13 +29,15 @@ export const individualCookies: Product[] = flavors.map(([slug, name, pesos, des
   cardImage: `/images/cookies/${cardIllustrations[slug]}.png`,
 }));
 
-export const miniBasePrice = 79200;
+// La presentación de 12 define el precio base; las demás lo multiplican por su tamaño relativo.
+export const miniBasePackSize = 12;
+export const miniBasePackPrice = 950000;
 export const packSizes = [12, 24, 48, 96] as const;
 export const packSizesLabel = new Intl.ListFormat("es-AR", { type: "disjunction" }).format(packSizes.map(String));
 export const miniPacks: Product[] = packSizes.map((size) => ({
   id: `mini-cookies-${size}`, slug: "mini-cookies", name: `Mini cookies × ${size}`,
   description: "Pequeñas para compartir. Elegí la presentación que mejor va con tu plan.",
-  price: size * miniBasePrice, cookiesPerItem: size, kind: "pack", available: true,
+  price: (size / miniBasePackSize) * miniBasePackPrice, cookiesPerItem: size, kind: "pack", available: true,
   image: stockPhotos.assortment,
 }));
 

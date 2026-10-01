@@ -12,11 +12,11 @@ export async function checkOrder(browser) {
   await browser.navigate("/cookies/mini-cookies");
   await clickText(browser, "Agregar pack");
   await browser.navigate("/carrito");
-  await browser.waitFor("document.body.innerText.includes('13.004')");
+  await browser.waitFor("document.body.innerText.includes('13.000')");
   await noOverflow(browser, "carrito móvil");
   await browser.screenshot("cart-390");
   await browser.send("Page.reload");
-  await browser.waitFor("document.body.innerText.includes('13.004')");
+  await browser.waitFor("document.body.innerText.includes('13.000')");
   console.log("OK mínimo, pack, total mixto y persistencia al recargar");
 
   await clickText(browser, "Continuar con mi pedido");
@@ -56,7 +56,7 @@ export async function checkOrder(browser) {
   await clickText(browser, "Continuar por WhatsApp");
   const url = await browser.evaluate("window.__orderUrl");
   const message = new URL(url).searchParams.get("text");
-  assert.match(message, /13\.004/);
+  assert.match(message, /13\.000/);
   assert.match(message, /Calle de prueba 123/);
   assert.match(message, /Villa Carlos Paz, Córdoba/);
   assert.match(message, /a cargo del cliente/);

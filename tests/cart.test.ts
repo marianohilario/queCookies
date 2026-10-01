@@ -20,7 +20,7 @@ test("mínimo por contenido: una individual no; dos o un pack sí", () => {
 
 test("precios individuales y de packs coinciden con la lista del negocio", () => {
   assert.deepEqual(individualCookies.map((p) => p.price), [350000, 400000, 400000, 500000, 500000, 500000, 600000, 400000]);
-  assert.deepEqual(miniPacks.map((p) => p.price), [950400, 1900800, 3801600, 7603200]);
+  assert.deepEqual(miniPacks.map((p) => p.price), [950000, 1900000, 3800000, 7600000]);
   assert.equal(products.some((p) => p.id.startsWith("bollo") || p.id === "mini-cookie"), false);
 });
 
@@ -30,7 +30,7 @@ test("dos packs de 12 mantienen su presentación y no se multiplican dos veces",
   assert.equal(cart[0].productId, "mini-cookies-12");
   assert.equal(cart[0].quantity, 2);
   assert.equal(summary.cookieCount, 24);
-  assert.equal(summary.subtotal, 1900800);
+  assert.equal(summary.subtotal, 1900000);
   const withOtherSize = addItem(cart, miniPacks[1], 1);
   assert.equal(withOtherSize.length, 2);
 });
@@ -39,7 +39,7 @@ test("carrito mixto usa el precio actual, no la copia almacenada", () => {
   const items = [item(traditional.id), item(miniPacks[0].id)];
   items[0].lastPrice = 1;
   const summary = summarizeCart(items);
-  assert.equal(summary.subtotal, 1300400);
+  assert.equal(summary.subtotal, 1300000);
   assert.equal(summary.lines[0].priceChanged, true);
 });
 

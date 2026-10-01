@@ -138,7 +138,7 @@ CV-03/CV-04 y geometría de CV-05 verificados en Chrome emulado. Safe area físi
 - Escenario nuevo `redesign-scenario.mjs`: logo corregido servido en encabezado, rojo calculado en navegador `rgb(146,25,30)`, hero local y diez recursos gráficos con HTTP 200 y tipo imagen.
 - Ilustraciones de tarjetas cargadas y con tamaño visible ≥100 px en la revisión mobile, evitando regresión del escalado automático de srcset.
 - Revisadas capturas home-390.png, home-1440.png, home-catalog-390.png, brand-minis-390.png y checkout-bottom-nav-390.png en `.artifacts/browser/`.
-- Conservado el recorrido: mínimo, packs, total mixto $13.004, precarga de datos, retiro sin domicilio personal, envío con costo pendiente, enlace correcto a WhatsApp, copia manual, almacenamiento corrupto/denegado y sincronización entre pestañas.
+- Conservado el recorrido: mínimo, packs, total mixto $13.000, precarga de datos, retiro sin domicilio personal, envío con costo pendiente, enlace correcto a WhatsApp, copia manual, almacenamiento corrupto/denegado y sincronización entre pestañas.
 - No se instalaron dependencias; herramientas de imagen nativas y motor sharp ya incluido por Next. Las pruebas interceptan WhatsApp y no envían mensajes al negocio.
 
 Resultado: CV-01 a CV-08 revisados dentro del alcance de archivos y Chrome emulado. No se declara publicación, aprobación editorial definitiva ni pruebas físicas de Safari/iOS; permanecen en QC-008/QC-009. Las imágenes de tarjetas son ilustrativas y su procedencia está en docs/assets.md.

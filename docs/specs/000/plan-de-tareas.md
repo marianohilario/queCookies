@@ -20,7 +20,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 ### T-01 — Cerrar catálogo público
 
 - [ ] Confirmar las ocho cookies individuales y sus nombres públicos.
-- [x] Registrar exclusión de bollos y venta de mini cookies exclusivamente en packs de 12, 24, 48 y 96 a $792 por mini cookie.
+- [x] Registrar exclusión de bollos y venta de mini cookies exclusivamente en packs de 12, 24, 48 y 96, con precio cerrado por presentación desde $9.500 en el pack de 12.
 - [x] Preparar las cuatro presentaciones con su precio total, ID, contenido y unidad de venta; implementar mínimo por cookies físicas.
 - [ ] Completar descripciones e información verificada de ingredientes/alérgenos.
 - [ ] Validar precio, moneda y disponibilidad editorial de cada producto.
@@ -79,7 +79,7 @@ Las fases siguientes indican dependencias, no estimaciones de tiempo. Ninguna ta
 ### T-06 — Implementar configuración y catálogo local
 
 - [x] Centralizar marca, contactos, dirección, horario y cobertura.
-- [x] Modelar ocho individuales y cuatro packs con IDs estables, contenido, unidad de venta y precios enteros en centavos; derivar packs desde $792 por mini cookie.
+- [x] Modelar ocho individuales y cuatro packs con IDs estables, contenido, unidad de venta y precios enteros en centavos; derivar packs del precio base del pack de 12.
 - [x] Separar datos de presentación y acceso al catálogo.
 - [ ] Preparar imágenes optimizadas y metadatos de recursos.
 - Dependencias: T-01, T-02, T-03 y T-05; se permiten fixtures identificados durante desarrollo.

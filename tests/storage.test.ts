@@ -5,14 +5,14 @@ import { decodeProfile, encodeProfile, profileFromDraft } from "../src/lib/stora
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
 
 test("restauración conserva IDs, cantidades de packs y referencia de precio", () => {
-  const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 950400 }];
+  const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 950000 }];
   assert.deepEqual(decodeCart(encodeCart(items)), items);
   assert.deepEqual(decodeCart(null), []);
 });
 
 test("datos corruptos, versiones y cantidades inválidas se detectan", () => {
   for (const raw of ["{", '{"version":2,"items":[]}', '{"version":1,"items":[{}]}']) assert.throws(() => decodeCart(raw));
-  assert.throws(() => decodeCart(encodeCart([{ productId: "mini-cookies-12", quantity: 0.5, lastPrice: 950400 }])));
+  assert.throws(() => decodeCart(encodeCart([{ productId: "mini-cookies-12", quantity: 0.5, lastPrice: 950000 }])));
   const line = { productId: "cookie-tradicional", quantity: 1, lastPrice: 350000 };
   assert.throws(() => decodeCart(encodeCart([line, line])));
 });

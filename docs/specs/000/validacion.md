@@ -39,12 +39,12 @@ Usar datos sintéticos. Para comprobar el mensaje recibido por el negocio, coord
 | Mínimo mismo sabor | 2 tradicionales | $7.000 |
 | Mínimo mixto | 1 tradicional + 1 pistacho | $9.500 |
 | Varias unidades | 2 tradicionales + 1 cacao | $11.000 |
-| Pack mínimo | 1 pack de 12 mini cookies | $9.504; continuar habilitado |
-| Pack de 24 | 1 pack de 24 mini cookies | $19.008 |
-| Pack de 48 | 1 pack de 48 mini cookies | $38.016 |
-| Pack de 96 | 1 pack de 96 mini cookies | $76.032 |
-| Varios packs | 2 packs de 12 mini cookies | $19.008; conservar dos packs de 12 |
-| Pedido mixto | 1 pack de 12 + 1 tradicional | $13.004 |
+| Pack mínimo | 1 pack de 12 mini cookies | $9.500; continuar habilitado |
+| Pack de 24 | 1 pack de 24 mini cookies | $19.000 |
+| Pack de 48 | 1 pack de 48 mini cookies | $38.000 |
+| Pack de 96 | 1 pack de 96 mini cookies | $76.000 |
+| Varios packs | 2 packs de 12 mini cookies | $19.000; conservar dos packs de 12 |
+| Pedido mixto | 1 pack de 12 + 1 tradicional | $13.000 |
 
 Para retiro el total coincide con el subtotal y el retiro cuesta $0. Para envío, el subtotal existe pero el total final queda pendiente de cotización.
 
@@ -57,7 +57,7 @@ Fixtures adicionales: producto marcado no disponible, producto eliminado del cat
 - Contrastar las 13 referencias y precios recibidos contra spec.md.
 - Verificar publicación de ocho cookies individuales y cuatro presentaciones comprables de mini cookies, agrupables bajo una ficha con selector.
 - Comprobar exclusión de bollos y ausencia de venta unitaria de mini cookies; P-01 está resuelto.
-- Verificar cálculo de packs: 12/24/48/96 × $792; sin descuentos implícitos ni tamaños arbitrarios.
+- Verificar cálculo de packs: $9.500 por el pack de 12, con múltiplos 1/2/4/8 para 24/48/96; sin descuentos implícitos ni tamaños arbitrarios.
 - Revisar nombre Que Cookies en logo, textos, metadatos y mensajes; conservar el Instagram proporcionado hasta recibir un nuevo enlace.
 - Revisar ingredientes/alérgenos, textos, datos de contacto, retiro y cobertura.
 - Confirmar carácter ilustrativo de fotografías y ausencia de afirmaciones comerciales inventadas.
@@ -206,7 +206,7 @@ La revisión de los documentos de 000 y las reglas del proyecto debe comprobar e
 Revisión manual inicial completada el 2026-09-26 (histórica, anterior a la confirmación de packs y horarios):
 
 - Se verificó la existencia de los cinco archivos y sus enlaces relativos.
-- Se contrastaron las 13 referencias y precios con la imagen del usuario, incluido Mini Cookie a 792 ARS como dato pendiente de confirmar.
+- Se contrastaron las 13 referencias y precios con la imagen del usuario, incluido Mini Cookie a 792 ARS, que después se confirmó como antecedente y no como base de cálculo.
 - Se revisaron RF-01 a RF-11, RN-01 a RN-11, RNF-01 a RNF-07, CA-01 a CA-26, T-01 a T-16 y V-01 a V-09, sus referencias y cobertura.
 - Se comprobó consistencia de WhatsApp, dirección, horario, cobertura, mínimo, envío pendiente y alcance sin backend/pagos.
 - Se precisó la persistencia del precio histórico solo para detectar cambios, sin usarlo para calcular el subtotal.
@@ -221,7 +221,7 @@ Completada el 2026-09-26 tras la nueva información del usuario:
 - Actualizados los cinco documentos con marca pública Que Cookies e identidad visual conservada. Las únicas referencias operativas a `quecookiss` corresponden al Instagram proporcionado y a la ruta existente del proyecto.
 - P-01 y P-02 resueltos: bollos fuera de la web; mini cookies solo en packs de 12/24/48/96; retiro y envío de lunes a domingo de 09:00 a 19:00. En P-08 queda resuelto el nombre y siguen pendientes dominio/alojamiento.
 - Búsqueda de referencias obsoletas: no quedan el nombre anterior como marca activa, horario 22:00 ni bloqueos de selector por días/horas desconocidos.
-- Comprobación aritmética ejecutada con Python, sin leer ni escribir archivos: `792 × {12, 24, 48, 96}` devuelve `{9504, 19008, 38016, 76032}` ARS. También se verificaron equivalentes en centavos, dos packs de 12 por $19.008 y un pack de 12 más una tradicional por $13.004.
+- Comprobación aritmética histórica (superada en QC-033): `792 × {12, 24, 48, 96}` devolvía `{9504, 19008, 38016, 76032}` ARS.
 - RN-12 y RN-13 vinculadas con CA-02/CA-15 y V-01/V-02/V-04. Actualizados los casos de mínimo, persistencia, selección de presentación y mensaje de WhatsApp para distinguir cookies físicas y packs.
 - El mínimo se interpreta por contenido físico: un solo pack cumple; no se exige comprar dos packs. Los precios por presentación ya incluyen su contenido y no se multiplican dos veces por el tamaño.
 
@@ -231,7 +231,7 @@ Resultado: revisión documental y aritmética completada. Las suites V-01 a V-09
 
 - Creado AGENTS.md con reglas permanentes de módulos pequeños, responsabilidad única, legibilidad, reutilización y DRY; reflejadas en RNF-08, arquitectura y CA-27.
 - Documentados dirección visual, tokens, wireframes, estados, adaptación a escritorio y límites de componentes en diseno-ui-ux.md.
-- Contrastados ejemplos de carrito/revisión con el catálogo: una tradicional más un pack de 12 da $13.004; el pack se identifica por su presentación y no necesita otro artículo para cumplir el mínimo.
+- Contrastados ejemplos de carrito/revisión con el catálogo: una tradicional más un pack de 12 da $13.000; el pack se identifica por su presentación y no necesita otro artículo para cumplir el mínimo.
 - Verificados documentalmente los tres pasos del checkout, horario 09:00–19:00, persistencia opcional del perfil, envío a confirmar y apertura de WhatsApp sin confirmación ficticia.
 - Calculadas con Python las relaciones de contraste de los tokens propuestos mediante luminancia relativa sRGB: texto principal/crema 15,16:1; secundario/crema 5,99:1; crema/rojo 8,40:1; rojo/amarillo 5,85:1; foco/crema 7,59:1. Amarillo/crema 1,44:1, por lo que se excluye como combinación de texto o único borde funcional.
 - Actualizada la dependencia de T-07 para que use el diseño documentado de T-04 y permita completar su revisión visual después de implementar, sin dependencia circular.
@@ -272,7 +272,7 @@ Resultado: propuesta de diseño y reglas documentadas, con verificación aritmé
 - Entorno: Google Chrome 153.0.8010.53 instalado en macOS, headless, perfil temporal aislado; sin dependencias de navegador adicionales.
 - Herramienta: scripts/browser-check.mjs con módulos de conexión CDP, entorno, helpers y escenarios. Node WebSocket nativo; servidor de producción efímero. Capturas ignoradas por Git en `.artifacts/browser/`.
 - Inicio y carta: 320, 375, 390, 768 y 1440 px, sin desbordamiento horizontal. Capturas home-390.png y home-1440.png revisadas visualmente.
-- Compra: una tradicional bloquea el mínimo; agregar un pack de 12 habilita y produce $13.004. Carrito persiste al recargar; cart-390.png revisada.
+- Compra: una tradicional bloquea el mínimo; agregar un pack de 12 habilita y produce $13.000. Carrito persiste al recargar; cart-390.png revisada.
 - Checkout de envío: nombre/teléfono, domicilio, fecha/hora y notas; resumen con envío pendiente. Revisión sin overflow en los cinco anchos; checkout-390.png revisada.
 - Click real del CTA mediante DOM: window.open interceptado para inspeccionar destino `5491161919801` y texto íntegro, sin contactar al negocio. Verificados subtotal, dirección, notas y envío pendiente.
 - Perfil: precarga después de recargar, domicilio conservado, fecha/notas no recordadas; cambiar a retiro excluye domicilio personal del mensaje. Borrar perfil conserva carrito.
@@ -284,3 +284,11 @@ Resultado: propuesta de diseño y reglas documentadas, con verificación aritmé
 - `npm run build` y `npm run test:browser`: correctos después de corregir hallazgos. Sin excepciones JS ni errores de consola capturados en el recorrido.
 
 Alcance de evidencia: pruebas reales en Chrome con viewport emulado; no equivalen a Safari/iOS, teclado virtual físico, recepción de WhatsApp o auditoría completa WCAG. Esas verificaciones y contenidos finales permanecen explícitos en QC-008/QC-009. No se ejecutó un despliegue.
+
+### QC-033 — Precios redondos de packs de mini cookies
+
+- Reemplazada la base `miniBasePrice` de 79200 centavos por unidad por `miniBasePackSize` 12 y `miniBasePackPrice` 950000 centavos. Cada pack se deriva como `(size / 12) × 950000`, de modo que 12/24/48/96 dan 9500, 19000, 38000 y 76000 ARS. No queda ningún precio por mini cookie en el modelo ni en la interfaz.
+- El mínimo sigue calculándose por contenido físico y el subtotal por cantidad de packs; la línea de carrito no se multiplica por el tamaño del pack.
+- `npm test`: 28 pruebas correctas, incluidos precios de packs ($9.500/$19.000/$38.000/$76.000), dos packs de 12 por $19.000, mixto con tradicional por $13.000, mensaje de WhatsApp con `$9.500 c/u` y subtotal `$19.000`, y persistencia del precio de referencia del pack de 12.
+- `npm run check`: typecheck, pruebas, build y smoke HTTP correctos.
+- `npm run test:browser`: correcto. Regresión completa en Chrome con el total mixto de $13.000: mínimo, pack, persistencia al recargar, enlace de WhatsApp con ese importe, sincronización entre pestañas, almacenamiento corrupto/denegado y responsive de 320 a 1920 px sin excepciones JS.

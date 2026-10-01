@@ -4,13 +4,13 @@ import { click, clickText } from "./helpers.mjs";
 
 export async function checkStorage(browser) {
   await browser.navigate("/carrito");
-  await browser.waitFor("document.body.innerText.includes('13.004')");
+  await browser.waitFor("document.body.innerText.includes('13.000')");
   const secondTab = await connectBrowser(browser.url);
   try {
     await secondTab.send("Page.navigate", { url: `${browser.origin}/carrito` });
-    await secondTab.waitFor("document.body.innerText.includes('13.004')");
+    await secondTab.waitFor("document.body.innerText.includes('13.000')");
     await secondTab.evaluate("localStorage.setItem('quecookies:cart:v1', JSON.stringify({ version: 1, items: [{ productId: 'cookie-tradicional', quantity: 2, lastPrice: 350000 }] }))");
-    await browser.waitFor("document.body.innerText.includes('7.000') && !document.body.innerText.includes('13.004')");
+    await browser.waitFor("document.body.innerText.includes('7.000') && !document.body.innerText.includes('13.000')");
     console.log("OK sincronización de carrito entre pestañas");
   } finally { secondTab.close(); }
 

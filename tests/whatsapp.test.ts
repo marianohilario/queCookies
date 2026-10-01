@@ -11,10 +11,10 @@ test("mensaje de retiro excluye domicilio y usa precios vigentes", () => {
   const result = prepareOrder(items, draft, now);
   assert.equal(result.ok, true);
   if (!result.ok) return;
-  assert.equal(result.summary.subtotal, 1900800);
+  assert.equal(result.summary.subtotal, 1900000);
   assert.match(result.text, /2 × pack\(s\) de Mini cookies × 12 \(24 mini cookies\)/);
   assert.match(result.text, /Peña 298/);
-  assert.match(result.text, /19\.008/);
+  assert.match(result.text, /19\.000/);
   assert.ok(!result.text.includes("DOMICILIO PRIVADO"));
   assert.ok(!result.text.includes("REFERENCIA PRIVADA"));
   assert.equal(items[0].quantity, 2);
