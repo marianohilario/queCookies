@@ -1,20 +1,37 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decodeCart, encodeCart } from "../src/lib/storage/cart-storage.ts";
+import { evenMix } from "../src/features/catalog/pack-mix.ts";
 import { decodeProfile, encodeProfile, profileFromDraft } from "../src/lib/storage/profile-storage.ts";
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
 
 test("restauración conserva IDs, cantidades de packs y referencia de precio", () => {
-  const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 950000 }];
+  const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 950000, mix: evenMix(12) }];
   assert.deepEqual(decodeCart(encodeCart(items)), items);
   assert.deepEqual(decodeCart(null), []);
 });
 
 test("datos corruptos, versiones y cantidades inválidas se detectan", () => {
-  for (const raw of ["{", '{"version":2,"items":[]}', '{"version":1,"items":[{}]}']) assert.throws(() => decodeCart(raw));
+  for (const raw of ["{", '{"version":3,"items":[]}', '{"version":1,"items":[{}]}']) assert.throws(() => decodeCart(raw));
   assert.throws(() => decodeCart(encodeCart([{ productId: "mini-cookies-12", quantity: 0.5, lastPrice: 950000 }])));
   const line = { productId: "cookie-tradicional", quantity: 1, lastPrice: 350000 };
   assert.throws(() => decodeCart(encodeCart([line, line])));
+});
+
+test("la combinación se persiste y una combinación repetida se rechaza", () => {
+  const pack = { productId: "mini-cookies-12", quantity: 1, lastPrice: 950000, mix: evenMix(12) };
+  assert.deepEqual(decodeCart(encodeCart([pack])), [pack]);
+  assert.throws(() => decodeCart(encodeCart([pack, pack])));
+});
+
+test("una combinación guardada corrupta o incompleta se rechaza", () => {
+  const pack = { productId: "mini-cookies-12", quantity: 1, lastPrice: 950000 };
+  // Se fuerzan datos inválidos a propósito: el contenido guardado no es de confianza.
+  const corrupt = (mix: unknown) => decodeCart(encodeCart([{ ...pack, mix } as never]));
+  assert.throws(() => corrupt({ tradicional: 12 }));
+  assert.throws(() => corrupt({ tradicional: 4, cacao: 4, "red-velvet": -1 }));
+  assert.throws(() => corrupt({ tradicional: 4, cacao: 4, "red-velvet": 4.5 }));
+  assert.throws(() => corrupt({ tradicional: "4", cacao: 4, "red-velvet": 4 }));
 });
 
 test("perfil guarda solo contacto/modalidad/domicilio y omite notas, día y hora", () => {

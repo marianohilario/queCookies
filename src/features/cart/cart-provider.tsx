@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useMemo, useState } from "react";
 import { findProduct } from "@/data/catalog";
-import { addItem, summarizeCart, validQuantity } from "./cart";
+import type { PackMix } from "@/features/catalog/pack-mix";
+import { addItem, lineIdOf, summarizeCart, validQuantity } from "./cart";
 import { useCartStorage } from "./use-cart-storage";
 
 function useCartState() {
@@ -10,20 +11,20 @@ function useCartState() {
   const [announcement, setAnnouncement] = useState("");
   const summary = useMemo(() => summarizeCart(items), [items]);
 
-  function add(productId: string, quantity = 1) {
+  function addToCart(productId: string, quantity = 1, mix?: PackMix) {
     const product = findProduct(productId);
     if (!ready || !product?.available || !validQuantity(quantity)) return;
-    setItems((current) => addItem(current, product, quantity));
+    setItems((current) => addItem(current, product, quantity, mix));
     setAnnouncement(
       `Agregaste ${quantity} ${product.kind === "pack" ? "pack(s) de " : ""}${product.name} al carrito.`,
     );
   }
 
-  function setQuantity(productId: string, quantity: number) {
+  function setQuantity(lineId: string, quantity: number) {
     if (!validQuantity(quantity)) return;
     setItems((current) =>
       current.map((item) =>
-        item.productId === productId ? { ...item, quantity } : item,
+        lineIdOf(item) === lineId ? { ...item, quantity } : item,
       ),
     );
   }
@@ -33,10 +34,10 @@ function useCartState() {
     ready,
     storageNotice,
     announcement,
-    add,
+    add: addToCart,
     setQuantity,
-    remove: (id: string) =>
-      setItems((current) => current.filter((item) => item.productId !== id)),
+    remove: (lineId: string) =>
+      setItems((current) => current.filter((item) => lineIdOf(item) !== lineId)),
     clear: () => setItems([]),
     acknowledgePrices: () =>
       setItems((current) =>

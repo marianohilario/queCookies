@@ -9,12 +9,12 @@ export async function checkStorage(browser) {
   try {
     await secondTab.send("Page.navigate", { url: `${browser.origin}/carrito` });
     await secondTab.waitFor("document.body.innerText.includes('13.000')");
-    await secondTab.evaluate("localStorage.setItem('quecookies:cart:v1', JSON.stringify({ version: 1, items: [{ productId: 'cookie-tradicional', quantity: 2, lastPrice: 350000 }] }))");
+    await secondTab.evaluate("localStorage.setItem('quecookies:cart:v2', JSON.stringify({ version: 2, items: [{ productId: 'cookie-tradicional', quantity: 2, lastPrice: 350000 }] }))");
     await browser.waitFor("document.body.innerText.includes('7.000') && !document.body.innerText.includes('13.000')");
     console.log("OK sincronización de carrito entre pestañas");
   } finally { secondTab.close(); }
 
-  await browser.evaluate("localStorage.setItem('quecookies:cart:v1', '{corrupto')");
+  await browser.evaluate("localStorage.setItem('quecookies:cart:v2', '{corrupto')");
   await browser.send("Page.reload");
   await browser.waitFor("document.body.innerText.includes('No pudimos recuperar')");
   assert.ok(await browser.evaluate("document.body.innerText.includes('Tu próximo antojo')"));

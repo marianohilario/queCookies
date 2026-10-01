@@ -219,12 +219,21 @@ export const packSizes = [12, 24, 48, 96] as const;
 export const packSizesLabel = new Intl.ListFormat("es-AR", {
   type: "disjunction",
 }).format(packSizes.map(String));
+// Los packs de minis se arman solo con estos tres sabores; el cliente define cuántas de cada uno.
+export const miniFlavorSlugs = ["tradicional", "cacao", "red-velvet"] as const;
+export type MiniFlavorSlug = (typeof miniFlavorSlugs)[number];
+
+export const miniFlavors = miniFlavorSlugs.map((slug) => {
+  const product = individualCookies.find((cookie) => cookie.slug === slug)!;
+  return { slug, name: product.name };
+});
+
 export const miniPacks: Product[] = packSizes.map((size) => ({
   id: `mini-cookies-${size}`,
   slug: "mini-cookies",
   name: `Mini cookies × ${size}`,
   description:
-    "Pequeñas para compartir. Elegí la presentación que mejor va con tu plan.",
+    "Pequeñas para compartir, de tradicional, cacao y red velvet. Armá tu combinación sabor por sabor.",
   price: (size / miniBasePackSize) * miniBasePackPrice,
   cookiesPerItem: size,
   kind: "pack",

@@ -1,11 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { prepareOrder } from "../src/features/whatsapp/order-message.ts";
+import { evenMix } from "../src/features/catalog/pack-mix.ts";
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
 
 const now = new Date("2026-10-01T12:00:00Z");
 const draft = { ...emptyDraft, name: "Cliente Ñ & + # % 👋", phone: "+54 9 11 1234-5678", mode: "pickup" as const, date: "2026-10-02", hour: "10", minute: "00", street: "DOMICILIO PRIVADO", number: "1", references: "REFERENCIA PRIVADA" };
-const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 1 }];
+const items = [{ productId: "mini-cookies-12", quantity: 2, lastPrice: 1, mix: evenMix(12) }];
 
 test("mensaje de retiro excluye domicilio y usa precios vigentes", () => {
   const result = prepareOrder(items, draft, now);
@@ -18,6 +19,25 @@ test("mensaje de retiro excluye domicilio y usa precios vigentes", () => {
   assert.ok(!result.text.includes("DOMICILIO PRIVADO"));
   assert.ok(!result.text.includes("REFERENCIA PRIVADA"));
   assert.equal(items[0].quantity, 2);
+});
+
+test("cada combinación de sabores se informa por separado en el mensaje", () => {
+  const first = { tradicional: 6, cacao: 4, "red-velvet": 2 };
+  const second = { tradicional: 0, cacao: 2, "red-velvet": 10 };
+  const result = prepareOrder(
+    [
+      { productId: "mini-cookies-12", quantity: 1, lastPrice: 950000, mix: first },
+      { productId: "mini-cookies-12", quantity: 1, lastPrice: 950000, mix: second },
+    ],
+    draft,
+    now,
+  );
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.match(result.text, /Sabores: 6 Tradicional · 4 Cacao · 2 Red Velvet/);
+  assert.match(result.text, /Sabores: 2 Cacao · 10 Red Velvet/);
+  assert.ok(!result.text.includes("0 Tradicional"));
+  assert.equal(result.summary.subtotal, 1900000);
 });
 
 test("destino y codificación conservan tildes, símbolos, emojis y saltos", () => {

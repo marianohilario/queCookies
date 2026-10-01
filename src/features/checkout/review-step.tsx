@@ -4,6 +4,7 @@ import { business } from "@/config/business";
 import { useCart } from "@/features/cart/cart-provider";
 import { formatMoney } from "@/lib/money";
 import { formatAddress } from "@/features/whatsapp/order-message";
+import { formatPackMix } from "@/features/catalog/pack-mix";
 import { useCheckout } from "./checkout-provider";
 import { composeTime } from "./time-slots";
 import { OrderTotals } from "./order-totals";
@@ -17,10 +18,11 @@ export function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
         <div className="flex items-center justify-between"><h3 className="font-semibold">Tu selección</h3><Link className="min-h-11 py-3 text-sm underline" href="/carrito">Editar</Link></div>
         <ul className="divide-y divide-brand/10">
           {summary.lines.map((line) => (
-            <li key={line.productId} className="flex justify-between gap-4 py-3 text-sm">
+            <li key={line.lineId} className="flex justify-between gap-4 py-3 text-sm">
               <div>{line.quantity} × {line.product?.name}
                 <span className="mt-1 block text-xs text-muted">{formatMoney(line.product?.price ?? 0)} por {line.product?.kind === "pack" ? "pack" : "cookie"}</span>
                 {line.product?.kind === "pack" && <span className="mt-1 block text-xs text-muted">{line.quantity} pack(s) · {line.quantity * line.product.cookiesPerItem} mini cookies</span>}
+                {line.mix && <span className="mt-1 block text-xs text-muted">{formatPackMix(line.mix)}</span>}
               </div>
               <span className="shrink-0 font-medium">{formatMoney(line.amount)}</span>
             </li>

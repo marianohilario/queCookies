@@ -6,6 +6,7 @@ import { checkStorage } from "./browser/storage-scenario.mjs";
 import { checkNavigation } from "./browser/navigation-scenario.mjs";
 import { checkRedesign } from "./browser/redesign-scenario.mjs";
 import { checkCardQuantity } from "./browser/card-quantity-scenario.mjs";
+import { checkPackMix } from "./browser/pack-mix-scenario.mjs";
 
 const browser = await startBrowserCheck();
 try {
@@ -31,6 +32,7 @@ try {
   await checkNavigation(browser);
   await checkRedesign(browser);
   await checkCardQuantity(browser);
+  await checkPackMix(browser);
   await checkOrder(browser);
   await checkStorage(browser);
   assert.equal(browser.errors.length, 0, JSON.stringify(browser.errors));

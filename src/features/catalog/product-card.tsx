@@ -8,9 +8,7 @@ import { useCart } from "../cart/cart-provider";
 
 export function ProductCard({ product }: { product: Product }) {
   const { summary, ready, add, setQuantity, remove } = useCart();
-  const cartLine = summary.lines.find(
-    (line) => line.productId === product.id,
-  );
+  const cartLine = summary.lines.find((line) => line.lineId === product.id);
   const quantity = cartLine?.quantity ?? 0;
 
   function changeQuantity(value: number) {

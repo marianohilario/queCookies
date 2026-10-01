@@ -1,9 +1,10 @@
 import { business } from "../../config/business.ts";
 import { products } from "../../data/catalog.ts";
+import { isCompleteMix, packLineId, type PackMix } from "../catalog/pack-mix.ts";
 import type { Product } from "../catalog/product.ts";
 
-export type CartItem = { productId: string; quantity: number; lastPrice: number };
-export type CartLine = CartItem & { product?: Product; amount: number; priceChanged: boolean };
+export type CartItem = { productId: string; quantity: number; lastPrice: number; mix?: PackMix };
+export type CartLine = CartItem & { lineId: string; product?: Product; amount: number; priceChanged: boolean };
 export type CartSummary = {
   lines: CartLine[]; subtotal: number; articleCount: number;
   cookieCount: number; valid: boolean; issues: string[];
@@ -11,14 +12,21 @@ export type CartSummary = {
 
 export const validQuantity = (value: number) => Number.isSafeInteger(value) && value > 0;
 
+export function lineIdOf(item: Pick<CartItem, "productId" | "mix">) {
+  return packLineId(item.productId, item.mix);
+}
+
 export function summarizeCart(items: CartItem[], catalog: Product[] = products): CartSummary {
   const issues: string[] = [];
   const lines = items.map((item): CartLine => {
     const product = catalog.find((entry) => entry.id === item.productId);
+    const packSize = product?.kind === "pack" ? product.cookiesPerItem : 0;
+    if (product && packSize && !isCompleteMix(item.mix as PackMix, packSize))
+      issues.push("Revisá la combinación de sabores de los packs de mini cookies.");
     const amount = product ? product.price * item.quantity : 0;
     if (!product?.available) issues.push("Quitá los productos no disponibles para continuar.");
     if (!validQuantity(item.quantity) || !Number.isSafeInteger(amount)) issues.push("Revisá las cantidades del carrito.");
-    return { ...item, product, amount: product?.available ? amount : 0, priceChanged: !!product && product.price !== item.lastPrice };
+    return { ...item, lineId: lineIdOf(item), product, amount: product?.available ? amount : 0, priceChanged: !!product && product.price !== item.lastPrice };
   });
   const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
   const articleCount = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -28,11 +36,13 @@ export function summarizeCart(items: CartItem[], catalog: Product[] = products):
   return { lines, subtotal, articleCount, cookieCount, valid: issues.length === 0, issues: [...new Set(issues)] };
 }
 
-export function addItem(items: CartItem[], product: Product, quantity: number): CartItem[] {
+export function addItem(items: CartItem[], product: Product, quantity: number, mix?: PackMix): CartItem[] {
   if (!product.available || !validQuantity(quantity)) return items;
-  const existing = items.find((item) => item.productId === product.id);
+  if (product.kind === "pack" && !isCompleteMix(mix as PackMix, product.cookiesPerItem)) return items;
+  const lineId = lineIdOf({ productId: product.id, mix });
+  const existing = items.find((item) => lineIdOf(item) === lineId);
   const nextQuantity = (existing?.quantity ?? 0) + quantity;
   if (!validQuantity(nextQuantity) || !Number.isSafeInteger(nextQuantity * product.price)) return items;
-  if (!existing) return [...items, { productId: product.id, quantity, lastPrice: product.price }];
-  return items.map((item) => item.productId === product.id ? { ...item, quantity: nextQuantity } : item);
+  if (!existing) return [...items, { productId: product.id, quantity, lastPrice: product.price, ...(mix ? { mix } : {}) }];
+  return items.map((item) => (lineIdOf(item) === lineId ? { ...item, quantity: nextQuantity } : item));
 }
