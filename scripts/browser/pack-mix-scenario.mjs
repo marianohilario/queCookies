@@ -3,6 +3,8 @@ import { click, clickText, viewport } from "./helpers.mjs";
 
 const flavor = (name) => `output[aria-label="${name} en el pack"]`;
 
+const addPackTop = (browser) => browser.evaluate("[...document.querySelectorAll('button')].find(el => el.textContent.includes('Agregar pack')).getBoundingClientRect().top");
+
 async function readMix(browser) {
   return browser.evaluate("[...document.querySelectorAll('output[aria-label$=\" en el pack\"]')].map((el) => Number(el.textContent))");
 }
@@ -22,16 +24,21 @@ export async function checkPackMix(browser) {
   assert.ok(await browser.evaluate("!document.body.innerText.includes('Faltan')"));
   assert.equal(await browser.evaluate("[...document.querySelectorAll('button')].find(el => el.textContent.includes('Agregar pack'))?.disabled"), false);
 
-  // Bajar un sabor abre lugar y bloquea la compra hasta completarla.
+  // Bajar un sabor abre lugar y bloquea la compra hasta completarla, sin mover el botón.
+  const before = await addPackTop(browser);
   await click(browser, 'button[aria-label="Reducir Cacao en el pack"]');
   assert.deepEqual(await readMix(browser), [4, 3, 4]);
   await browser.waitFor("document.body.innerText.includes('Faltan 1')");
   assert.equal(await browser.evaluate("[...document.querySelectorAll('button')].find(el => el.textContent.includes('Agregar pack'))?.disabled"), true);
+  assert.ok(Math.abs(await addPackTop(browser) - before) < 1, "el botón agregar se movió al cambiar la combinación");
+  assert.ok(await browser.evaluate("document.body.innerText.includes('4 Tradicional · 3 Cacao · 4 Red Velvet')"));
+  console.log("OK cambiar la combinación no desplaza el botón de agregar");
 
   // Completar con otro sabor deja lista la combinación y no cambia el precio.
   await click(browser, 'button[aria-label="Aumentar Tradicional en el pack"]');
   assert.deepEqual(await readMix(browser), [5, 3, 4]);
   await browser.waitFor("document.body.innerText.includes('12 minis listas')");
+  assert.ok(Math.abs(await addPackTop(browser) - before) < 1, "el botón agregar se movió al completar el pack");
   assert.ok(await browser.evaluate("document.body.innerText.includes('5 Tradicional · 3 Cacao · 4 Red Velvet')"));
   assert.ok(await browser.evaluate("document.body.innerText.includes('9.500')"));
   console.log("OK combinación de sabores exacta: el total clava en el pack y el precio no cambia");

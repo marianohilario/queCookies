@@ -44,11 +44,11 @@ export function PackMixSelector({ size, mix, onChange }: Props) {
           </div>
         ))}
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
-        <span aria-live="polite" className={complete ? "text-brand" : "text-muted"}>
-          {complete
-            ? `${size} minis listas`
-            : `Faltan ${remaining} para completar el pack`}
+      {/* Estas dos líneas se reservan siempre: el desglose y el mensaje cambian
+          de largo con la combinación, y al cambiar de alto movían el botón de agregar. */}
+      <div className="flex min-h-11 flex-wrap items-center justify-between gap-3 text-sm">
+        <span aria-live="polite" className={`min-w-44 leading-5 ${complete ? "text-brand" : "text-muted"}`}>
+          {complete ? `${size} minis listas` : `Faltan ${remaining} para completar el pack`}
         </span>
         <button
           type="button"
@@ -58,11 +58,12 @@ export function PackMixSelector({ size, mix, onChange }: Props) {
           Reparto equitativo
         </button>
       </div>
-      {complete && (
-        <p className="text-xs leading-5 text-muted">
-          {formatPackMix(mix)}. El precio del pack no cambia según los sabores.
-        </p>
-      )}
+      <p className="min-h-10 text-xs leading-5 text-muted">
+        {formatPackMix(mix)}.
+        {complete
+          ? " El precio del pack no cambia según los sabores."
+          : " Completá el pack para agregarlo al carrito."}
+      </p>
     </fieldset>
   );
 }
