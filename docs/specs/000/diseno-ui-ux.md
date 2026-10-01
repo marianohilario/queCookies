@@ -145,7 +145,7 @@ En el wireframe los tamaños se abrevian en una fila; el componente móvil respe
 
 **Tarjeta individual:** imagen cuadrada, nombre, descripción corta verificada, precio y botón «Agregar». Nombre/imagen enlazan al detalle, sin anidar botones dentro del enlace. Al agregar, se anuncia «Agregaste [nombre]» y se actualiza el carrito sin cambiar de página. Edición completa de cantidades en detalle y carrito.
 
-**Mini cookies:** una tarjeta/sección más amplia con fotografía, texto, selector 12/24/48/96, precio del pack seleccionado y botón «Agregar pack». Valor inicial propuesto: 12, claramente seleccionado. En móvil los cuatro tamaños forman una grilla 2 × 2; en escritorio pueden ocupar una fila. Radios nativos con etiquetas, no botones sin estado accesible. El precio principal siempre es el del pack.
+**Mini cookies:** una tarjeta/sección más amplia con fotografía, texto, selector 12/24/48/96, precio del pack seleccionado y botón «Agregar pack». Valor inicial propuesto: 12, claramente seleccionado. En móvil los cuatro tamaños forman una grilla 2 × 2; en escritorio pueden ocupar una fila. Radios nativos con etiquetas, no botones sin estado accesible. El precio principal siempre es el del pack. La fotografía mantiene proporción 1:1, igual que en la ficha del pack, y se centra verticalmente en lugar de estirarse a la altura de la fila (QC-042).
 
 ## 5. Detalle — `/cookies/[slug]`
 

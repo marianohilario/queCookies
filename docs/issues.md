@@ -62,6 +62,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-041 | Acceso navegable a la ficha de mini cookies | RV-03 / QC-038 | Implementado; enlace en la navegación de escritorio y desde la carta en móvil, recorrido Chrome en ambos anchos |
 
+| QC-042 | Acotar el alto de la imagen de minis en la carta, que se estiraba a 3,75:1 | RV-03 / QC-038 | Implementado; proporción 1:1 como la ficha, recorrido Chrome a 390, 768 y 1440 px |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.

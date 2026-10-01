@@ -318,3 +318,11 @@ Decisión del usuario: los packs se arman solo con tradicional, cacao y red velv
 - La ficha `/cookies/mini-cookies`, donde vive el selector de sabores, solo se alcanzaba desde el banner del inicio. En escritorio el enlace «Mini cookies» del header apuntaba al ancla `#minis` de la carta; ahora abre la ficha. La barra móvil de cuatro accesos (QC-013) se mantiene sin cambios y desde la carta se añadió el enlace «Ver la ficha completa de mini cookies», que es el camino en móvil.
 - El CTA «Mini cookies» del hero y el ancla de la carta siguen apuntando a la sección, donde ya se puede comprar sin cambiar de página.
 - `npm run test:browser`: correcto. El escenario abre la ficha desde la navegación de escritorio y desde la carta a 390 px, sin desbordamiento horizontal.
+
+### QC-042 — Alto de la imagen de minis en la carta
+
+- La imagen de la sección de minis en `/cookies` se estiraba a la altura de la fila del grid porque el contenedor de la imagen no fijaba proporción. Medido en Chrome: 303 × 1138 px a 768 px (proporción 3,75) y 623 × 1039 px a 1440 px (1,67), frente a 1:1 en la ficha del pack.
+- Se acotó a `aspect-square` con `self-center`, igual que la ficha. Quedó en 1:1 a 390, 768 y 1440 px.
+- El escenario `checkMiniSectionImage` mide la proporción en carta y ficha a esos tres anchos, comprueba que la imagen no se salga de la tarjeta y que no haya desbordamiento horizontal. Se verificó que falla sin el arreglo («imagen de minis deformada a 390px: ratio 0.83»).
+- `npm run check` (42 de 42), `npm run smoke` y `npm run test:browser` (29 comprobaciones): correctos.
+- No verificado: la captura no se revisó por vista en esta sesión.
