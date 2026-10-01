@@ -9,8 +9,8 @@ const links = [
 
 export function Header() {
   return (
-    <header className="relative z-20 border-b border-brand/10 bg-cream">
-      <div className="page-container flex h-20 items-center justify-center gap-4 md:h-22 md:justify-between">
+    <header className="z-20 border-b border-brand/10 bg-cream md:sticky md:top-0">
+      <div className="page-container flex h-(--header-height) items-center justify-center gap-4 md:justify-between">
         <Brand />
         <nav aria-label="Navegación principal" className="hidden items-center gap-8 text-sm font-medium md:flex">
           {links.map(([href, label]) => <Link key={href} href={href} className="nav-link">{label}</Link>)}
