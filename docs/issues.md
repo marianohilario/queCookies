@@ -46,6 +46,8 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-033 | Precios redondos en packs de mini cookies desde $9.500 por presentación de 12 | P-01 / RN-02 / CA-02 / CA-04 / docs/specs/000/validacion.md | Implementado; base única en catálogo, 28 pruebas, build, smoke y regresión Chrome correctos |
 
+| QC-034 | Ingredientes y alérgenos verificados por cookie individual | P-03 / P-09 / docs/specs/000/diseno-ui-ux.md | Implementado; 8 recetas y alérgenos del negocio en catálogo, minis sin datos inventados, 33 pruebas, build y HTML generado correctos. Soja de Nutella y tipo de harina pendientes de validar |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.

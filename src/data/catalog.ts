@@ -16,6 +16,44 @@ const flavors = [
   ["cacao-chocolate-blanco", "Cacao y chocolate blanco", 4000, "Dos protagonistas para una misma pausa."],
 ] as const;
 
+type FlavorSlug = (typeof flavors)[number][0];
+
+// Recetas de las ocho cookies individuales aportadas por el negocio.
+const flavorRecipes: Record<FlavorSlug, { ingredients: readonly string[]; allergens: readonly string[] }> = {
+  tradicional: {
+    ingredients: ["Harina", "Azúcar blanca", "Azúcar rubia", "Vainillín", "Mantequilla", "Bicarbonato", "Polvo de hornear", "Sal", "Chips negros", "Chocolate semi amargo", "Huevo"],
+    allergens: ["Trigo", "Leche", "Huevo"],
+  },
+  cacao: {
+    ingredients: ["Mantequilla", "Azúcar rubia", "Azúcar blanca", "Cacao amargo", "Harina", "Bicarbonato", "Huevo", "Sal", "Chocolate semi amargo", "Chips negros"],
+    allergens: ["Trigo", "Leche", "Huevo"],
+  },
+  "red-velvet": {
+    ingredients: ["Mantequilla", "Azúcar rubia", "Azúcar blanca", "Cacao amargo", "Harina", "Bicarbonato", "Sal", "Chocolate blanco", "Chips blancos", "Polvo de hornear", "Vainillín", "Huevo"],
+    allergens: ["Trigo", "Leche", "Huevo"],
+  },
+  "bon-o-bon": {
+    ingredients: ["Harina", "Azúcar blanca", "Azúcar rubia", "Vainillín", "Mantequilla", "Bicarbonato", "Polvo de hornear", "Sal", "Chocolate con leche", "Bon o Bon", "Huevo"],
+    allergens: ["Trigo", "Leche", "Huevo", "Maní"],
+  },
+  nutella: {
+    ingredients: ["Harina", "Azúcar blanca", "Azúcar rubia", "Vainillín", "Mantequilla", "Bicarbonato", "Polvo de hornear", "Sal", "Chocolate con leche", "Nutella", "Huevo"],
+    allergens: ["Trigo", "Leche", "Huevo", "Avellana"],
+  },
+  "red-velvet-rellena": {
+    ingredients: ["Huevo", "Mantequilla", "Azúcar rubia", "Azúcar blanca", "Cacao amargo", "Harina", "Bicarbonato", "Sal", "Chocolate blanco", "Chips blancos", "Polvo de hornear", "Vainillín", "Pins blanco", "Crema de leche"],
+    allergens: ["Trigo", "Leche", "Huevo"],
+  },
+  pistacho: {
+    ingredients: ["Harina", "Azúcar blanca", "Azúcar rubia", "Vainillín", "Mantequilla", "Bicarbonato", "Polvo de hornear", "Sal", "Chocolate blanco", "Pasta de pistacho", "Pins blanco", "Crema de leche", "Pistachos", "Huevo"],
+    allergens: ["Trigo", "Leche", "Huevo", "Pistacho"],
+  },
+  "cacao-chocolate-blanco": {
+    ingredients: ["Mantequilla", "Azúcar rubia", "Azúcar blanca", "Cacao amargo", "Harina", "Bicarbonato", "Sal", "Chocolate blanco", "Chips blancos", "Huevo"],
+    allergens: ["Trigo", "Leche", "Huevo"],
+  },
+};
+
 const cardIllustrations: Record<string, string> = {
   tradicional: "traditional", cacao: "chocolate", "red-velvet": "red-velvet",
   "bon-o-bon": "chocolate", nutella: "chocolate", "red-velvet-rellena": "red-velvet",
@@ -27,6 +65,7 @@ export const individualCookies: Product[] = flavors.map(([slug, name, pesos, des
   cookiesPerItem: 1, kind: "individual", available: true,
   image: index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
   cardImage: `/images/cookies/${cardIllustrations[slug]}.png`,
+  ...flavorRecipes[slug],
 }));
 
 // La presentación de 12 define el precio base; las demás lo multiplican por su tamaño relativo.

@@ -9,4 +9,6 @@ export type Product = {
   available: boolean;
   image: string;
   cardImage?: string;
+  ingredients?: readonly string[];
+  allergens?: readonly string[];
 };

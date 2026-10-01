@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findBySlug, products } from "@/data/catalog";
 import { ProductImage } from "@/features/catalog/product-image";
+import { ProductIngredients } from "@/features/catalog/product-ingredients";
 import { PurchaseControls } from "@/features/catalog/purchase-controls";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -25,10 +26,7 @@ export default async function ProductPage({ params }: Props) {
           <h1 className="section-title mt-4">{product.kind === "pack" ? "Mini cookies" : product.name}</h1>
           <p className="mt-5 leading-7 text-muted">{product.description}</p>
           <PurchaseControls productId={product.id} />
-          <div className="mt-8 border-t border-brand/15 pt-6">
-            <h2 className="font-semibold">Ingredientes y alérgenos</h2>
-            <p className="mt-2 text-sm leading-6 text-muted">Estamos completando las fichas de cada sabor. Consultanos los ingredientes, alérgenos y posibles trazas antes de pedir.</p>
-          </div>
+          <ProductIngredients product={product} />
         </div>
       </div>
     </section>
