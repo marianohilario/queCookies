@@ -4,24 +4,24 @@ Estado: arquitectura para [la especificación R1](./spec.md). Base inicializada 
 
 ## 1. Decisiones de stack
 
-| Área | Decisión / estado |
-| --- | --- |
-| Framework | Next.js con App Router, acordado |
-| Estilos | Tailwind CSS, acordado |
-| UI base | React y React DOM, dependencias propias de Next.js |
-| Lenguaje | TypeScript, propuesto y aceptado en la dirección técnica conversada |
-| Versiones | Next.js 16.3.6, React 19.3.0, Tailwind 4.3.3, TypeScript 5.9.3; package-lock.json versionado |
-| Gestor de paquetes | npm; desarrollo con Node.js 24.20.0 / npm 11.19.0 |
-| Estado interactivo | Hooks y Context de React, sin store externo inicialmente |
-| Formularios | Controles nativos y validaciones propias pequeñas, sin librería adicional inicialmente |
-| Persistencia | localStorage a través de un adaptador defensivo |
-| Imágenes | next/image; recursos de stock elegidos y optimizados, preferentemente locales |
-| Tipografía | next/font o archivos locales con licencia adecuada |
-| Iconografía | SVG propios o recursos con licencia adecuada; sin paquete de iconos inicialmente |
-| WhatsApp | Enlace wa.me y texto codificado; sin SDK ni API de mensajería |
-| Backend / base de datos / pagos | Fuera del release |
-| Hosting | Pendiente, según modalidad de despliegue y dominio |
-| Pruebas y lint | TypeScript/build, node:test/node:assert y Chrome instalado mediante DevTools/WebSocket nativo de Node. Sin paquetes adicionales de lint/testing; Safari y dispositivos físicos pendientes |
+| Área                            | Decisión / estado                                                                                                                                                                         |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework                       | Next.js con App Router, acordado                                                                                                                                                          |
+| Estilos                         | Tailwind CSS, acordado                                                                                                                                                                    |
+| UI base                         | React y React DOM, dependencias propias de Next.js                                                                                                                                        |
+| Lenguaje                        | TypeScript, propuesto y aceptado en la dirección técnica conversada                                                                                                                       |
+| Versiones                       | Next.js 16.3.6, React 19.3.0, Tailwind 4.3.3, TypeScript 5.9.3; package-lock.json versionado                                                                                              |
+| Gestor de paquetes              | npm; desarrollo con Node.js 24.20.0 / npm 11.19.0                                                                                                                                         |
+| Estado interactivo              | Hooks y Context de React, sin store externo inicialmente                                                                                                                                  |
+| Formularios                     | Controles nativos y validaciones propias pequeñas, sin librería adicional inicialmente                                                                                                    |
+| Persistencia                    | localStorage a través de un adaptador defensivo                                                                                                                                           |
+| Imágenes                        | next/image; recursos de stock elegidos y optimizados, preferentemente locales                                                                                                             |
+| Tipografía                      | next/font o archivos locales con licencia adecuada                                                                                                                                        |
+| Iconografía                     | SVG propios o recursos con licencia adecuada; sin paquete de iconos inicialmente                                                                                                          |
+| WhatsApp                        | Enlace wa.me y texto codificado; sin SDK ni API de mensajería                                                                                                                             |
+| Backend / base de datos / pagos | Fuera del release                                                                                                                                                                         |
+| Hosting                         | Pendiente, según modalidad de despliegue y dominio                                                                                                                                        |
+| Pruebas y lint                  | TypeScript/build, node:test/node:assert y Chrome instalado mediante DevTools/WebSocket nativo de Node. Sin paquetes adicionales de lint/testing; Safari y dispositivos físicos pendientes |
 
 Cualquier dependencia adicional, incluso de desarrollo o componentes UI, se conversa antes de instalar. No ejecutar un scaffolding que incorpore silenciosamente paquetes opcionales. Las dependencias técnicas necesarias de Next.js, React, Tailwind y TypeScript se documentarán al preparar el entorno.
 
@@ -47,16 +47,16 @@ Un adaptador de catálogo podrá consumir el SaaS; un servicio de cotización va
 
 Rutas:
 
-| Ruta | Responsabilidad |
-| --- | --- |
-| `/` | Inicio, destacados y accesos |
-| `/cookies` | Carta |
-| `/cookies/[slug]` | Detalle compartible e indexable |
-| `/carrito` | Selección editable |
-| `/checkout` | Contacto, entrega y revisión en pasos lógicos |
-| `/preguntas-frecuentes` | Respuestas operativas |
-| `/nosotros` | Historia y contacto |
-| `/privacidad` | Explicación breve del tratamiento real de datos locales y WhatsApp |
+| Ruta                    | Responsabilidad                                                    |
+| ----------------------- | ------------------------------------------------------------------ |
+| `/`                     | Inicio, destacados y accesos                                       |
+| `/cookies`              | Carta                                                              |
+| `/cookies/[slug]`       | Detalle compartible e indexable                                    |
+| `/carrito`              | Selección editable                                                 |
+| `/checkout`             | Contacto, entrega y revisión en pasos lógicos                      |
+| `/preguntas-frecuentes` | Respuestas operativas                                              |
+| `/nosotros`             | Historia y contacto                                                |
+| `/privacidad`           | Explicación breve del tratamiento real de datos locales y WhatsApp |
 
 Los pasos del checkout pueden convivir en una sola ruta para reducir complejidad. La navegación permite volver sin perder el borrador. No habrá `/pedido-confirmado` ni una ruta de seguimiento en R1.
 
