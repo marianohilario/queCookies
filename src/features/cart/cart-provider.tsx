@@ -3,7 +3,9 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import { findProduct } from "@/data/catalog";
 import type { PackMix } from "@/features/catalog/pack-mix";
-import { addItem, lineIdOf, summarizeCart, validQuantity } from "./cart";
+import type { PackDips } from "@/features/catalog/pack-dips";
+import { formatPackDips, hasDips } from "@/features/catalog/pack-dips";
+import { addItem, lineIdOf, summarizeCart, unitPrice, validQuantity } from "./cart";
 import { useCartStorage } from "./use-cart-storage";
 
 function useCartState() {
@@ -11,12 +13,12 @@ function useCartState() {
   const [announcement, setAnnouncement] = useState("");
   const summary = useMemo(() => summarizeCart(items), [items]);
 
-  function addToCart(productId: string, quantity = 1, mix?: PackMix) {
+  function addToCart(productId: string, quantity = 1, mix?: PackMix, dips?: PackDips) {
     const product = findProduct(productId);
     if (!ready || !product?.available || !validQuantity(quantity)) return;
-    setItems((current) => addItem(current, product, quantity, mix));
+    setItems((current) => addItem(current, product, quantity, mix, dips));
     setAnnouncement(
-      `Agregaste ${quantity} ${product.kind === "pack" ? "pack(s) de " : ""}${product.name} al carrito.`,
+      `Agregaste ${quantity} ${product.kind === "pack" ? "pack(s) de " : ""}${product.name} al carrito.${hasDips(dips) ? ` Con ${formatPackDips(dips!)}.` : ""}`,
     );
   }
 
@@ -41,10 +43,10 @@ function useCartState() {
     clear: () => setItems([]),
     acknowledgePrices: () =>
       setItems((current) =>
-        current.map((item) => ({
-          ...item,
-          lastPrice: findProduct(item.productId)?.price ?? item.lastPrice,
-        })),
+        current.map((item) => {
+          const product = findProduct(item.productId);
+          return product ? { ...item, lastPrice: unitPrice(product, item) } : item;
+        }),
       ),
   };
 }

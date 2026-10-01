@@ -2,11 +2,13 @@ import assert from "node:assert/strict";
 import { click, clickText, viewport } from "./helpers.mjs";
 
 const flavor = (name) => `output[aria-label="${name} en el pack"]`;
+const MIX_LABELS = ["Tradicional en el pack", "Cacao en el pack", "Red Velvet en el pack"];
 
 const addPackTop = (browser) => browser.evaluate("[...document.querySelectorAll('button')].find(el => el.textContent.includes('Agregar pack')).getBoundingClientRect().top");
 
 async function readMix(browser) {
-  return browser.evaluate("[...document.querySelectorAll('output[aria-label$=\" en el pack\"]')].map((el) => Number(el.textContent))");
+  // Los dips usan contadores propios: se leen solo los tres sabores del pack.
+  return browser.evaluate(`${JSON.stringify(MIX_LABELS)}.map((label) => Number(document.querySelector(\`output[aria-label="${'${label}'}"]\`)?.textContent))`);
 }
 
 async function expectMix(browser, name, quantity) {
@@ -64,10 +66,10 @@ export async function checkPackMix(browser) {
   console.log("OK dos combinaciones del mismo pack quedan como líneas separadas");
 
   // Cada combinación persistida es la que el mensaje de WhatsApp detallará.
-  const persisted = await browser.evaluate("JSON.parse(localStorage.getItem('quecookies:cart:v2')).items.filter((item) => item.mix).map((item) => Object.values(item.mix).join('/')).join(' ; ')");
+  const persisted = await browser.evaluate("JSON.parse(localStorage.getItem('quecookies:cart:v3')).items.filter((item) => item.mix).map((item) => Object.values(item.mix).join('/')).join(' ; ')");
   assert.match(persisted, /5\/3\/4 ; 3\/4\/5/);
   console.log("OK cada combinación queda guardada por separado para el pedido");
 
   // Se deja el carrito como estaba para no arrastrar packs a los escenarios siguientes.
-  await browser.evaluate("localStorage.removeItem('quecookies:cart:v2')");
+  await browser.evaluate("localStorage.removeItem('quecookies:cart:v3')");
 }

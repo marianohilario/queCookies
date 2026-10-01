@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { decodeCart, encodeCart } from "../src/lib/storage/cart-storage.ts";
 import { evenMix } from "../src/features/catalog/pack-mix.ts";
+import { dipsAmount, noDips } from "../src/features/catalog/pack-dips.ts";
 import { decodeProfile, encodeProfile, profileFromDraft } from "../src/lib/storage/profile-storage.ts";
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
 
@@ -12,7 +13,7 @@ test("restauración conserva IDs, cantidades de packs y referencia de precio", (
 });
 
 test("datos corruptos, versiones y cantidades inválidas se detectan", () => {
-  for (const raw of ["{", '{"version":3,"items":[]}', '{"version":1,"items":[{}]}']) assert.throws(() => decodeCart(raw));
+  for (const raw of ["{", '{"version":4,"items":[]}', '{"version":1,"items":[{}]}']) assert.throws(() => decodeCart(raw));
   assert.throws(() => decodeCart(encodeCart([{ productId: "mini-cookies-12", quantity: 0.5, lastPrice: 950000 }])));
   const line = { productId: "cookie-tradicional", quantity: 1, lastPrice: 350000 };
   assert.throws(() => decodeCart(encodeCart([line, line])));
@@ -32,6 +33,28 @@ test("una combinación guardada corrupta o incompleta se rechaza", () => {
   assert.throws(() => corrupt({ tradicional: 4, cacao: 4, "red-velvet": -1 }));
   assert.throws(() => corrupt({ tradicional: 4, cacao: 4, "red-velvet": 4.5 }));
   assert.throws(() => corrupt({ tradicional: "4", cacao: 4, "red-velvet": 4 }));
+});
+
+test("los dips se persisten con la línea y una combinación repetida se rechaza", () => {
+  const pack = { productId: "mini-cookies-12", quantity: 1, mix: evenMix(12), dips: { nutella: 2, "chocolate-blanco": 0 } };
+  const line = { ...pack, lastPrice: 950000 + dipsAmount(pack.dips) };
+  assert.deepEqual(decodeCart(encodeCart([line])), [line]);
+  assert.throws(() => decodeCart(encodeCart([line, line])));
+  // Mismos dips pero distinta combinación: siguen siendo líneas distintas.
+  const other = { ...line, mix: { tradicional: 6, cacao: 4, "red-velvet": 2 } };
+  assert.equal(decodeCart(encodeCart([line, other])).length, 2);
+});
+
+test("dips guardados corruptos, con sabores desconocidos o negativos se rechazan", () => {
+  const pack = { productId: "mini-cookies-12", quantity: 1, lastPrice: 950000, mix: evenMix(12) };
+  const corrupt = (dips: unknown) => decodeCart(encodeCart([{ ...pack, dips } as never]));
+  assert.throws(() => corrupt({ nutella: 1 }));
+  assert.throws(() => corrupt({ nutella: -1, "chocolate-blanco": 0 }));
+  assert.throws(() => corrupt({ nutella: 1.5, "chocolate-blanco": 0 }));
+  assert.throws(() => corrupt({ nutella: "1", "chocolate-blanco": 0 }));
+  assert.throws(() => corrupt({ nutella: 1, "chocolate-blanco": 0, "dulce-de-leche": 3 }));
+  // Un registro válido de cero dips es la misma línea que no pedir ninguno: se normaliza.
+  assert.deepEqual(decodeCart(encodeCart([{ ...pack, dips: noDips }])), [pack]);
 });
 
 test("perfil guarda solo contacto/modalidad/domicilio y omite notas, día y hora", () => {

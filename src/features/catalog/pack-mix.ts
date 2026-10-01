@@ -1,4 +1,5 @@
 import { miniFlavorSlugs, miniFlavors, type MiniFlavorSlug } from "../../data/catalog.ts";
+import { isCountRecord } from "../../lib/counts.ts";
 
 export type PackMix = Record<MiniFlavorSlug, number>;
 
@@ -14,9 +15,7 @@ export function evenMix(size: number): PackMix {
 }
 
 export const isPackMix = (mix: unknown): mix is PackMix =>
-  !!mix &&
-  typeof mix === "object" &&
-  miniFlavorSlugs.every((slug) => Number.isSafeInteger((mix as PackMix)[slug]) && (mix as PackMix)[slug] >= 0);
+  isCountRecord(mix, miniFlavorSlugs);
 
 export function isCompleteMix(mix: unknown, size: number): mix is PackMix {
   return isPackMix(mix) && mixTotal(mix) === size;
@@ -39,11 +38,8 @@ export function stepMix(mix: PackMix, slug: MiniFlavorSlug, delta: number, size:
   return next;
 }
 
-export function packLineId(productId: string, mix: PackMix | undefined) {
-  return mix
-    ? `${productId}#${miniFlavorSlugs.map((slug) => `${slug}:${mix[slug]}`).join("|")}`
-    : productId;
-}
+export const mixLineId = (mix: PackMix) =>
+  miniFlavorSlugs.map((slug) => `${slug}:${mix[slug]}`).join("|");
 
 export function formatPackMix(mix: PackMix) {
   return miniFlavors

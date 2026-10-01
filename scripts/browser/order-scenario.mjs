@@ -96,6 +96,6 @@ export async function checkOrder(browser) {
   await clickText(browser, "Editar datos");
   await clickText(browser, "Borrar mis datos guardados");
   assert.equal(await browser.evaluate("localStorage.getItem('quecookies:profile:v1')"), null);
-  assert.ok(await browser.evaluate("localStorage.getItem('quecookies:cart:v2')"));
+  assert.ok(await browser.evaluate("localStorage.getItem('quecookies:cart:v3')"));
   console.log("OK precarga, retiro sin domicilio, copia manual ante permiso denegado y borrado independiente del perfil");
 }

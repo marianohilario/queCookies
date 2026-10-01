@@ -5,6 +5,8 @@ import { useCart } from "@/features/cart/cart-provider";
 import { formatMoney } from "@/lib/money";
 import { formatAddress } from "@/features/whatsapp/order-message";
 import { formatPackMix } from "@/features/catalog/pack-mix";
+import { formatPackDips, hasDips } from "@/features/catalog/pack-dips";
+import { unitPrice } from "@/features/cart/cart";
 import { useCheckout } from "./checkout-provider";
 import { composeTime } from "./time-slots";
 import { OrderTotals } from "./order-totals";
@@ -20,9 +22,10 @@ export function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
           {summary.lines.map((line) => (
             <li key={line.lineId} className="flex justify-between gap-4 py-3 text-sm">
               <div>{line.quantity} × {line.product?.name}
-                <span className="mt-1 block text-xs text-muted">{formatMoney(line.product?.price ?? 0)} por {line.product?.kind === "pack" ? "pack" : "cookie"}</span>
+                <span className="mt-1 block text-xs text-muted">{formatMoney(line.product ? unitPrice(line.product, line) : 0)} por {line.product?.kind === "pack" ? "pack" : "cookie"}</span>
                 {line.product?.kind === "pack" && <span className="mt-1 block text-xs text-muted">{line.quantity} pack(s) · {line.quantity * line.product.cookiesPerItem} mini cookies</span>}
                 {line.mix && <span className="mt-1 block text-xs text-muted">{formatPackMix(line.mix)}</span>}
+                {hasDips(line.dips) && <span className="mt-1 block text-xs text-muted">Dips: {formatPackDips(line.dips!)}</span>}
               </div>
               <span className="shrink-0 font-medium">{formatMoney(line.amount)}</span>
             </li>

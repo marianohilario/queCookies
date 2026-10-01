@@ -6,8 +6,11 @@ import { formatMoney } from "@/lib/money";
 import { Button } from "@/components/ui/button";
 import { QuantitySelector } from "@/components/ui/quantity-selector";
 import { useCart } from "@/features/cart/cart-provider";
+import { unitPrice } from "@/features/cart/cart";
 import { evenMix, isCompleteMix, type PackMix } from "./pack-mix";
 import { PackMixSelector } from "./pack-mix-selector";
+import { noDips, type PackDips } from "./pack-dips";
+import { PackDipSelector } from "./pack-dip-selector";
 
 export function PurchaseControls({ productId }: { productId: string }) {
   const [selectedId, setSelectedId] = useState(productId);
@@ -27,7 +30,7 @@ export function PurchaseControls({ productId }: { productId: string }) {
       ready={ready}
       onSelectPack={(id) => { setSelectedId(id); setAdded(false); }}
       onQuantity={(value) => { setQuantity(value); setAdded(false); }}
-      onAdd={(mix) => { add(product.id, quantity, mix); setAdded(true); }}
+      onAdd={(mix, dips) => { add(product.id, quantity, mix, dips); setAdded(true); }}
     />
   ) : (
     <div className="mt-7 space-y-5">
@@ -51,13 +54,15 @@ type PackProps = {
   ready: boolean;
   onSelectPack: (id: string) => void;
   onQuantity: (value: number) => void;
-  onAdd: (mix: PackMix) => void;
+  onAdd: (mix: PackMix, dips: PackDips) => void;
 };
 
 function PackPurchase({ product, quantity, added, ready, onSelectPack, onQuantity, onAdd }: PackProps) {
   const size = product.cookiesPerItem;
   const [mix, setMix] = useState<PackMix>(() => evenMix(size));
+  const [dips, setDips] = useState<PackDips>(noDips);
   const complete = isCompleteMix(mix, size);
+  const price = unitPrice(product, { dips });
 
   return (
     <div className="mt-7 space-y-5">
@@ -74,13 +79,14 @@ function PackPurchase({ product, quantity, added, ready, onSelectPack, onQuantit
         </div>
       </fieldset>
       <PackMixSelector size={size} mix={mix} onChange={setMix} />
-      <p className="text-2xl font-semibold" aria-live="polite">{formatMoney(product.price)} <span className="text-sm font-normal text-muted">por pack</span></p>
+      <PackDipSelector dips={dips} onChange={setDips} />
+      <p className="text-2xl font-semibold" aria-live="polite">{formatMoney(price)} <span className="text-sm font-normal text-muted">por pack</span></p>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="text-sm">Cantidad de packs</span>
         <QuantitySelector value={quantity} onChange={onQuantity} label="packs" />
       </div>
-      <Button className="w-full" disabled={!ready || !product.available || !complete} onClick={() => onAdd(mix)}>
-        {product.available ? `Agregar pack · ${formatMoney(product.price * quantity)}` : "No disponible"}
+      <Button className="w-full" disabled={!ready || !product.available || !complete} onClick={() => onAdd(mix, dips)}>
+        {product.available ? `Agregar pack · ${formatMoney(price * quantity)}` : "No disponible"}
       </Button>
       <p className="min-h-5 text-sm text-brand" role="status">{added ? "¡Ya está en tu carrito! Podés seguir eligiendo." : ""}</p>
     </div>

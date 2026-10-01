@@ -1,7 +1,8 @@
 import { business } from "../../config/business.ts";
 import { formatMoney } from "../../lib/money.ts";
 import { formatPackMix } from "../catalog/pack-mix.ts";
-import { summarizeCart } from "../cart/cart.ts";
+import { formatPackDips, hasDips } from "../catalog/pack-dips.ts";
+import { summarizeCart, unitPrice } from "../cart/cart.ts";
 import type { CartItem } from "../cart/cart.ts";
 import type { CheckoutDraft } from "../checkout/checkout.ts";
 import { validateCheckout } from "../checkout/validation.ts";
@@ -21,9 +22,13 @@ export function prepareOrder(items: CartItem[], draft: CheckoutDraft, now = new 
   const lines = summary.lines.flatMap((line) => {
     const product = line.product!;
     const unit = product.kind === "pack" ? `pack(s) de ${product.name} (${line.quantity * product.cookiesPerItem} mini cookies)` : product.name;
-    const row = `• ${line.quantity} × ${unit} — ${formatMoney(product.price)} c/u — ${formatMoney(line.amount)}`;
-    // Cada combinación es una línea propia del pedido: el negocio tiene que ver el detalle exacto.
-    return line.mix ? [row, `   Sabores: ${formatPackMix(line.mix)}`] : [row];
+    const row = `• ${line.quantity} × ${unit} — ${formatMoney(unitPrice(product, line))} c/u — ${formatMoney(line.amount)}`;
+    // Cada combinación y cada extra son una línea propia del pedido: el negocio tiene que ver el detalle exacto.
+    return [
+      row,
+      ...(line.mix ? [`   Sabores: ${formatPackMix(line.mix)}`] : []),
+      ...(hasDips(line.dips) ? [`   Dips: ${formatPackDips(line.dips!)}`] : []),
+    ];
   });
   const dateLabel = draft.date.split("-").reverse().join("/");
   const text = [

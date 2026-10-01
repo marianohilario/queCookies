@@ -7,6 +7,7 @@ import { checkNavigation, checkMiniCookiesAccess } from "./browser/navigation-sc
 import { checkMiniSectionImage, checkRedesign } from "./browser/redesign-scenario.mjs";
 import { checkCardQuantity } from "./browser/card-quantity-scenario.mjs";
 import { checkPackMix } from "./browser/pack-mix-scenario.mjs";
+import { checkPackDips } from "./browser/pack-dip-scenario.mjs";
 
 const browser = await startBrowserCheck();
 try {
@@ -35,6 +36,7 @@ try {
   await checkMiniSectionImage(browser);
   await checkCardQuantity(browser);
   await checkPackMix(browser);
+  await checkPackDips(browser);
   await checkOrder(browser);
   await checkStorage(browser);
   assert.equal(browser.errors.length, 0, JSON.stringify(browser.errors));

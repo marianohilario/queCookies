@@ -8,7 +8,9 @@ import { QuantitySelector } from "@/components/ui/quantity-selector";
 import { Notice } from "@/components/ui/notice";
 import { OrderTotals } from "@/features/checkout/order-totals";
 import { formatPackMix } from "@/features/catalog/pack-mix";
+import { formatPackDips, hasDips } from "@/features/catalog/pack-dips";
 import { formatMoney } from "@/lib/money";
+import { unitPrice } from "./cart";
 
 export function CartView() {
   const { summary, ready, storageNotice, setQuantity, remove, clear } = useCart();
@@ -32,9 +34,10 @@ export function CartView() {
               {line.product && <ProductImage src={line.product.image} sizes="96px" className="hidden size-24 shrink-0 rounded-xl sm:block" />}
               <div className="min-w-0 flex-1">
                 <h2 className="font-display text-xl font-semibold text-brand">{line.product?.name ?? "Producto no disponible"}</h2>
-                <p className="mt-1 text-sm text-muted">{line.product ? `${formatMoney(line.product.price)} por ${line.product.kind === "pack" ? "pack" : "cookie"}` : "Este producto ya no está en la carta."}</p>
+                <p className="mt-1 text-sm text-muted">{line.product ? `${formatMoney(unitPrice(line.product, line))} por ${line.product.kind === "pack" ? "pack" : "cookie"}` : "Este producto ya no está en la carta."}</p>
                 {line.product?.kind === "pack" && <p className="mt-1 text-xs text-muted">{line.quantity} pack(s) · {line.quantity * line.product.cookiesPerItem} mini cookies</p>}
                 {line.mix && <p className="mt-1 text-xs text-muted">{formatPackMix(line.mix)}</p>}
+                {hasDips(line.dips) && <p className="mt-1 text-xs text-muted">Dips: {formatPackDips(line.dips!)}</p>}
                 <div className="mt-4 flex flex-wrap items-center gap-4">
                   <QuantitySelector value={line.quantity} onChange={(value) => setQuantity(line.lineId, value)} label={line.product?.name ?? "producto"} />
                   <button className="min-h-11 text-sm text-muted underline underline-offset-4" onClick={() => remove(line.lineId)}>Quitar</button>

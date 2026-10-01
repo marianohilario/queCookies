@@ -7,7 +7,7 @@ const decrease = 'button[aria-label="Reducir Tradicional"]';
 async function expectQuantity(browser, quantity) {
   await browser.waitFor(`document.querySelector('output[aria-label="Tradicional"]')?.textContent === '${quantity}'`);
   await browser.waitFor(`(() => {
-    const cart = JSON.parse(localStorage.getItem('quecookies:cart:v2'));
+    const cart = JSON.parse(localStorage.getItem('quecookies:cart:v3'));
     const line = cart?.items.find(item => item.productId === 'cookie-tradicional');
     return ${quantity} === 0 ? !line : line?.quantity === ${quantity};
   })()`);
@@ -49,7 +49,7 @@ export async function checkCardQuantity(browser) {
     await expectQuantity(browser, 1);
     await clickText(browser, "Quitar");
     await browser.waitFor("document.body.innerText.includes('Tu próximo antojo')");
-    await browser.waitFor("JSON.parse(localStorage.getItem('quecookies:cart:v2')).items.length === 0");
+    await browser.waitFor("JSON.parse(localStorage.getItem('quecookies:cart:v3')).items.length === 0");
   }
   await browser.navigate("/cookies/mini-cookies");
   await browser.waitFor("!!document.querySelector('button[aria-label=\"Reducir packs\"]')");

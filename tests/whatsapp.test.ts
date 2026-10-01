@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { prepareOrder } from "../src/features/whatsapp/order-message.ts";
 import { evenMix } from "../src/features/catalog/pack-mix.ts";
+import { noDips } from "../src/features/catalog/pack-dips.ts";
 import { emptyDraft } from "../src/features/checkout/checkout.ts";
 
 const now = new Date("2026-10-01T12:00:00Z");
@@ -38,6 +39,28 @@ test("cada combinación de sabores se informa por separado en el mensaje", () =>
   assert.match(result.text, /Sabores: 2 Cacao · 10 Red Velvet/);
   assert.ok(!result.text.includes("0 Tradicional"));
   assert.equal(result.summary.subtotal, 1900000);
+});
+
+test("los dips pedidos se detallan y se cobran en el mensaje", () => {
+  const result = prepareOrder(
+    [
+      { productId: "mini-cookies-12", quantity: 2, lastPrice: 1350000, mix: evenMix(12), dips: { nutella: 2, "chocolate-blanco": 0 } },
+      { productId: "mini-cookies-12", quantity: 1, lastPrice: 1150000, mix: evenMix(12), dips: { nutella: 0, "chocolate-blanco": 1 } },
+      { productId: "mini-cookies-12", quantity: 1, lastPrice: 950000, mix: evenMix(12), dips: noDips },
+    ],
+    draft,
+    now,
+  );
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.match(result.text, /Dips: 2 Dip de Nutella/);
+  assert.match(result.text, /Dips: 1 Dip de chocolate blanco/);
+  // El pack sin dips no inventa una línea de extras.
+  assert.equal(result.text.match(/Dips:/g)?.length, 2);
+  // El precio por pack ya incluye el extra: $9.500 más $2.000 por cada dip.
+  assert.match(result.text, /2 × pack\(s\) de Mini cookies × 12 \(24 mini cookies\) — [\p{Sc}\s]+13\.500 c\/u — [\p{Sc}\s]+27\.000/u);
+  assert.match(result.text, /1 × pack\(s\) de Mini cookies × 12 \(12 mini cookies\) — [\p{Sc}\s]+9\.500 c\/u — [\p{Sc}\s]+9\.500/u);
+  assert.equal(result.summary.subtotal, 4800000);
 });
 
 test("destino y codificación conservan tildes, símbolos, emojis y saltos", () => {

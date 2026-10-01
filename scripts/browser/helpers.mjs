@@ -20,6 +20,12 @@ export async function fill(browser, selector, value) {
   })()`);
 }
 
+// innerText corta con saltos de línea donde el texto envuelve: el texto plano del DOM
+// no, y así una frase se puede comparar completa sin depender del ancho de pantalla.
+export async function bodyText(browser) {
+  return browser.evaluate("document.body.textContent.replace(/\\s+/g, ' ').trim()");
+}
+
 export async function noOverflow(browser, label) {
   const widths = await browser.evaluate("({ document: document.documentElement.scrollWidth, viewport: window.innerWidth })");
   assert.ok(widths.document <= widths.viewport + 1, `${label}: overflow ${JSON.stringify(widths)}`);
