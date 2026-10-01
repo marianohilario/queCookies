@@ -20,6 +20,14 @@ export const shipping = {
   description: "Coordinamos el envío a la dirección que nos indiques. El costo es a tu cargo y te lo confirmamos por WhatsApp antes de cerrar el pedido.",
 } as const;
 
-export const contactUrl = `https://wa.me/${business.whatsapp}`;
+export const developer = {
+  name: "Hilario.dev",
+  instagram: "https://www.instagram.com/hilario.dev/",
+  whatsapp: "5491151339874",
+} as const;
+
+export const whatsappUrl = (phone: string) => `https://wa.me/${phone}`;
+export const contactUrl = whatsappUrl(business.whatsapp);
+export const developerContactUrl = whatsappUrl(developer.whatsapp);
 export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`;
 export const mapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(business.address)}&z=16&output=embed`;

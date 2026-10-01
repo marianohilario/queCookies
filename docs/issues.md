@@ -48,6 +48,12 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-034 | Ingredientes y alérgenos verificados por cookie individual | P-03 / P-09 / docs/specs/000/diseno-ui-ux.md | Implementado; 8 recetas y alérgenos del negocio en catálogo, minis sin datos inventados, 33 pruebas, build y HTML generado correctos. Soja de Nutella y tipo de harina pendientes de validar |
 
+| QC-035 | Crédito del desarrollador en el pie con enlaces a Instagram y WhatsApp | RV-02 / docs/specs/001/validacion.md | Implementado; línea secundaria bajo el copyright, contactos en configuración única, build, typecheck y recorrido Chrome correctos |
+
+| QC-036 | Selector de cantidades más compacto y armónico con las tarjetas | RV-05 / CV-09 / QC-017 | Implementado; contador de 36 px con área táctil de 44 px, 22 pruebas de navegador y regresión responsive correctas |
+
+| QC-037 | Enlace «Inicio» en la navegación de escritorio | RV-03 / docs/specs/001/validacion.md | Implementado; navegación mobile sin cambios, build y regresión responsive correctos |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.

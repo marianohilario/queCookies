@@ -4,6 +4,7 @@ import { Brand } from "./brand";
 import { BrandPattern } from "@/components/brand/brand-motif";
 import { Icon } from "@/components/ui/icon";
 import { FooterSocialLinks } from "./footer-social-links";
+import { DeveloperCredit } from "./developer-credit";
 
 export function Footer() {
   return (
@@ -54,9 +55,12 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="page-container border-t border-cream/20 py-5 text-xs text-cream/75">
-        © {new Date().getFullYear()} {business.name} · Banfield, Buenos Aires ·
-        Hecha para tus antojos.
+      <div className="page-container border-t border-cream/20 py-5 text-xs text-cream/75 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-3">
+        <p>
+          © {new Date().getFullYear()} {business.name} · Banfield, Buenos Aires
+          · Hecha para tus antojos.
+        </p>
+        <DeveloperCredit />
       </div>
     </footer>
   );
