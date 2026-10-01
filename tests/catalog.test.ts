@@ -27,8 +27,10 @@ test("los alérgenos coinciden con los detectados por el negocio", () => {
 });
 
 test("los alérgenos de base se corresponden con los insumos de cada receta", () => {
+  // Se compara contra el insumo tal como lo nombra el negocio: "Harina" a secas
+  // aceptaría anche una harina de arroz, que no obliga a declarar Trigo.
   const insumoAlergeno: [string, string][] = [
-    ["Harina", "Trigo"],
+    ["Harina de trigo", "Trigo"],
     ["Mantequilla", "Leche"],
     ["Huevo", "Huevo"],
   ];
