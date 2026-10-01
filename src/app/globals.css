@@ -79,6 +79,17 @@
   .icon-button {
     @apply inline-flex size-11 shrink-0 items-center justify-center rounded-full transition-colors;
   }
+  .counter {
+    @apply inline-flex h-9 items-center rounded-full border border-brand/15 bg-white;
+  }
+  .counter-button {
+    @apply relative inline-flex size-9 shrink-0 items-center justify-center text-muted/50 transition-colors enabled:text-brand enabled:hover:bg-yellow/50 enabled:active:bg-yellow/70;
+  }
+  /* Área táctil de 44 px de alto sobre un control visible de 36 px, solo en vertical para no pisar el paso vecino */
+  .counter-button::before {
+    content: "";
+    @apply absolute inset-x-0 -inset-y-1.5;
+  }
   .nav-link {
     @apply py-3 text-muted decoration-brand/40 underline-offset-8 transition-colors hover:text-brand hover:underline;
   }

@@ -12,9 +12,13 @@ type IconName =
   | "gift"
   | "instagram"
   | "whatsapp"
-  | "truck";
+  | "truck"
+  | "plus"
+  | "minus";
 
 const paths: Record<IconName, React.ReactNode> = {
+  plus: <path d="M12 5v14M5 12h14" />,
+  minus: <path d="M5 12h14" />,
   instagram: (
     <>
       <rect x="3" y="3" width="18" height="18" rx="5" />
