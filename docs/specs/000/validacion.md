@@ -305,3 +305,16 @@ Decisión del usuario: los packs se arman solo con tradicional, cacao y red velv
 - `npm run build` y `npm run smoke`: correctos; el HTML generado de `/cookies/mini-cookies` incluye el selector, el reparto equitativo, el resumen de sabores y los enlaces a las tres fichas.
 - `npm run test:browser`: correcto con el escenario nuevo `pack-mix-scenario.mjs`: reparto equitativo 4/4/4, bajar un sabor muestra «Faltan 1» y deshabilita el alta, completar deja la combinación lista sin cambiar el precio, el carrito muestra el desglose, dos combinaciones del mismo pack quedan como dos líneas y cada una persiste por separado. Regresión completa de los escenarios previos correcta, incluida la sincronización entre pestañas con la clave `v2`.
 - No verificado: no se confirmaron las capturas por revisión visual en esta sesión ni se coordinó con el negocio la recepción de un mensaje con el nuevo desglose. Safari y dispositivos físicos siguen pendientes como en QC-009.
+
+### QC-039 y QC-040 — Correcciones posteriores a QC-038
+
+- El selector de sabores reservaba altura solo a medias: el mensaje «Faltan 1 para completar el pack» ocupa dos líneas y «12 minis listas» una, y el desglose también cambia de largo, así que el botón «Agregar pack» subía 52 px al bajar un sabor. Se reservó altura fija en el bloque de estado y en el desglose; medido en Chrome a 390 px, el botón queda en la misma posición con la combinación completa e incompleta.
+- La prueba de alérgenos buscaba el insumo «Harina» por igualdad exacta y las recetas dicen «Harina de trigo». Se corrigió para comparar contra el nombre real del insumo. Se comprobó por mutación que la prueba detecta una harina de arroz, que no obligaría a declarar Trigo: con «Harina» a secas la comprobación habría pasado sin error.
+- `npm test`: 42 de 42 pruebas correctas.
+- `npm run build`, `npm run smoke` y `npm run test:browser`: correctos, incluido el escenario que mide la posición del botón antes y después de cambiar la combinación.
+
+### QC-041 — Acceso a la ficha de mini cookies
+
+- La ficha `/cookies/mini-cookies`, donde vive el selector de sabores, solo se alcanzaba desde el banner del inicio. En escritorio el enlace «Mini cookies» del header apuntaba al ancla `#minis` de la carta; ahora abre la ficha. La barra móvil de cuatro accesos (QC-013) se mantiene sin cambios y desde la carta se añadió el enlace «Ver la ficha completa de mini cookies», que es el camino en móvil.
+- El CTA «Mini cookies» del hero y el ancla de la carta siguen apuntando a la sección, donde ya se puede comprar sin cambiar de página.
+- `npm run test:browser`: correcto. El escenario abre la ficha desde la navegación de escritorio y desde la carta a 390 px, sin desbordamiento horizontal.

@@ -56,6 +56,12 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-038 | Combinación de sabores en packs de mini cookies (tradicional, cacao y red velvet a elección del cliente) | RF-03 / CA-03b / QC-034 / docs/specs/000/validacion.md | Implementado; identidad de línea por combinación, desglose en WhatsApp, carrito v2, 41 de 42 pruebas correctas (la falla de alérgenos es previa), build, smoke y recorrido Chrome correctos |
 
+| QC-039 | Evitar el salto del selector de sabores al cambiar la combinación | RF-03 / QC-038 | Implementado; estado y desglose con altura reservada, recorrido Chrome verifica que el botón de agregar no se mueve |
+
+| QC-040 | Corregir el test de alérgenos que buscaba «Harina» exacta | QC-034 | Corregido; 42 de 42 pruebas correctas y mutación detectada |
+
+| QC-041 | Acceso navegable a la ficha de mini cookies | RV-03 / QC-038 | Implementado; enlace en la navegación de escritorio y desde la carta en móvil, recorrido Chrome en ambos anchos |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.

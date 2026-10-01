@@ -55,7 +55,7 @@ Contrastes calculados por luminancia sRGB: texto principal/crema 15,16:1; secund
 
 Contenedor máximo aproximado de 1200 px; margen móvil de 16 px y separación de grilla 12–24 px. Los breakpoints se ajustan si el contenido exige más espacio; nunca se sacrifica la legibilidad para mantener una cantidad de columnas.
 
-**Encabezado móvil:** menú, marca y carrito con contador de artículos. El menú despliega enlaces debajo del encabezado mediante un botón con estado expandido; no requiere un modal a pantalla completa. En escritorio, enlaces visibles: Cookies, Mini cookies, Cómo pedir y Contacto.
+**Encabezado móvil:** menú, marca y carrito con contador de artículos. El menú despliega enlaces debajo del encabezado mediante un botón con estado expandido; no requiere un modal a pantalla completa. En escritorio, enlaces visibles: Cookies, Mini cookies, Cómo pedir y Contacto. «Mini cookies» abre la ficha de packs, no la sección ancla de la carta, para que el selector de sabores sea alcanzable directamente (QC-041).
 
 **Pie:** retiro, días/horarios, cobertura, WhatsApp, Instagram, preguntas frecuentes y privacidad. Los datos provienen de la configuración del negocio.
 
@@ -116,7 +116,7 @@ Bloque cómo pedir:
 ## 4. Carta — `/cookies`
 
 - H1 «Elegí tus cookies» y explicación breve del mínimo.
-- Accesos internos «Cookies» y «Mini cookies», implementados como enlaces a secciones, no pestañas que oculten oferta.
+- Accesos internos «Cookies» y «Mini cookies», implementados como enlaces a secciones, no pestañas que oculten oferta. La sección de minis incluye además un enlace a la ficha completa, que es el camino en móvil donde la barra inferior no tiene un acceso propio (QC-041).
 - Ocho tarjetas de cookies individuales y sección de minis con selector de presentación.
 - Sin buscador ni filtros adicionales para este tamaño de catálogo.
 
