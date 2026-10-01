@@ -74,18 +74,24 @@ Los cuatro bollos se conservan solo como antecedente de la lista recibida; no se
 
 | ID estable de presentación | Nombre público | Cookies por pack | Cálculo ARS | Precio del pack ARS |
 | --- | --- | ---: | --- | ---: |
-| mini-cookies-12 | Mini cookies × 12 | 12 | 9500 × 1 | 9500 |
-| mini-cookies-24 | Mini cookies × 24 | 24 | 9500 × 2 | 19000 |
-| mini-cookies-48 | Mini cookies × 48 | 48 | 9500 × 4 | 38000 |
-| mini-cookies-96 | Mini cookies × 96 | 96 | 9500 × 8 | 76000 |
+| mini-cookies-12 | Mini cookies × 12 | 12 | precio propio | 9500 |
+| mini-cookies-24 | Mini cookies × 24 | 24 | precio propio | 18500 |
+| mini-cookies-48 | Mini cookies × 48 | 48 | precio propio | 35500 |
+| mini-cookies-96 | Mini cookies × 96 | 96 | precio propio | 67000 |
 
-El catálogo público tiene ocho sabores individuales y cuatro presentaciones comprables de mini cookies. Estas últimas pueden presentarse en una ficha con selector de tamaño; cada tamaño conserva su ID en el carrito. El cliente elige cantidad de packs enteros, no mini cookies sueltas ni tamaños arbitrarios. No hay descuento por volumen: el pack de 12 define el precio base de $9.500 y cada presentación se calcula como ese importe por su múltiplo de packs base (×1, ×2, ×4 y ×8).
+El catálogo público tiene ocho sabores individuales y cuatro presentaciones comprables de mini cookies. Estas últimas pueden presentarse en una ficha con selector de tamaño; cada tamaño conserva su ID en el carrito. El cliente elige cantidad de packs enteros, no mini cookies sueltas ni tamaños arbitrarios. No hay descuento por volumen: cada presentación publica su propio precio cerrado ($9.500, $18.500, $35.500 y $67.000) y ese importe es el que se cobra por pack, sin derivarlo de un precio base.
 
 ### Sabores de los packs de mini cookies
 
 Los packs se arman únicamente con **Tradicional, Cacao y Red Velvet**. El cliente define la cantidad exacta de cada sabor dentro del pack y esa combinación pasa a ser parte de la identidad de la línea del carrito: dos packs del mismo tamaño con combinaciones distintas son dos líneas separadas. El precio del pack es cerrado por presentación y no depende de los sabores elegidos. El total de la combinación debe igualar el tamaño del pack; mientras no cierre, el pack no se puede agregar al carrito.
 
 No se deducen ingredientes, rellenos, pesos o alérgenos propios de las mini cookies. Cada minis se hace con la misma receta que la cookie grande de su sabor, así que la ficha de un pack no publica una lista de ingredientes nueva: enlaza a las fichas de Tradicional, Cacao y Red Velvet, que son la fuente de la información alimentaria.
+
+### Dips de los packs de mini cookies
+
+El cliente puede sumar dips de **Nutella** o **chocolate blanco** a un pack, sin tope de cantidad y sin mezclarlos con los sabores: cada dip suma $2.000 al precio de ese pack. El selector aparece tanto en la ficha de `/cookies/mini-cookies` como en la sección de mini cookies de `/cookies`.
+
+La selección de dips forma parte de la identidad de la línea junto con el tamaño y la combinación de sabores: dos packs iguales con dips distintos son dos líneas separadas. Los dips no agregan cookies al contenido físico, por lo que no cuentan para el mínimo de compra. El desglose pedido se informa en la línea del carrito, en la revisión del checkout y en el mensaje de WhatsApp, y queda guardado con el carrito.
 
 ## 4. Alcance
 
@@ -139,7 +145,7 @@ Agregar, aumentar, reducir y eliminar líneas. Las líneas guardadas tienen cant
 
 El mínimo son dos cookies físicas totales: suma de cantidad de cada línea × cookies por unidad de venta. Cada individual aporta una; cada pack aporta 12, 24, 48 o 96. Un pack cumple el mínimo por sí solo, y se permite combinarlo con cookies individuales. No se exige comprar dos packs ni dos cookies grandes adicionales.
 
-Ejemplo: «2 packs de Mini cookies × 12» representa 24 mini cookies y cuesta $19.000. Se conserva como dos packs de 12, sin transformarlo automáticamente en un pack de 24 aunque el precio coincida. El contador principal del carrito muestra unidades de venta (individuales + packs), etiquetadas como artículos, y el resumen distingue el contenido de los packs. Ese contador no se usa para validar el mínimo.
+Ejemplo: «2 packs de Mini cookies × 12» representa 24 mini cookies y cuesta $19.000. Se conserva como dos packs de 12, sin transformarlo automáticamente en un pack de 24, aunque su precio propio sea menor por unidad. El contador principal del carrito muestra unidades de venta (individuales + packs), etiquetadas como artículos, y el resumen distingue el contenido de los packs. Ese contador no se usa para validar el mínimo.
 
 Un carrito con una cookie es válido como borrador, pero no permite continuar ni generar el enlace de pedido. Mensaje: «El pedido mínimo es de 2 cookies. ¡Sumá una más para continuar!». El estado vacío invita a volver a la carta.
 
@@ -226,7 +232,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 | ID | Regla |
 | --- | --- |
 | RN-01 | Mínimo de 2 cookies físicas comprables; suma de cantidades × contenido de la unidad de venta. Un pack de mini cookies cumple el mínimo |
-| RN-02 | Cada sabor conserva su precio individual; cantidad de individuales o packs siempre entera; los packs parten de $9.500 por presentación de 12 y se multiplican por 1, 2, 4 y 8 |
+| RN-02 | Cada sabor conserva su precio individual; cantidad de individuales o packs siempre entera; cada presentación de pack publica su precio propio: $9.500, $18.500, $35.500 y $67.000 |
 | RN-03 | Ninguna selección local reserva stock o producción |
 | RN-04 | La solicitud, entrega y pago se confirman con el negocio por WhatsApp |
 | RN-05 | Retiro sin cargo; envío sin cotización no tiene total final cerrado |
@@ -254,7 +260,7 @@ Los accesos generales a consultas no requieren un carrito válido. Volver desde 
 
 | ID | Tema / estado | Resolución o siguiente acción |
 | --- | --- | --- |
-| P-01 | Resuelto: bollos y presentaciones de mini cookies | Bollos excluidos; packs de 12/24/48/96 a $9.500/$19.000/$38.000/$76.000, derivados del pack de 12; mínimo aplicado al contenido físico |
+| P-01 | Resuelto: bollos y presentaciones de mini cookies | Bollos excluidos; packs de 12/24/48/96 a $9.500/$18.500/$35.500/$67.000, con precio propio por presentación; mínimo aplicado al contenido físico |
 | P-02 | Resuelto: días y horarios | Retiro y envío de lunes a domingo, de 09:00 a 19:00 |
 | P-03 | Descripciones, ingredientes y alérgenos por producto | Redactar propuestas; información alimentaria debe verificarse antes de publicar la ficha final |
 | P-04 | Fotos de stock y permiso/licencia de uso | Seleccionar recursos permitidos, registrar origen y señalar que son ilustrativos |

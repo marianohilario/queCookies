@@ -12,7 +12,7 @@ Referencias: RF-01; T-03, T-04, T-07; V-01, V-07.
 
 Cada producto público tiene precio correspondiente a las tablas de spec.md, nombre, foto accesible, descripción e información alimentaria verificada. No se inventan pesos, rellenos o alérgenos. Se ofrecen ocho cookies individuales y cuatro presentaciones de mini cookies, que pueden agruparse en una ficha con selector. Bollos y mini cookies sueltas no tienen acciones de compra. Un cambio de nombre de presentación no duplica ni cambia el ID del producto.
 
-Las presentaciones 12/24/48/96 cuestan $9.500/$19.000/$38.000/$76.000 respectivamente, derivados por múltiplos 1/2/4/8 del pack de 12. Seleccionar un tamaño actualiza precio e ID; no se aceptan tamaños fuera de esas opciones.
+Las presentaciones 12/24/48/96 cuestan $9.500/$18.500/$35.500/$67.000 respectivamente, con precio propio por presentación. Seleccionar un tamaño actualiza precio e ID; no se aceptan tamaños fuera de esas opciones.
 
 Los packs se arman solo con Tradicional, Cacao y Red Velvet. La ficha de un pack no publica una lista de ingredientes propia: explica que las minis usan la misma masa que las cookies grandes y enlaza a las fichas de esos tres sabores.
 
@@ -30,7 +30,9 @@ El pack arranca con reparto equitativo (4/4/4 en el de 12). El cliente sube y ba
 
 Dos packs del mismo tamaño con combinaciones distintas son líneas separadas del carrito, se muestran por separado y cada una viaja desglosada por sabor al mensaje de WhatsApp. Dos packs con la combinación idéntica sí se acumulan en una sola línea. Una combinación guardada con saborees desconocidos, negativos o fraccionarios se descarta al recuperar el carrito.
 
-Referencias: RF-03, RF-09, RN-02; docs/specs/000/spec.md; docs/issues.md QC-038.
+Desde la ficha de `/cookies/mini-cookies` y desde la sección de mini cookies de `/cookies`, el cliente suma dips de Nutella o chocolate blanco sin tope de cantidad. Cada dip agrega $2.000 al precio del pack, así que un pack de 12 pasa de $9.500 a $11.500 con un dip y a $17.500 con dos de cada sabor. Elegir dips no desplaza el botón de agregar. La combinación de dips forma parte de la identidad de la línea: dos packs con los mismos sabores y dips distintos quedan separados, mientras que pedir cero dips es la misma línea que no elegir ese extra. Los dips no suman cookies al contenido físico ni cuentan para el mínimo. Una selección de dips guardada con sabores desconocidos o cantidades negativas o fraccionarias se descarta al recuperar el carrito.
+
+Referencias: RF-03, RF-09, RN-02; docs/specs/000/spec.md; docs/issues.md QC-038, QC-043, QC-044.
 
 ## CA-04 — Mínimo de dos
 
@@ -120,7 +122,7 @@ Referencias: RF-09, RN-05; T-04, T-12; V-02, V-05.
 
 ## CA-18 — Mensaje completo y consistente
 
-El mensaje saluda a Que Cookies y contiene líneas con nombre, unidades de venta, precio por unidad de venta e importe; subtotal; tratamiento de entrega/total; nombre y teléfono; dirección correspondiente a la modalidad; preferencias y comentarios no vacíos. Los packs identifican tamaño, cantidad y contenido total; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.500 c/u — $19.000». Cada pack añade su desglose de sabores («Sabores: 6 Tradicional · 4 Cacao · 2 Red Velvet») y los sabores en cantidad cero no se listan. Coincide con el último resumen validado y pide confirmación al negocio. No contiene ID de pedido ficticio ni estado de pago.
+El mensaje saluda a Que Cookies y contiene líneas con nombre, unidades de venta, precio por unidad de venta e importe; subtotal; tratamiento de entrega/total; nombre y teléfono; dirección correspondiente a la modalidad; preferencias y comentarios no vacíos. Los packs identifican tamaño, cantidad y contenido total; por ejemplo: «2 packs de Mini cookies × 12 (24 mini cookies) — $9.500 c/u — $19.000». Cada pack añade su desglose de sabores («Sabores: 6 Tradicional · 4 Cacao · 2 Red Velvet») y los sabores en cantidad cero no se listan. Los packs con dips añaden además su desglose («Dips: 2 Dip de Nutella · 1 Dip de chocolate blanco»); los que no tienen dips no agregan esa línea. Coincide con el último resumen validado y pide confirmación al negocio. No contiene ID de pedido ficticio ni estado de pago.
 
 Referencias: RF-09, RF-10; T-12, T-13; V-05.
 

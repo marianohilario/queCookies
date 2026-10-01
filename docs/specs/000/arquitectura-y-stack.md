@@ -83,7 +83,7 @@ Regla obligatoria del proyecto, registrada en [AGENTS.md](../../../AGENTS.md) y 
 - Estado en hooks/proveedores acotados; acceso al almacenamiento en su adaptador, nunca disperso en controles o páginas.
 - Cálculo de líneas, subtotales, mínimo físico y elegibilidad en funciones puras compartidas por carrito y checkout.
 - Un único modelo de resumen alimenta la presentación y el formateador de WhatsApp. Este último cambia el formato, no recalcula reglas comerciales.
-- Datos de marca, horarios, catálogo, tamaños y precio base de mini cookies centralizados. Tokens visuales compartidos, sin repetir valores arbitrarios por pantalla.
+- Datos de marca, horarios, catálogo, precios de packs de mini cookies y precio del dip centralizados. Tokens visuales compartidos, sin repetir valores arbitrarios por pantalla.
 - Reutilizar controles y componentes existentes antes de crear otros. Mantener componentes de dominio dentro de su feature y primitivas transversales dentro de `components/ui/`.
 - Nombrar archivos por propósito (`calculate-cart`, `pack-size-selector`, `order-totals`) y evitar contenedores genéricos que mezclen responsabilidades (`helpers`, `misc`, `all-components`).
 - Extraer según cohesión y reutilización real; sin límites mecánicos de líneas ni componentes universales con combinaciones de props difíciles de seguir.
@@ -102,11 +102,11 @@ Nombre público Que Cookies, logo con el nuevo texto y la misma identidad, enlac
 
 ID estable, slug, nombre público, descripción verificada, precio por unidad de venta en unidades monetarias menores, moneda ARS, imagen, texto alternativo, ingredientes/alérgenos, etiquetas, disponibilidad editorial, tipo de venta (individual/pack) y cookies por unidad de venta. Los campos alimentarios pendientes no se completan por inferencia.
 
-Las ocho cookies individuales tienen contenido 1. Las mini cookies tienen cuatro presentaciones con IDs `mini-cookies-12`, `mini-cookies-24`, `mini-cookies-48` y `mini-cookies-96`, contenido 12/24/48/96 y precio derivado de una base central de 950000 centavos para el pack de 12. Una ficha puede agruparlas con selector, pero se resuelve un ID de presentación concreto antes de agregar. No exponer `mini-cookie` individual ni bollos en el catálogo comprable.
+Las ocho cookies individuales tienen contenido 1. Las mini cookies tienen cuatro presentaciones con IDs `mini-cookies-12`, `mini-cookies-24`, `mini-cookies-48` y `mini-cookies-96`, contenido 12/24/48/96 y precio propio publicado en el catálogo. Una ficha puede agruparlas con selector, pero se resuelve un ID de presentación concreto antes de agregar. No exponer `mini-cookie` individual ni bollos en el catálogo comprable.
 
 Los importes recibidos se convierten de pesos a centavos al ingresar en el modelo (3500 ARS = 350000 centavos). Cálculos enteros; presentación con Intl.NumberFormat, sin aritmética de dinero en flotantes.
 
-Precios de packs en centavos: 950000, 1900000, 3800000 y 7600000. Derivarlos del precio base del pack de 12 y del múltiplo de packs base (1, 2, 4, 8) para evitar duplicar valores que puedan divergir. No aplicar descuentos implícitos ni permitir tamaños arbitrarios enviados desde almacenamiento.
+Precios de packs en centavos: 950000, 1850000, 3550000 y 6700000. Cada presentación publica su precio propio en una única tabla del catálogo; no se derivan de un precio base ni se calculan por múltiplos. No aplicar descuentos implícitos ni permitir tamaños arbitrarios enviados desde almacenamiento.
 
 ### CartLine
 
@@ -115,6 +115,8 @@ ID de producto/presentación y cantidad de unidades de venta. En individuales la
 Identidad de línea por presentación: dos packs de 12 se conservan separados de un pack de 24 aunque ambos contengan 24 mini cookies y cuesten lo mismo. Restaurar el carrito no cambia el tamaño elegido ni acepta IDs de bollos o mini cookies individuales como productos comprables.
 
 En packs la identidad suma la combinación de sabores. `PackMix` es un registro `{tradicional, cacao, red-velvet}` con cantidades enteras no negativas cuya suma iguala el tamaño del pack; `pack-mix.ts` concentra el reparto equitativo, el paso de cantidades y la validación. `lineIdOf` compone el ID de línea con presentación y combinación, de modo que dos combinaciones distintas del mismo pack son líneas separadas y dos idénticas se acumulan. El precio sigue siendo el del pack: la combinación no participa del importe. Al ser la combinación parte de la identidad persistida, el formato del carrito está versionado y una línea guardada sin combinación completa no es comprable.
+
+En packs la identidad suma además la selección de dips. `PackDips` es un registro `{nutella, chocolate-blanco}` con cantidades enteras no negativas sin tope; `pack-dips.ts` concentra el total de dips, el importe del extra y la validación. El precio unitario del pack suma `dipsTotal × dipPrice`, de modo que el extra queda incluido en el precio por unidad que ve el cliente. Los dips no aportan contenido físico, así que no intervienen en el mínimo. Al ser parte de la identidad persistida, exigen la nueva versión del formato de carrito y una línea guardada con dips inválidos no es comprable.
 
 ### CustomerProfile
 

@@ -40,9 +40,11 @@ Usar datos sintéticos. Para comprobar el mensaje recibido por el negocio, coord
 | Mínimo mixto | 1 tradicional + 1 pistacho | $9.500 |
 | Varias unidades | 2 tradicionales + 1 cacao | $11.000 |
 | Pack mínimo | 1 pack de 12 mini cookies | $9.500; continuar habilitado |
-| Pack de 24 | 1 pack de 24 mini cookies | $19.000 |
-| Pack de 48 | 1 pack de 48 mini cookies | $38.000 |
-| Pack de 96 | 1 pack de 96 mini cookies | $76.000 |
+| Pack de 24 | 1 pack de 24 mini cookies | $18.500 |
+| Pack de 48 | 1 pack de 48 mini cookies | $35.500 |
+| Pack de 96 | 1 pack de 96 mini cookies | $67.000 |
+| Pack con un dip | 1 pack de 12 + 1 dip de Nutella | $11.500 |
+| Pack con cuatro dips | 1 pack de 12 + 2 Nutella + 2 chocolate blanco | $17.500 |
 | Varios packs | 2 packs de 12 mini cookies | $19.000; conservar dos packs de 12 |
 | Pedido mixto | 1 pack de 12 + 1 tradicional | $13.000 |
 
@@ -57,7 +59,8 @@ Fixtures adicionales: producto marcado no disponible, producto eliminado del cat
 - Contrastar las 13 referencias y precios recibidos contra spec.md.
 - Verificar publicación de ocho cookies individuales y cuatro presentaciones comprables de mini cookies, agrupables bajo una ficha con selector.
 - Comprobar exclusión de bollos y ausencia de venta unitaria de mini cookies; P-01 está resuelto.
-- Verificar cálculo de packs: $9.500 por el pack de 12, con múltiplos 1/2/4/8 para 24/48/96; sin descuentos implícitos ni tamaños arbitrarios.
+- Verificar los precios de cada presentación de pack: $9.500, $18.500, $35.500 y $67.000, sin derivarlos de un precio base ni aplicar descuentos implícitos ni tamaños arbitrarios.
+- Verificar el extra de dips: cada dip suma $2.000 al pack, sin tope de cantidad y sin sumar contenido físico.
 - Revisar nombre Que Cookies en logo, textos, metadatos y mensajes; conservar el Instagram proporcionado hasta recibir un nuevo enlace.
 - Revisar ingredientes/alérgenos, textos, datos de contacto, retiro y cobertura.
 - Confirmar carácter ilustrativo de fotografías y ausencia de afirmaciones comerciales inventadas.
@@ -326,3 +329,21 @@ Decisión del usuario: los packs se arman solo con tradicional, cacao y red velv
 - El escenario `checkMiniSectionImage` mide la proporción en carta y ficha a esos tres anchos, comprueba que la imagen no se salga de la tarjeta y que no haya desbordamiento horizontal. Se verificó que falla sin el arreglo («imagen de minis deformada a 390px: ratio 0.83»).
 - `npm run check` (42 de 42), `npm run smoke` y `npm run test:browser` (29 comprobaciones): correctos.
 - No verificado: la captura no se revisó por vista en esta sesión.
+
+### QC-043 — Precios de packs de mini cookies
+
+- Los packs se derivaban de `miniBasePackSize`/`miniBasePackPrice` como `(size / 12) × 950000`, lo que daba 9500/19000/38000/76000. El negocio fijó sus precios reales por presentación: 9500, 18500, 35500 y 67000 centavos.
+- Se eliminó el precio base y el cálculo por múltiplos; `catalog.ts` publica `packPrices` como tabla única y `packSizes` como lista de referencia, de modo que no quedan valores duplicados que puedan divergir.
+- `npm test`: 51 de 51 pruebas correctas, incluidas las que clavan el precio de las cuatro presentaciones.
+- `npm run check` (typecheck, 51 pruebas, build y smoke) y `npm run test:browser` (30 comprobaciones): correctos.
+
+### QC-044 — Dips de Nutella y chocolate blanco en los packs
+
+- Se agregaron al catálogo `dipPrice` (200000 centavos), `dipFlavorSlugs` y `dipFlavors`, con un único precio para los dos sabores. Como el extra vale lo mismo, el importe depende solo de la cantidad.
+- Nuevo módulo puro `src/features/catalog/pack-dips.ts`: total, importe del extra, paso de cantidades sin negativos, validación e identidad de línea. No importa React ni almacenamiento.
+- El precio unitario del pack pasa a sumar el extra, así que el cliente ve el total con dips antes de agregar y el precio por unidad del carrito y del mensaje ya lo incluye. Los dips no aportan contenido físico, por lo que no intervienen en el mínimo y una línea de no-pack con dips se marca como no comprable.
+- La selección de dips entró en la identidad de línea junto con la combinación de sabores: dos packs con los mismos sabores y dips distintos quedan separados, y pedir cero dips es la misma línea que no elegirlos. El formato de almacenamiento pasa a `quecookies:cart:v3` porque una línea guardada sin dips válidos ya no es comprable; los carritos anteriores se descartan con el aviso ya existente.
+- El selector `PackDipSelector` se integra en `PackPurchase`, por lo que aparece en la ficha `/cookies/mini-cookies` y en la sección de mini cookies de `/cookies`, que comparten ese bloque. El desglose se muestra en el carrito, en la revisión del checkout y en el mensaje de WhatsApp; los packs sin dips no agregan esa línea.
+- `isPackDips` usa el mismo validador estricto de registros de conteo que `isPackMix` (`src/lib/counts.ts`), de modo que un sabor desconocido deja de sobrevivir al carrito en lugar de ignorarse en silencio.
+- `npm run test:browser`: correcto con el escenario nuevo `pack-dip-scenario.mjs`: un dip lleva el pack de $9.500 a $11.500 sin desplazar el botón de agregar, cuatro dips dan $17.500, el carrito muestra el desglose, dos combinaciones de dips del mismo pack quedan como dos líneas y cada una persiste por separado en `v3`.
+- Al verificar el escenario se detectó que el selector de dips usaba `aria-label="Dip de Nutella en el pack"`, igual que el de sabores, y que el escenario de packs leía los contadores por sufijo y TOMABA los dips como sabores. Se quitó el sufijo redundante del selector de dips y el escenario de packs pasó a leer los tres sabores por nombre exacto.

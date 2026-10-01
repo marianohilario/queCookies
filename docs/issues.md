@@ -64,6 +64,10 @@ Tracker local; estos IDs no representan issues creados en GitHub. Los commits us
 
 | QC-042 | Acotar el alto de la imagen de minis en la carta, que se estiraba a 3,75:1 | RV-03 / QC-038 | Implementado; proporción 1:1 como la ficha, recorrido Chrome a 390, 768 y 1440 px |
 
+| QC-043 | Aplicar los precios de packs fijados por el negocio: 12 en $9.500, 24 en $18.500, 48 en $35.500 y 96 en $67.000 | RN-02 / QC-038 | Implementado; tabla de precios por presentación en lugar del cálculo por múltiplos, 51 de 51 pruebas y recorrido Chrome correctos |
+
+| QC-044 | Sumar dips de Nutella y chocolate blanco a los packs, sin tope, a $2.000 cada uno, visibles en la ficha, la carta, el carrito, el checkout y el mensaje de WhatsApp | RF-03 / RF-11 / QC-038 | Implementado; dips en la identidad de línea y en el precio unitario, persistencia v3, escenario Chrome `pack-dip-scenario.mjs` correcto |
+
 La validación del release y el despliegue (T-15/T-16) se registran al contar con evidencia y entorno disponible. Ningún estado documental implica publicación ni validación de la aplicación.
 
 QC-007 se acotó a Chrome instalado y revisión de capturas; la revisión editorial y las plataformas restantes se separaron en QC-008/QC-009 para no declararlas completas sin evidencia.
