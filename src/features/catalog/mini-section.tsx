@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { miniPacks, stockPhotos } from "@/data/catalog";
 import { ProductImage } from "./product-image";
 import { PurchaseControls } from "./purchase-controls";
@@ -16,6 +17,13 @@ export function MiniSection() {
             cumple el mínimo de compra.
           </p>
           <PurchaseControls productId={miniPacks[0].id} />
+          {/* La navegación móvil no incluye esta ficha, así que se deja un acceso desde la carta. */}
+          <Link
+            className="mt-5 inline-flex min-h-11 items-center py-2 text-sm text-muted underline underline-offset-4"
+            href="/cookies/mini-cookies"
+          >
+            Ver la ficha completa de mini cookies
+          </Link>
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import { startBrowserCheck } from "./browser/environment.mjs";
 import { viewport, noOverflow } from "./browser/helpers.mjs";
 import { checkOrder } from "./browser/order-scenario.mjs";
 import { checkStorage } from "./browser/storage-scenario.mjs";
-import { checkNavigation } from "./browser/navigation-scenario.mjs";
+import { checkNavigation, checkMiniCookiesAccess } from "./browser/navigation-scenario.mjs";
 import { checkRedesign } from "./browser/redesign-scenario.mjs";
 import { checkCardQuantity } from "./browser/card-quantity-scenario.mjs";
 import { checkPackMix } from "./browser/pack-mix-scenario.mjs";
@@ -30,6 +30,7 @@ try {
     console.log(`OK responsive sin desbordamiento horizontal a ${width}px`);
   }
   await checkNavigation(browser);
+  await checkMiniCookiesAccess(browser);
   await checkRedesign(browser);
   await checkCardQuantity(browser);
   await checkPackMix(browser);

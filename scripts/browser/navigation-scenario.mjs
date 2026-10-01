@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { click, noOverflow, viewport } from "./helpers.mjs";
+import { click, clickText, noOverflow, viewport } from "./helpers.mjs";
 
 const nav = 'nav[aria-label="Navegación móvil"]';
 
@@ -35,6 +35,23 @@ export async function checkNavigation(browser) {
   assert.equal(await browser.evaluate(`getComputedStyle(document.querySelector(${JSON.stringify(nav)})).display`), "none");
   assert.equal(await browser.evaluate("getComputedStyle(document.body).paddingBottom"), "0px");
   console.log("OK destinos, activo en fichas/checkout y navegación superior de escritorio");
+}
+
+// La ficha de packs no está en la barra móvil de cuatro accesos: tiene que
+// ser alcanzable desde la navegación de escritorio y desde la carta.
+export async function checkMiniCookiesAccess(browser) {
+  await viewport(browser, 1440, 1000);
+  await browser.navigate("/");
+  await click(browser, 'header nav[aria-label="Navegación principal"] a[href="/cookies/mini-cookies"]');
+  await browser.waitFor("location.pathname === '/cookies/mini-cookies' && !!document.querySelector('output[aria-label$=\" en el pack\"]')");
+  console.log("OK la ficha de mini cookies se abre desde la navegación de escritorio");
+
+  await viewport(browser, 390);
+  await browser.navigate("/cookies");
+  await clickText(browser, "Ver la ficha completa de mini cookies");
+  await browser.waitFor("location.pathname === '/cookies/mini-cookies' && !!document.querySelector('output[aria-label$=\" en el pack\"]')");
+  await noOverflow(browser, "ficha de minis móvil");
+  console.log("OK la ficha de mini cookies se abre desde la carta en móvil");
 }
 
 export async function checkNavigationWithCart(browser) {
