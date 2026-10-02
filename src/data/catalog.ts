@@ -4,8 +4,9 @@ export const stockPhotos = {
   // cookies:
   //   "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1400&q=85",
   cookies: "/images/cookies/traditional_bg.jpeg",
-  assortment:
-    "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=1200&q=85",
+  assortment: "/images/cookies/minis.png",
+  // assortment:
+  //   "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=1200&q=85",
 };
 
 const flavors = [
@@ -207,7 +208,6 @@ export const individualCookies: Product[] = flavors.map(
     cookiesPerItem: 1,
     kind: "individual",
     available: true,
-    // image: index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
     image: `/images/cookies/${cardIllustrations[slug]}`,
     images: [`/images/cookies/${cardIllustrations[slug]}`],
     cardImage: `/images/cookies/${cardIllustrations[slug]}`,
