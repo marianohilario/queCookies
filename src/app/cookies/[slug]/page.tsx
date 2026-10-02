@@ -20,7 +20,7 @@ export default async function ProductPage({ params }: Props) {
     <section className="page-container section-space">
       <Link className="text-sm text-muted underline underline-offset-4" href="/cookies">← Volver a la carta</Link>
       <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-16">
-        <ProductImage src={product.image} priority className="aspect-square rounded-[2rem]" />
+        <ProductImage src={product.image} images={product.images} priority className="aspect-square rounded-[2rem]" />
         <div className="self-center">
           <p className="eyebrow">Tu próximo momento dulce</p>
           <h1 className="section-title mt-4">{product.kind === "pack" ? "Mini cookies" : product.name}</h1>

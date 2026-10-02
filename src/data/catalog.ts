@@ -1,8 +1,9 @@
 import type { Product } from "../features/catalog/product.ts";
 
 export const stockPhotos = {
-  cookies:
-    "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1400&q=85",
+  // cookies:
+  //   "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1400&q=85",
+  cookies: "/images/cookies/traditional_bg.jpeg",
   assortment:
     "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=1200&q=85",
 };
@@ -186,14 +187,14 @@ const flavorRecipes: Record<
 };
 
 const cardIllustrations: Record<string, string> = {
-  tradicional: "traditional",
-  cacao: "chocolate",
-  "red-velvet": "red-velvet",
-  "bon-o-bon": "chocolate",
-  nutella: "chocolate",
-  "red-velvet-rellena": "red-velvet",
-  pistacho: "pistachio",
-  "cacao-chocolate-blanco": "chocolate",
+  tradicional: "traditional_bg.jpeg",
+  cacao: "chocolate.png",
+  "red-velvet": "red-velvet.png",
+  "bon-o-bon": "chocolate.png",
+  nutella: "chocolate.png",
+  "red-velvet-rellena": "red-velvet.png",
+  pistacho: "pistachio.png",
+  "cacao-chocolate-blanco": "chocolate.png",
 };
 
 export const individualCookies: Product[] = flavors.map(
@@ -207,7 +208,11 @@ export const individualCookies: Product[] = flavors.map(
     kind: "individual",
     available: true,
     image: index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
-    cardImage: `/images/cookies/${cardIllustrations[slug]}.png`,
+    images: [
+      index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
+      "/images/cookies/traditional_split.jpeg",
+    ],
+    cardImage: `/images/cookies/${cardIllustrations[slug]}`,
     ...flavorRecipes[slug],
   }),
 );

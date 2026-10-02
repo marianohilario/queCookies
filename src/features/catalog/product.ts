@@ -8,6 +8,7 @@ export type Product = {
   kind: "individual" | "pack";
   available: boolean;
   image: string;
+  images?: readonly string[];
   cardImage?: string;
   ingredients?: readonly string[];
   allergens?: readonly string[];
