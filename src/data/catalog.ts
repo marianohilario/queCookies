@@ -187,14 +187,14 @@ const flavorRecipes: Record<
 };
 
 const cardIllustrations: Record<string, string> = {
-  tradicional: "traditional_bg.jpeg",
-  cacao: "chocolate.png",
+  tradicional: "tradicional.png",
+  cacao: "cacao.png",
   "red-velvet": "red-velvet.png",
-  "bon-o-bon": "chocolate.png",
-  nutella: "chocolate.png",
-  "red-velvet-rellena": "red-velvet.png",
-  pistacho: "pistachio.png",
-  "cacao-chocolate-blanco": "chocolate.png",
+  "bon-o-bon": "bon-o-bon.png",
+  nutella: "nutella.png",
+  "red-velvet-rellena": "red-velvet-rellena.png",
+  pistacho: "pistacho.png",
+  "cacao-chocolate-blanco": "cacao-chocolate-blanco.png",
 };
 
 export const individualCookies: Product[] = flavors.map(
@@ -207,11 +207,9 @@ export const individualCookies: Product[] = flavors.map(
     cookiesPerItem: 1,
     kind: "individual",
     available: true,
-    image: index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
-    images: [
-      index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
-      "/images/cookies/traditional_split.jpeg",
-    ],
+    // image: index % 2 ? stockPhotos.assortment : stockPhotos.cookies,
+    image: `/images/cookies/${cardIllustrations[slug]}`,
+    images: [`/images/cookies/${cardIllustrations[slug]}`],
     cardImage: `/images/cookies/${cardIllustrations[slug]}`,
     ...flavorRecipes[slug],
   }),
