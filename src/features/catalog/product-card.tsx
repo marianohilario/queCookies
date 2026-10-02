@@ -27,6 +27,7 @@ export function ProductCard({ product }: { product: Product }) {
       <Link
         href={`/cookies/${product.slug}`}
         aria-label={`Ver ${product.name}`}
+        className="mb-4"
       >
         <CookiePortrait product={product} />
       </Link>
