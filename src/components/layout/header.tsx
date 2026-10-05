@@ -3,7 +3,7 @@ import { Brand } from "./brand";
 import { CartIndicator } from "@/features/cart/cart-indicator";
 
 const links = [
-  ["/", "Inicio"], ["/cookies", "Cookies"], ["/cookies/mini-cookies", "Mini cookies"],
+  ["/", "Inicio"], ["/cookies", "Cookies"], ["/cookies#minis", "Mini cookies"],
   ["/#como-pedir", "Cómo pedir"], ["/nosotros", "Contacto"],
 ] as const;
 
