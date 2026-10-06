@@ -36,7 +36,7 @@ const flavors = [
     5000,
     "Otra forma de elegir ese sabor que te encanta.",
   ],
-  ["pistacho", "Pistacho", 6000, "Una invitación a salir del clásico."],
+  ["pistacho", "Pistacho", 5000, "Una invitación a salir del clásico."],
   [
     "cacao-chocolate-blanco",
     "Cacao y chocolate blanco",

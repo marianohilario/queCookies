@@ -2,7 +2,7 @@ export const business = {
   name: "Que Cookies",
   whatsapp: "5491161919801",
   phoneLabel: "+54 9 11 6191-9801",
-  instagram: "https://www.instagram.com/quecookiss/",
+  instagram: "https://www.instagram.com/quecookies.ar/",
   address: "Peña 298, Banfield, Buenos Aires",
   hoursLabel: "Todos los días, de 9 a 19 h",
   opens: "09:00",
@@ -17,7 +17,8 @@ export const business = {
 export const shipping = {
   title: "Tus cookies, donde estés",
   summary: "Envíos a coordinar · Costo según destino",
-  description: "Coordinamos el envío a la dirección que nos indiques. El costo es a tu cargo y te lo confirmamos por WhatsApp antes de cerrar el pedido.",
+  description:
+    "Coordinamos el envío a la dirección que nos indiques. El costo es a tu cargo y te lo confirmamos por WhatsApp antes de cerrar el pedido.",
 } as const;
 
 export const developer = {
